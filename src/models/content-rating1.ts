@@ -1,0 +1,13 @@
+import { s, type EnumSchema } from "../core/index.js";
+
+export const ContentRating1 = {
+  Drugs: "drugs",
+  Language: "language",
+  Nudity: "nudity",
+  Safe: "safe",
+  Unrated: "unrated",
+  Violence: "violence",
+} as const;
+export type ContentRating1 = (typeof ContentRating1)[keyof typeof ContentRating1] | (string & {});
+
+export const contentRating1Schema: EnumSchema<ContentRating1> = s.enumOf<ContentRating1>(ContentRating1);

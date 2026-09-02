@@ -1,0 +1,12 @@
+import { s, type Schema } from "../core/index.js";
+
+export type UsersVideosRequest = {
+  sendToRecentlyDeleted?: boolean;
+};
+
+export const usersVideosRequestSchema: Schema<UsersVideosRequest> = s.object<UsersVideosRequest>({
+  sendToRecentlyDeleted: s.optional(s.boolean()),
+  _keysMap: {
+    sendToRecentlyDeleted: "send_to_recently_deleted",
+  },
+});

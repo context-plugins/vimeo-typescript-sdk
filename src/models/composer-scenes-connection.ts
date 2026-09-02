@@ -1,0 +1,23 @@
+import { s, type Schema } from "../core/index.js";
+import { composerScenesSchema, type ComposerScenes } from "./composer-scenes.js";
+import { pagingSchema, type Paging } from "./paging.js";
+
+export type ComposerScenesConnection = {
+  total?: number;
+  page?: number;
+  perPage?: number;
+  paging?: Paging;
+  data?: ComposerScenes[];
+};
+
+export const composerScenesConnectionSchema: Schema<ComposerScenesConnection> =
+  s.object<ComposerScenesConnection>({
+    total: s.optional(s.number()),
+    page: s.optional(s.number()),
+    perPage: s.optional(s.number()),
+    paging: s.optional(s.lazy(() => pagingSchema)),
+    data: s.optional(s.array(s.lazy(() => composerScenesSchema))),
+    _keysMap: {
+      perPage: "per_page",
+    },
+  });

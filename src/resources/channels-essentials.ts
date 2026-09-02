@@ -1,0 +1,313 @@
+import type { AuthSchemes } from "../auth-schemes.js";
+import type { ApiPromise, Declared, ErrorDecoders, RawClient, RequestOptions } from "../core/index.js";
+import { ResponseError, anyAuth, s } from "../core/index.js";
+import { channelConnectionSchema, type ChannelConnection } from "../models/channel-connection.js";
+import { channelSchema, type Channel } from "../models/channel.js";
+import { channelsRequestSchema, type ChannelsRequest } from "../models/channels-request.js";
+import { channelsRequest1Schema, type ChannelsRequest1 } from "../models/channels-request1.js";
+import { directionSchema, type Direction } from "../models/direction.js";
+import { errorSchema, type Error } from "../models/error.js";
+import { filter1Schema, type Filter1 } from "../models/filter1.js";
+import { filter12Schema, type Filter12 } from "../models/filter12.js";
+import { legacyErrorSchema, type LegacyError } from "../models/legacy-error.js";
+import { sort4Schema, type Sort4 } from "../models/sort4.js";
+import { sort7Schema, type Sort7 } from "../models/sort7.js";
+import type { Servers } from "../servers.js";
+
+export class ChannelsEssentials {
+  readonly #rawClient: RawClient;
+  readonly #servers: Servers;
+  readonly #auth: AuthSchemes;
+
+  constructor(rawClient: RawClient, servers: Servers, auth: AuthSchemes) {
+    this.#rawClient = rawClient;
+    this.#servers = servers;
+    this.#auth = auth;
+  }
+
+  createChannel(
+    request: ChannelsEssentials.CreateChannelRequest,
+    options?: RequestOptions,
+  ): ApiPromise<Channel, ChannelsEssentials.CreateChannelError> {
+    return this.#rawClient.execute(
+      {
+        method: "POST",
+        url: this.#servers.default("/channels"),
+        auth: anyAuth(
+          this.#auth.oauth2AuthorizationCode,
+          this.#auth.oauth2ClientCredentials,
+          this.#auth.bearer,
+        ),
+        body: { kind: "json", value: request.body, schema: channelsRequestSchema },
+      },
+      {
+        success: { kind: "json", schema: channelSchema },
+        errorFactory: ChannelsEssentials.CreateChannelError,
+      },
+      options,
+    );
+  }
+
+  deleteChannel(
+    request: ChannelsEssentials.DeleteChannelRequest,
+    options?: RequestOptions,
+  ): ApiPromise<undefined, ChannelsEssentials.DeleteChannelError> {
+    return this.#rawClient.execute(
+      {
+        method: "DELETE",
+        url: this.#servers.default("/channels/{channel_id}"),
+        auth: anyAuth(
+          this.#auth.oauth2AuthorizationCode,
+          this.#auth.oauth2ClientCredentials,
+          this.#auth.bearer,
+        ),
+        pathParams: [{ name: "channel_id", value: request.channelId, schema: s.number() }],
+        body: { kind: "empty" },
+      },
+      {
+        success: { kind: "empty" },
+        errorFactory: ChannelsEssentials.DeleteChannelError,
+      },
+      options,
+    );
+  }
+
+  editChannel(
+    request: ChannelsEssentials.EditChannelRequest,
+    options?: RequestOptions,
+  ): ApiPromise<Channel, ChannelsEssentials.EditChannelError> {
+    return this.#rawClient.execute(
+      {
+        method: "PATCH",
+        url: this.#servers.default("/channels/{channel_id}"),
+        auth: anyAuth(
+          this.#auth.oauth2AuthorizationCode,
+          this.#auth.oauth2ClientCredentials,
+          this.#auth.bearer,
+        ),
+        pathParams: [{ name: "channel_id", value: request.channelId, schema: s.number() }],
+        body: { kind: "json", value: request.body, schema: s.optional(s.lazy(() => channelsRequest1Schema)) },
+      },
+      {
+        success: { kind: "json", schema: channelSchema },
+        errorFactory: ChannelsEssentials.EditChannelError,
+      },
+      options,
+    );
+  }
+
+  getChannel(
+    request: ChannelsEssentials.GetChannelRequest,
+    options?: RequestOptions,
+  ): ApiPromise<Channel, ResponseError> {
+    return this.#rawClient.execute<Channel, ResponseError>(
+      {
+        method: "GET",
+        url: this.#servers.default("/channels/{channel_id}"),
+        auth: anyAuth(
+          this.#auth.oauth2AuthorizationCode,
+          this.#auth.oauth2ClientCredentials,
+          this.#auth.bearer,
+        ),
+        pathParams: [{ name: "channel_id", value: request.channelId, schema: s.number() }],
+        query: [{ name: "sizes", value: request.sizes, schema: s.optional(s.string()) }],
+        body: { kind: "empty" },
+      },
+      {
+        success: { kind: "json", schema: channelSchema },
+        errorFactory: ResponseError,
+      },
+      options,
+    );
+  }
+
+  getChannelSubscriptions(
+    request: ChannelsEssentials.GetChannelSubscriptionsRequest,
+    options?: RequestOptions,
+  ): ApiPromise<ChannelConnection, ChannelsEssentials.GetChannelSubscriptionsError> {
+    return this.#rawClient.execute(
+      {
+        method: "GET",
+        url: this.#servers.default("/users/{user_id}/channels"),
+        auth: anyAuth(
+          this.#auth.oauth2AuthorizationCode,
+          this.#auth.oauth2ClientCredentials,
+          this.#auth.bearer,
+        ),
+        pathParams: [{ name: "user_id", value: request.userId, schema: s.number() }],
+        query: [
+          { name: "direction", value: request.direction, schema: s.optional(s.lazy(() => directionSchema)) },
+          { name: "filter", value: request.filter, schema: s.optional(s.lazy(() => filter12Schema)) },
+          { name: "page", value: request.page, schema: s.optional(s.number()) },
+          { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
+          { name: "query", value: request.query, schema: s.optional(s.string()) },
+          { name: "sort", value: request.sort, schema: s.optional(s.lazy(() => sort4Schema)) },
+        ],
+        body: { kind: "empty" },
+      },
+      {
+        success: { kind: "json", schema: channelConnectionSchema },
+        errorFactory: ChannelsEssentials.GetChannelSubscriptionsError,
+      },
+      options,
+    );
+  }
+
+  getChannelSubscriptionsAlt1(
+    request: ChannelsEssentials.GetChannelSubscriptionsAlt1Request,
+    options?: RequestOptions,
+  ): ApiPromise<ChannelConnection, ChannelsEssentials.GetChannelSubscriptionsAlt1Error> {
+    return this.#rawClient.execute(
+      {
+        method: "GET",
+        url: this.#servers.default("/me/channels"),
+        auth: anyAuth(
+          this.#auth.oauth2AuthorizationCode,
+          this.#auth.oauth2ClientCredentials,
+          this.#auth.bearer,
+        ),
+        query: [
+          { name: "direction", value: request.direction, schema: s.optional(s.lazy(() => directionSchema)) },
+          { name: "filter", value: request.filter, schema: s.optional(s.lazy(() => filter12Schema)) },
+          { name: "page", value: request.page, schema: s.optional(s.number()) },
+          { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
+          { name: "query", value: request.query, schema: s.optional(s.string()) },
+          { name: "sort", value: request.sort, schema: s.optional(s.lazy(() => sort4Schema)) },
+        ],
+        body: { kind: "empty" },
+      },
+      {
+        success: { kind: "json", schema: channelConnectionSchema },
+        errorFactory: ChannelsEssentials.GetChannelSubscriptionsAlt1Error,
+      },
+      options,
+    );
+  }
+
+  getChannels(
+    request: ChannelsEssentials.GetChannelsRequest,
+    options?: RequestOptions,
+  ): ApiPromise<ChannelConnection, ChannelsEssentials.GetChannelsError> {
+    return this.#rawClient.execute(
+      {
+        method: "GET",
+        url: this.#servers.default("/channels"),
+        auth: anyAuth(
+          this.#auth.oauth2AuthorizationCode,
+          this.#auth.oauth2ClientCredentials,
+          this.#auth.bearer,
+        ),
+        query: [
+          { name: "direction", value: request.direction, schema: s.optional(s.lazy(() => directionSchema)) },
+          { name: "filter", value: request.filter, schema: s.optional(s.lazy(() => filter1Schema)) },
+          { name: "page", value: request.page, schema: s.optional(s.number()) },
+          { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
+          { name: "query", value: request.query, schema: s.optional(s.string()) },
+          { name: "sort", value: request.sort, schema: s.optional(s.lazy(() => sort7Schema)) },
+        ],
+        body: { kind: "empty" },
+      },
+      {
+        success: { kind: "json", schema: channelConnectionSchema },
+        errorFactory: ChannelsEssentials.GetChannelsError,
+      },
+      options,
+    );
+  }
+}
+
+export namespace ChannelsEssentials {
+  export type CreateChannelRequest = {
+    body: ChannelsRequest;
+  };
+
+  export class CreateChannelError extends ResponseError<
+    Declared<"legacyError", LegacyError> | Declared<"legacyError2", LegacyError>
+  > {
+    static readonly errors: ErrorDecoders<CreateChannelError> = [
+      { on: 400, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
+      { on: 403, kind: "legacyError2", decode: { kind: "json", schema: legacyErrorSchema } },
+    ];
+  }
+
+  export type DeleteChannelRequest = {
+    channelId: number;
+  };
+
+  export class DeleteChannelError extends ResponseError<Declared<"legacyError", LegacyError>> {
+    static readonly errors: ErrorDecoders<DeleteChannelError> = [
+      { on: 403, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
+    ];
+  }
+
+  export type EditChannelRequest = {
+    channelId: number;
+    body?: ChannelsRequest1;
+  };
+
+  export class EditChannelError extends ResponseError<Declared<"legacyError", LegacyError>> {
+    static readonly errors: ErrorDecoders<EditChannelError> = [
+      { on: 400, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
+    ];
+  }
+
+  export type GetChannelRequest = {
+    channelId: number;
+    sizes?: string;
+  };
+
+  export type GetChannelSubscriptionsRequest = {
+    userId: number;
+    direction?: Direction;
+    filter?: Filter12;
+    page?: number;
+    perPage?: number;
+    query?: string;
+    sort?: Sort4;
+  };
+
+  export class GetChannelSubscriptionsError extends ResponseError<
+    Declared<"error304", undefined> | Declared<"error", Error>
+  > {
+    static readonly errors: ErrorDecoders<GetChannelSubscriptionsError> = [
+      { on: 304, kind: "error304", decode: { kind: "empty" } },
+      { on: 404, kind: "error", decode: { kind: "json", schema: errorSchema } },
+    ];
+  }
+
+  export type GetChannelSubscriptionsAlt1Request = {
+    direction?: Direction;
+    filter?: Filter12;
+    page?: number;
+    perPage?: number;
+    query?: string;
+    sort?: Sort4;
+  };
+
+  export class GetChannelSubscriptionsAlt1Error extends ResponseError<
+    Declared<"error304", undefined> | Declared<"error", Error>
+  > {
+    static readonly errors: ErrorDecoders<GetChannelSubscriptionsAlt1Error> = [
+      { on: 304, kind: "error304", decode: { kind: "empty" } },
+      { on: 404, kind: "error", decode: { kind: "json", schema: errorSchema } },
+    ];
+  }
+
+  export type GetChannelsRequest = {
+    direction?: Direction;
+    filter?: Filter1;
+    page?: number;
+    perPage?: number;
+    query?: string;
+    sort?: Sort7;
+  };
+
+  export class GetChannelsError extends ResponseError<
+    Declared<"legacyError", LegacyError> | Declared<"error", Error>
+  > {
+    static readonly errors: ErrorDecoders<GetChannelsError> = [
+      { on: 400, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
+      { on: 404, kind: "error", decode: { kind: "json", schema: errorSchema } },
+    ];
+  }
+}

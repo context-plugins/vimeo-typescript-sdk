@@ -1,0 +1,22 @@
+import { s, type Schema } from "../core/index.js";
+import { commentSchema, type Comment } from "./comment.js";
+import { pagingSchema, type Paging } from "./paging.js";
+
+export type CommentConnection = {
+  total?: number;
+  page?: number;
+  perPage?: number;
+  paging?: Paging;
+  data?: Comment[];
+};
+
+export const commentConnectionSchema: Schema<CommentConnection> = s.object<CommentConnection>({
+  total: s.optional(s.number()),
+  page: s.optional(s.number()),
+  perPage: s.optional(s.number()),
+  paging: s.optional(s.lazy(() => pagingSchema)),
+  data: s.optional(s.array(s.lazy(() => commentSchema))),
+  _keysMap: {
+    perPage: "per_page",
+  },
+});

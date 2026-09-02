@@ -1,0 +1,20 @@
+import { s, type Schema } from "../core/index.js";
+import { preorder1Schema, type Preorder1 } from "./preorder1.js";
+import { publishSchema, type Publish } from "./publish.js";
+
+export type OndemandPagesRequest = {
+  link?: string;
+  preorder?: Preorder1;
+  publish?: Publish;
+  publishWhenReady?: boolean;
+};
+
+export const ondemandPagesRequestSchema: Schema<OndemandPagesRequest> = s.object<OndemandPagesRequest>({
+  link: s.optional(s.string()),
+  preorder: s.optional(s.lazy(() => preorder1Schema)),
+  publish: s.optional(s.lazy(() => publishSchema)),
+  publishWhenReady: s.optional(s.boolean()),
+  _keysMap: {
+    publishWhenReady: "publish_when_ready",
+  },
+});
