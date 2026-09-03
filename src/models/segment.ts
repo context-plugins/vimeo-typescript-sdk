@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { kind1Schema, type Kind1 } from "./kind1.js";
 import { segmentLineSchema, type SegmentLine } from "./segment-line.js";
 import {

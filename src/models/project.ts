@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { metadata5Schema, type Metadata5 } from "./metadata5.js";
 import { privacy2Schema, type Privacy2 } from "./privacy2.js";
 import { reviewLinkSchema, type ReviewLink } from "./review-link.js";

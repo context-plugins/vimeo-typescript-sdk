@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { liveVideoSchema, type LiveVideo } from "./live-video.js";
 import { pictures3Schema, type Pictures3 } from "./pictures3.js";
 import { preLiveVideoSchema, type PreLiveVideo } from "./pre-live-video.js";

@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { sharedTeamSchema, type SharedTeam } from "./shared-team.js";
 import { sharedUserSchema, type SharedUser } from "./shared-user.js";
 

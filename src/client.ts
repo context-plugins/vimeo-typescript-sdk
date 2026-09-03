@@ -1,6 +1,6 @@
 import { buildAuthSchemes, type AuthSchemes } from "./auth-schemes.js";
 import { DEFAULT_CLIENT_OPTIONS, type ClientOptions } from "./client-options.js";
-import { RawClient } from "./core/index.js";
+import { RawClient } from "./core/raw-client.js";
 import { ApiAppsWebhooks } from "./resources/api-apps-webhooks.js";
 import { ApiInformationEssentials } from "./resources/api-information-essentials.js";
 import { AuthenticationExtrasAuthenticate } from "./resources/authentication-extras-authenticate.js";

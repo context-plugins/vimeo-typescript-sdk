@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { autoCcLangSchema, type AutoCcLang } from "./auto-cc-lang.js";
 import { embed7Schema, type Embed7 } from "./embed7.js";
 import { eventTypeSchema, type EventType } from "./event-type.js";

@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { childTextTracksSchema, type ChildTextTracks } from "./child-text-tracks.js";
 import { parentTextTrackSchema, type ParentTextTrack } from "./parent-text-track.js";
 

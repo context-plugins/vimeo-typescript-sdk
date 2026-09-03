@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { countrySchema, type Country } from "./country.js";
 import { metadata12Schema, type Metadata12 } from "./metadata12.js";
 import { streamingTypeSchema, type StreamingType } from "./streaming-type.js";

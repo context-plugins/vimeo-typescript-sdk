@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { quotaPeriod1Schema, type QuotaPeriod1 } from "./quota-period1.js";
 import { quotaUnitSchema, type QuotaUnit } from "./quota-unit.js";
 

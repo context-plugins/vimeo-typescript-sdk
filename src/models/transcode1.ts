@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { status9Schema, type Status9 } from "./status9.js";
 
 export type Transcode1 = {

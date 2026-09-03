@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { addCustomThumbnailsSchema, type AddCustomThumbnails } from "./add-custom-thumbnails.js";
 import { addLiveEventsSchema, type AddLiveEvents } from "./add-live-events.js";
 import { addLogosSchema, type AddLogos } from "./add-logos.js";

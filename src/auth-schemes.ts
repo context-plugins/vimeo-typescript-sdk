@@ -1,12 +1,12 @@
 import type { ClientOptions } from "./client-options.js";
-import type { AuthScheme, RawClient } from "./core/index.js";
+import type { AuthScheme } from "./core/api-request.js";
+import { oauth2RefreshableScheme, oauth2Scheme } from "./core/auth/oauth2-schemes.js";
 import {
-  bearerAuth,
   oauth2AuthorizationCodeStrategy,
   oauth2ClientCredentialsStrategy,
-  oauth2RefreshableScheme,
-  oauth2Scheme,
-} from "./core/index.js";
+} from "./core/auth/oauth2-strategies.js";
+import { bearerAuth } from "./core/auth/schemes.js";
+import type { RawClient } from "./core/raw-client.js";
 import type { Servers } from "./servers.js";
 
 export type AuthSchemes = {

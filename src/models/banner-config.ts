@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { showBannerDescriptionSchema, type ShowBannerDescription } from "./show-banner-description.js";
 import { showBannerHeaderSchema, type ShowBannerHeader } from "./show-banner-header.js";
 import { showBannerTitleSchema, type ShowBannerTitle } from "./show-banner-title.js";

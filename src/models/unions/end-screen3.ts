@@ -1,4 +1,5 @@
-import { s, type Schema } from "../../core/index.js";
+import * as s from "../../core/validation/index.js";
+import type { Schema } from "../../core/validation/schema.js";
 import { endScreenSchema, type EndScreen } from "../end-screen.js";
 
 export type EndScreen3 = EndScreen | Record<string, unknown>[];

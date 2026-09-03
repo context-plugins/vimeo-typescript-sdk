@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { federatedSearchItemsSchema, type FederatedSearchItems } from "./federated-search-items.js";
 import { pagingSchema, type Paging } from "./paging.js";
 

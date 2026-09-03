@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { logoSchema, type Logo } from "./logo.js";
 import { titleFontFamilySchema, type TitleFontFamily } from "./title-font-family.js";
 import { titleFontWeightSchema, type TitleFontWeight } from "./title-font-weight.js";

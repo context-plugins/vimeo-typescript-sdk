@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { ancestorPath1Schema, type AncestorPath1 } from "./ancestor-path1.js";
 import { dataRetentionSchema, type DataRetention } from "./data-retention.js";
 import { foldersSchema, type Folders } from "./folders.js";

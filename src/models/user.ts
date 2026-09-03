@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { accountDictionaryQuotaSchema, type AccountDictionaryQuota } from "./account-dictionary-quota.js";
 import { ageVerificationStatusSchema, type AgeVerificationStatus } from "./age-verification-status.js";
 import { aiCreditsQuotaSchema, type AiCreditsQuota } from "./ai-credits-quota.js";

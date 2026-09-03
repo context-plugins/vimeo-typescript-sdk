@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { addModeratorsSchema, type AddModerators } from "./add-moderators.js";
 import { addToSchema, type AddTo } from "./add-to.js";
 import { follow1Schema, type Follow1 } from "./follow1.js";

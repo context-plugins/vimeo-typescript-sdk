@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { properties1Schema, type Properties1 } from "./properties1.js";
 
 export type EditPrivacy = {

@@ -5,14 +5,16 @@ export {
   PkceMethod,
   type TokenProvider,
   type OAuth2AuthorizationCodeCredentials,
-  type OAuth2RefreshableTokenStrategy,
   type OAuth2ClientCredentials,
-  type OAuth2TokenStrategy,
-  type OAuthToken,
-  type OAuth2CredentialPlacement,
-  type OAuthTokenRefreshable,
   type AuthorizationCodePrompt,
-} from "./core/index.js";
+} from "./core/auth/credentials.js";
+export type {
+  OAuth2RefreshableTokenStrategy,
+  OAuth2TokenStrategy,
+  OAuthToken,
+  OAuth2CredentialPlacement,
+  OAuthTokenRefreshable,
+} from "./core/auth/oauth2-strategies.js";
 
 export { ServerEnvironment, DEFAULT_SERVER_OPTIONS } from "./servers.js";
 export type { ServerOptions, DefaultServerOptions } from "./servers.js";
@@ -1610,22 +1612,16 @@ export {
 
 export {
   CoreError as VimeoApiError,
-  ResponseError,
   ConnectionError,
   TimeoutError,
   AbortError,
   SdkError,
-  SchemaError,
   AuthError,
-} from "./core/index.js";
-export type {
-  ApiPromise,
-  RequestOptions,
-  ApiResult,
-  ErrorKind,
-  ErrorPayload,
-  Declared,
-  Schema,
-  EnumSchema,
-  Encoded,
-} from "./core/index.js";
+} from "./core/errors.js";
+export { ResponseError } from "./core/response-error.js";
+export { SchemaError } from "./core/validation/schema-error.js";
+export type { ApiPromise, ApiResult } from "./core/api-promise.js";
+export type { RequestOptions } from "./core/api-request.js";
+export type { ErrorKind } from "./core/errors.js";
+export type { ErrorPayload, Declared } from "./core/response-error.js";
+export type { Schema, EnumSchema, Encoded } from "./core/validation/schema.js";

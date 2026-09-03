@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { archiveSchema, type Archive } from "./archive.js";
 import { ingestSchema, type Ingest } from "./ingest.js";
 import { meteringSchema, type Metering } from "./metering.js";

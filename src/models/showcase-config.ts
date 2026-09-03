@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { bannerConfigSchema, type BannerConfig } from "./banner-config.js";
 import { layoutConfigSchema, type LayoutConfig } from "./layout-config.js";
 import { navigationConfigSchema, type NavigationConfig } from "./navigation-config.js";

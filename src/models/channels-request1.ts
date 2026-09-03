@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { privacy8Schema, type Privacy8 } from "./privacy8.js";
 
 export type ChannelsRequest1 = {

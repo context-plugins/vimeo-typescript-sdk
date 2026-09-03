@@ -1,6 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import type { ApiPromise, Declared, ErrorDecoders, RawClient, RequestOptions } from "../core/index.js";
-import { ResponseError, anyAuth, s } from "../core/index.js";
+import type { ApiPromise } from "../core/api-promise.js";
+import type { RequestOptions } from "../core/api-request.js";
+import { anyAuth } from "../core/auth/schemes.js";
+import type { RawClient } from "../core/raw-client.js";
+import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import * as s from "../core/validation/index.js";
 import { directionSchema, type Direction } from "../models/direction.js";
 import { filter19Schema, type Filter19 } from "../models/filter19.js";
 import { legacyErrorSchema, type LegacyError } from "../models/legacy-error.js";

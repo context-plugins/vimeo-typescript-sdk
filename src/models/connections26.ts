@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { createdVersionSchema, type CreatedVersion } from "./created-version.js";
 import { rootVersionSchema, type RootVersion } from "./root-version.js";
 import { video2Schema, type Video2 } from "./video2.js";

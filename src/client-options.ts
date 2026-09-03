@@ -1,11 +1,10 @@
+import type { FetchLike } from "./core/api-request.js";
 import type {
-  FetchLike,
   OAuth2AuthorizationCodeCredentials,
   OAuth2ClientCredentials,
-  OAuth2RefreshableTokenStrategy,
-  OAuth2TokenStrategy,
   TokenProvider,
-} from "./core/index.js";
+} from "./core/auth/credentials.js";
+import type { OAuth2RefreshableTokenStrategy, OAuth2TokenStrategy } from "./core/auth/oauth2-strategies.js";
 import { ServerEnvironment, type ServerOptions } from "./servers.js";
 
 export type ClientOptions = {

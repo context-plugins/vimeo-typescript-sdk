@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { apiAppSchema, type ApiApp } from "./api-app.js";
 import { categorySchema, type Category } from "./category.js";
 import { contentRatingClassSchema, type ContentRatingClass } from "./content-rating-class.js";

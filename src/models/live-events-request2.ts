@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { autoCcLanguage2Schema, type AutoCcLanguage2 } from "./auto-cc-language2.js";
 import { embed9Schema, type Embed9 } from "./embed9.js";
 import {

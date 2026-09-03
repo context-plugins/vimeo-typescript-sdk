@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { groups2Schema, type Groups2 } from "./groups2.js";
 import { owner1Schema, type Owner1 } from "./owner1.js";
 import { personalTeamFolderSchema, type PersonalTeamFolder } from "./personal-team-folder.js";

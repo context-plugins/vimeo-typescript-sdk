@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { grantType2Schema, type GrantType2 } from "./grant-type2.js";
 
 export type OauthAuthorizeVimeoOauth1Request = {

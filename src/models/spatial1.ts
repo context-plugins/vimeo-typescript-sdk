@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { directorTimeline1Schema, type DirectorTimeline1 } from "./director-timeline1.js";
 import { projection1Schema, type Projection1 } from "./projection1.js";
 import { stereoFormat1Schema, type StereoFormat1 } from "./stereo-format1.js";

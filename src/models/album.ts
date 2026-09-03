@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { domainCertificateStateSchema, type DomainCertificateState } from "./domain-certificate-state.js";
 import { embed2Schema, type Embed2 } from "./embed2.js";
 import { layoutSchema, type Layout } from "./layout.js";

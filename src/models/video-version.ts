@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { apiAppSchema, type ApiApp } from "./api-app.js";
 import { audioTrackQuotaSchema, type AudioTrackQuota } from "./audio-track-quota.js";
 import { editSessionSchema, type EditSession } from "./edit-session.js";

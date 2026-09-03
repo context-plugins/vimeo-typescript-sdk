@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { gridSizeSchema, type GridSize } from "./grid-size.js";
 import { showGridProfileImageSchema, type ShowGridProfileImage } from "./show-grid-profile-image.js";
 import { showGridProfileNameSchema, type ShowGridProfileName } from "./show-grid-profile-name.js";

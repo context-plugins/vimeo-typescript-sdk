@@ -1,4 +1,5 @@
-import { s, type Schema } from "../core/index.js";
+import * as s from "../core/validation/index.js";
+import type { Schema } from "../core/validation/schema.js";
 import { addPrivacyUserSchema, type AddPrivacyUser } from "./add-privacy-user.js";
 import { block1Schema, type Block1 } from "./block1.js";
 import { connectedApps1Schema, type ConnectedApps1 } from "./connected-apps1.js";
