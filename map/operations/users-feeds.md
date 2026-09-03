@@ -24,11 +24,11 @@ Accessor: `client.usersFeeds` · Source: `src/resources/users-feeds.ts` · 2 ope
 | `offset` | `query` | — | `string` | no |
 | `page` | `query` | — | `number` | no |
 | `perPage` | `query` | `per_page` | `number` | no |
-| `type` | `query` | — | `Type33` | no |
+| `type` | `query` | — | `Type29` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
-| `Type33` | `type33Schema` | `src/models/type33.ts` |
+| `Type29` | `type29Schema` | `src/models/type29.ts` |
 | `Activity31Connection` | `activity31ConnectionSchema` | `src/models/activity31-connection.ts` |
 | `Error` | `errorSchema` | `src/models/error.ts` |
 
@@ -49,11 +49,11 @@ Accessor: `client.usersFeeds` · Source: `src/resources/users-feeds.ts` · 2 ope
 | `offset` | `query` | — | `string` | no |
 | `page` | `query` | — | `number` | no |
 | `perPage` | `query` | `per_page` | `number` | no |
-| `type` | `query` | — | `Type33` | no |
+| `type` | `query` | — | `Type29` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
-| `Type33` | `type33Schema` | `src/models/type33.ts` |
+| `Type29` | `type29Schema` | `src/models/type29.ts` |
 | `Activity31Connection` | `activity31ConnectionSchema` | `src/models/activity31-connection.ts` |
 | `Error` | `errorSchema` | `src/models/error.ts` |
 

@@ -1,7 +1,7 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 import { planSchema, type Plan } from "./plan.js";
-import { status19Schema, type Status19 } from "./status19.js";
+import { status16Schema, type Status16 } from "./status16.js";
 
 export type Subscription = {
   accountId: string;
@@ -16,7 +16,7 @@ export type Subscription = {
   paymentMethodId: string;
   plans: Plan[];
   startDate: string;
-  status: Status19;
+  status: Status16;
   subscriptionNumber: string;
   subscriptionVersion: number;
   updatedAt: string;
@@ -36,7 +36,7 @@ export const subscriptionSchema: Schema<Subscription> = s.object<Subscription>({
   paymentMethodId: s.string(),
   plans: s.array(s.lazy(() => planSchema)),
   startDate: s.string(),
-  status: status19Schema,
+  status: status16Schema,
   subscriptionNumber: s.string(),
   subscriptionVersion: s.number(),
   updatedAt: s.string(),

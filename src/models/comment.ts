@@ -4,7 +4,6 @@ import { metadata13Schema, type Metadata13 } from "./metadata13.js";
 import { metdataSchema, type Metdata } from "./metdata.js";
 import { replySchema, type Reply } from "./reply.js";
 import { textDecorationSchema, type TextDecoration } from "./text-decoration.js";
-import { type15Schema, type Type15 } from "./type15.js";
 import { userSchema, type User } from "./user.js";
 
 export type Comment = {
@@ -19,7 +18,7 @@ export type Comment = {
   richtext: string | null;
   text: string;
   textDecorations: TextDecoration[];
-  type: Type15;
+  type: "video";
   uri: string;
   user: User | null;
 };
@@ -36,7 +35,7 @@ export const commentSchema: Schema<Comment> = s.object<Comment>({
   richtext: s.nullable(s.string()),
   text: s.string(),
   textDecorations: s.array(s.lazy(() => textDecorationSchema)),
-  type: type15Schema,
+  type: s.literal("video"),
   uri: s.string(),
   user: s.nullable(s.lazy(() => userSchema)),
   _keysMap: {

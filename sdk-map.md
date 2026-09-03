@@ -282,7 +282,7 @@ Take the pair from an operation's **Type sources** table. **Do not derive the pa
 | Group | Count | Directory |
 | --- | --- | --- |
 | Objects | 784 | `src/models/` |
-| Enums (open; const companion plus schema) | 281 | `src/models/` |
+| Enums (open; const companion plus schema) | 270 | `src/models/` |
 | Unions without a discriminant | 1 | `src/models/unions/` |
 
 **Conventions.** Every model is a plain `type`, not a class — build one with an object literal; there is no constructor and no builder. `f: T` is required, `f?: T` is optional (omit the key), and `f: T | null` is a **required, nullable** field where `null` is a value distinct from an omitted key. Optional properties are declared `f?: T`, not `f?: T | undefined`, so under `exactOptionalPropertyTypes` you must **omit or spread** an absent field rather than assign `undefined` to it.
@@ -340,9 +340,6 @@ Take the pair from an operation's **Type sources** table. **Do not derive the pa
 | `EventType` | `Default` to `"default"` · `Venue` to `"venue"` | `eventTypeSchema` |
 | `FileSizeType` | `Processing` to `"PROCESSING"` · `QuotaExemptClip` to `"QUOTA_EXEMPT_CLIP"` · `QuotaExemptUser` to `"QUOTA_EXEMPT_USER"` · `Stock` to `"STOCK"` · `Upload` to `"UPLOAD"` · `UploadFailure` to `"UPLOAD_FAILURE"` · `VimeoCreate` to `"VIMEO_CREATE"` · `VimeoRecord` to `"VIMEO_RECORD"` | `fileSizeTypeSchema` |
 | `Gender` | `F` to `"f"` · `M` to `"m"` · `N` to `"n"` · `O` to `"o"` | `genderSchema` |
-| `GrantType` | `AuthorizationCode` to `"authorization_code"` | `grantTypeSchema` |
-| `GrantType1` | `ClientCredentials` to `"client_credentials"` | `grantType1Schema` |
-| `GrantType2` | `VimeoOauth1` to `"vimeo_oauth1"` | `grantType2Schema` |
 | `Icon` | `Clock` to `"clock"` · `Create` to `"create"` · `Image` to `"image"` · `Theme` to `"theme"` | `iconSchema` |
 | `Icon1` | `Clock` to `"clock"` · `Create` to `"create"` · `Image` to `"image"` · `Theme` to `"theme"` | `icon1Schema` |
 | `Icon2` | `Clock` to `"clock"` · `Create` to `"create"` · `Image` to `"image"` · `Theme` to `"theme"` | `icon2Schema` |
@@ -412,7 +409,6 @@ Take the pair from an operation's **Type sources** table. **Do not derive the pa
 | `Reason8` | `LanguageNotSupported` to `"language_not_supported"` · `OwnerAccountBlocked` to `"owner_account_blocked"` · `OwnerDisabledFeatureGroup` to `"owner_disabled_feature_group"` · `VideoTooLong` to `"video_too_long"` | `reason8Schema` |
 | `Rendition` | `_2K` to `"2k"` · `_4K` to `"4k"` · `_5K` to `"5k"` · `_6K` to `"6k"` · `_7K` to `"7k"` · `_8K` to `"8k"` · `_240P` to `"240p"` · `_360P` to `"360p"` · `_480P` to `"480p"` · `_540P` to `"540p"` · `_720P` to `"720p"` · `_1080P` to `"1080p"` · `Adaptive` to `"adaptive"` · `Audio` to `"audio"` · `Source` to `"source"` | `renditionSchema` |
 | `Rendition1` | `_2K` to `"2k"` · `_4K` to `"4k"` · `_5K` to `"5k"` · `_6K` to `"6k"` · `_7K` to `"7k"` · `_8K` to `"8k"` · `_240P` to `"240p"` · `_360P` to `"360p"` · `_480P` to `"480p"` · `_540P` to `"540p"` · `_720P` to `"720p"` · `_1080P` to `"1080p"` | `rendition1Schema` |
-| `Rendition2` | `Source` to `"source"` | `rendition2Schema` |
 | `ReviewStatus` | `Approved` to `"approved"` · `InProgress` to `"in_progress"` · `NeedsReview` to `"needs_review"` | `reviewStatusSchema` |
 | `Role` | `Admin` to `"Admin"` · `Contributor` to `"Contributor"` · `ContributorPlus` to `"Contributor Plus"` · `Owner` to `"Owner"` · `Uploader` to `"Uploader"` · `Viewer` to `"Viewer"` | `roleSchema` |
 | `ServiceName` | `CustomRtmp` to `"custom_rtmp"` · `Facebook` to `"facebook"` · `Linkedin` to `"linkedin"` · `Youtube` to `"youtube"` | `serviceNameSchema` |
@@ -423,25 +419,23 @@ Take the pair from an operation's **Type sources** table. **Do not derive the pa
 | `Sort19` | `AddedFirst` to `"added_first"` · `AddedLast` to `"added_last"` · `Alphabetical` to `"alphabetical"` · `AlphabeticalDesc` to `"alphabetical_desc"` · `Arranged` to `"arranged"` · `Comments` to `"comments"` · `Likes` to `"likes"` · `ModifiedTimeAsc` to `"modified_time_asc"` · `ModifiedTimeDesc` to `"modified_time_desc"` · `Newest` to `"newest"` · `Oldest` to `"oldest"` · `Plays` to `"plays"` | `sort19Schema` |
 | `State` | `_0` to `"0"` · `_1` to `"1"` | `stateSchema` |
 | `Status` | `Active` to `"active"` · `Cancelled` to `"cancelled"` · `GracePeriod` to `"grace_period"` · `None` to `"none"` · `OnHold` to `"on_hold"` · `Pending` to `"pending"` | `statusSchema` |
-| `Status1` | `FreeTrial` to `"free_trial"` | `status1Schema` |
-| `Status10` | `Cancelled` to `"cancelled"` · `Completed` to `"completed"` · `Failed` to `"failed"` · `Started` to `"started"` | `status10Schema` |
-| `Status11` | `Streaming` to `"streaming"` | `status11Schema` |
-| `Status12` | `Pending` to `"pending"` · `Ready` to `"ready"` · `Streaming` to `"streaming"` · `Unavailable` to `"unavailable"` | `status12Schema` |
+| `Status1` | `Done` to `"done"` · `Failed` to `"failed"` · `Processing` to `"processing"` | `status1Schema` |
+| `Status10` | `Pending` to `"pending"` · `Ready` to `"ready"` · `Streaming` to `"streaming"` · `Unavailable` to `"unavailable"` | `status10Schema` |
+| `Status11` | `Ended` to `"ended"` · `Started` to `"started"` | `status11Schema` |
+| `Status12` | `_0` to `0` · `_1` to `1` · `_2` to `2` · `_3` to `3` · `_4` to `4` · `_5` to `5` | `status12Schema` |
 | `Status13` | `Ended` to `"ended"` · `Started` to `"started"` | `status13Schema` |
-| `Status14` | `_0` to `0` · `_1` to `1` · `_2` to `2` · `_3` to `3` · `_4` to `4` · `_5` to `5` | `status14Schema` |
-| `Status15` | `Ended` to `"ended"` · `Started` to `"started"` | `status15Schema` |
-| `Status19` | `SubscriptionStatusActive` to `"SUBSCRIPTION_STATUS_ACTIVE"` · `SubscriptionStatusCancelled` to `"SUBSCRIPTION_STATUS_CANCELLED"` · `SubscriptionStatusDraft` to `"SUBSCRIPTION_STATUS_DRAFT"` · `SubscriptionStatusExpired` to `"SUBSCRIPTION_STATUS_EXPIRED"` · `SubscriptionStatusPaused` to `"SUBSCRIPTION_STATUS_PAUSED"` · `SubscriptionStatusPendingAcceptance` to `"SUBSCRIPTION_STATUS_PENDING_ACCEPTANCE"` · `SubscriptionStatusPendingActivation` to `"SUBSCRIPTION_STATUS_PENDING_ACTIVATION"` · `SubscriptionStatusUnspecified` to `"SUBSCRIPTION_STATUS_UNSPECIFIED"` | `status19Schema` |
-| `Status2` | `Done` to `"done"` · `Failed` to `"failed"` · `Processing` to `"processing"` | `status2Schema` |
-| `Status20` | `Available` to `"available"` · `Purchased` to `"purchased"` · `Unavailable` to `"unavailable"` | `status20Schema` |
-| `Status21` | `Accepted` to `"accepted"` · `Pending` to `"pending"` | `status21Schema` |
-| `Status22` | `Done` to `"done"` · `Failed` to `"failed"` · `Processing` to `"processing"` | `status22Schema` |
-| `Status23` | `Complete` to `"complete"` · `Error` to `"error"` · `InProgress` to `"in_progress"` | `status23Schema` |
-| `Status4` | `DrmPlaysExceeded` to `"drm_plays_exceeded"` · `Playable` to `"playable"` · `PurchaseRequired` to `"purchase_required"` · `Restricted` to `"restricted"` · `Unavailable` to `"unavailable"` | `status4Schema` |
-| `Status5` | `Available` to `"available"` · `Failed` to `"failed"` · `Processing` to `"processing"` · `QuotaExceeded` to `"quota_exceeded"` · `TotalCapExceeded` to `"total_cap_exceeded"` · `TranscodeStarting` to `"transcode_starting"` · `Transcoding` to `"transcoding"` · `TranscodingError` to `"transcoding_error"` · `Unavailable` to `"unavailable"` · `Uploading` to `"uploading"` · `UploadingError` to `"uploading_error"` | `status5Schema` |
-| `Status6` | `Complete` to `"complete"` · `Error` to `"error"` · `InProgress` to `"in_progress"` | `status6Schema` |
-| `Status7` | `Blocked` to `"blocked"` · `Completed` to `"completed"` · `ExceedsMaximumDuration` to `"exceeds_maximum_duration"` · `Failed` to `"failed"` · `InProgress` to `"in_progress"` · `LanguageNotSupported` to `"language_not_supported"` · `NoSpeech` to `"no_speech"` · `NotStarted` to `"not_started"` · `Unknown` to `"unknown"` | `status7Schema` |
-| `Status8` | `Canceled` to `"canceled"` · `Complete` to `"complete"` · `Error` to `"error"` · `InProgress` to `"in_progress"` | `status8Schema` |
-| `Status9` | `Complete` to `"complete"` · `Error` to `"error"` · `InProgress` to `"in_progress"` | `status9Schema` |
+| `Status16` | `SubscriptionStatusActive` to `"SUBSCRIPTION_STATUS_ACTIVE"` · `SubscriptionStatusCancelled` to `"SUBSCRIPTION_STATUS_CANCELLED"` · `SubscriptionStatusDraft` to `"SUBSCRIPTION_STATUS_DRAFT"` · `SubscriptionStatusExpired` to `"SUBSCRIPTION_STATUS_EXPIRED"` · `SubscriptionStatusPaused` to `"SUBSCRIPTION_STATUS_PAUSED"` · `SubscriptionStatusPendingAcceptance` to `"SUBSCRIPTION_STATUS_PENDING_ACCEPTANCE"` · `SubscriptionStatusPendingActivation` to `"SUBSCRIPTION_STATUS_PENDING_ACTIVATION"` · `SubscriptionStatusUnspecified` to `"SUBSCRIPTION_STATUS_UNSPECIFIED"` | `status16Schema` |
+| `Status17` | `Available` to `"available"` · `Purchased` to `"purchased"` · `Unavailable` to `"unavailable"` | `status17Schema` |
+| `Status18` | `Accepted` to `"accepted"` · `Pending` to `"pending"` | `status18Schema` |
+| `Status19` | `Done` to `"done"` · `Failed` to `"failed"` · `Processing` to `"processing"` | `status19Schema` |
+| `Status20` | `Complete` to `"complete"` · `Error` to `"error"` · `InProgress` to `"in_progress"` | `status20Schema` |
+| `Status3` | `DrmPlaysExceeded` to `"drm_plays_exceeded"` · `Playable` to `"playable"` · `PurchaseRequired` to `"purchase_required"` · `Restricted` to `"restricted"` · `Unavailable` to `"unavailable"` | `status3Schema` |
+| `Status4` | `Available` to `"available"` · `Failed` to `"failed"` · `Processing` to `"processing"` · `QuotaExceeded` to `"quota_exceeded"` · `TotalCapExceeded` to `"total_cap_exceeded"` · `TranscodeStarting` to `"transcode_starting"` · `Transcoding` to `"transcoding"` · `TranscodingError` to `"transcoding_error"` · `Unavailable` to `"unavailable"` · `Uploading` to `"uploading"` · `UploadingError` to `"uploading_error"` | `status4Schema` |
+| `Status5` | `Complete` to `"complete"` · `Error` to `"error"` · `InProgress` to `"in_progress"` | `status5Schema` |
+| `Status6` | `Blocked` to `"blocked"` · `Completed` to `"completed"` · `ExceedsMaximumDuration` to `"exceeds_maximum_duration"` · `Failed` to `"failed"` · `InProgress` to `"in_progress"` · `LanguageNotSupported` to `"language_not_supported"` · `NoSpeech` to `"no_speech"` · `NotStarted` to `"not_started"` · `Unknown` to `"unknown"` | `status6Schema` |
+| `Status7` | `Canceled` to `"canceled"` · `Complete` to `"complete"` · `Error` to `"error"` · `InProgress` to `"in_progress"` | `status7Schema` |
+| `Status8` | `Complete` to `"complete"` · `Error` to `"error"` · `InProgress` to `"in_progress"` | `status8Schema` |
+| `Status9` | `Cancelled` to `"cancelled"` · `Completed` to `"completed"` · `Failed` to `"failed"` · `Started` to `"started"` | `status9Schema` |
 | `StereoFormat` | `LeftRight` to `"left-right"` · `Mono` to `"mono"` · `TopBottom` to `"top-bottom"` | `stereoFormatSchema` |
 | `StereoFormat1` | `LeftRight` to `"left-right"` · `Mono` to `"mono"` · `TopBottom` to `"top-bottom"` | `stereoFormat1Schema` |
 | `Stream` | `Available` to `"available"` · `Purchased` to `"purchased"` · `Restricted` to `"restricted"` · `Unavailable` to `"unavailable"` | `streamSchema` |
@@ -456,45 +450,40 @@ Take the pair from an operation's **Type sources** table. **Do not derive the pa
 | `Title1` | `Hide` to `"hide"` · `Show` to `"show"` · `User` to `"user"` | `title1Schema` |
 | `TitleFontFamily` | `Anton` to `"anton"` · `ArchivoBlack` to `"archivo_black"` · `BebasNeue` to `"bebas_neue"` · `BricolageGrotesque` to `"bricolage_grotesque"` · `Caveat` to `"caveat"` · `DmSans` to `"dm_sans"` · `DmSerifDisplay` to `"dm_serif_display"` · `Fraunces` to `"fraunces"` · `HankenGrotesk` to `"hanken_grotesk"` · `IbmPlexSerif` to `"ibm_plex_serif"` · `InstrumentSerif` to `"instrument_serif"` · `Inter` to `"inter"` · `JetbrainsMono` to `"jetbrains_mono"` · `Lora` to `"lora"` · `Montserrat` to `"montserrat"` · `Outfit` to `"outfit"` · `PlayfairDisplay` to `"playfair_display"` · `Poppins` to `"poppins"` · `Roboto` to `"roboto"` · `SpaceGrotesk` to `"space_grotesk"` | `titleFontFamilySchema` |
 | `TitleFontWeight` | `_300` to `300` · `_400` to `400` · `_500` to `500` · `_700` to `700` | `titleFontWeightSchema` |
-| `TokenType` | `Bearer` to `"bearer"` | `tokenTypeSchema` |
 | `Type` | `Caution` to `"caution"` · `Custom` to `"custom"` · `Default` to `"default"` | `typeSchema` |
 | `Type1` | `Moderator` to `"moderator"` · `Subscriber` to `"subscriber"` | `type1Schema` |
 | `Type10` | `Appearance` to `"appearance"` · `Category` to `"category"` · `Channel` to `"channel"` · `FacebookFeed` to `"facebook_feed"` · `Group` to `"group"` · `Like` to `"like"` · `Ondemand` to `"ondemand"` · `Share` to `"share"` · `Tag` to `"tag"` · `TwitterTimeline` to `"twitter_timeline"` · `Upload` to `"upload"` | `type10Schema` |
 | `Type11` | `Commentary` to `"commentary"` · `Descriptive` to `"descriptive"` · `Main` to `"main"` · `Unknown` to `"unknown"` | `type11Schema` |
-| `Type12` | `Url` to `"url"` | `type12Schema` |
-| `Type13` | `Video` to `"video"` | `type13Schema` |
-| `Type15` | `Video` to `"video"` | `type15Schema` |
-| `Type16` | `AgoraMedia` to `"agoraMedia"` · `AgoraScreen` to `"agoraScreen"` · `AgoraStream` to `"agoraStream"` · `BroadcasterLowerthird` to `"broadcasterLowerthird"` · `Fullscreen` to `"fullscreen"` · `GuestLowerthird` to `"guestLowerthird"` · `Logo` to `"logo"` · `Lowerthird` to `"lowerthird"` · `Poll` to `"poll"` · `Qna` to `"qna"` · `Slides` to `"slides"` | `type16Schema` |
-| `Type17` | `Bool` to `"bool"` · `Date` to `"date"` · `Int` to `"int"` · `MultiSelect` to `"multi-select"` · `Select` to `"select"` · `Str` to `"str"` | `type17Schema` |
-| `Type18` | `Custom` to `"custom"` · `None` to `"none"` · `Vimeo` to `"vimeo"` | `type18Schema` |
-| `Type19` | `Channel` to `"channel"` · `Custom` to `"custom"` · `Organization` to `"organization"` · `Page` to `"page"` · `Profile` to `"profile"` | `type19Schema` |
+| `Type12` | `AgoraMedia` to `"agoraMedia"` · `AgoraScreen` to `"agoraScreen"` · `AgoraStream` to `"agoraStream"` · `BroadcasterLowerthird` to `"broadcasterLowerthird"` · `Fullscreen` to `"fullscreen"` · `GuestLowerthird` to `"guestLowerthird"` · `Logo` to `"logo"` · `Lowerthird` to `"lowerthird"` · `Poll` to `"poll"` · `Qna` to `"qna"` · `Slides` to `"slides"` | `type12Schema` |
+| `Type13` | `Bool` to `"bool"` · `Date` to `"date"` · `Int` to `"int"` · `MultiSelect` to `"multi-select"` · `Select` to `"select"` · `Str` to `"str"` | `type13Schema` |
+| `Type14` | `Custom` to `"custom"` · `None` to `"none"` · `Vimeo` to `"vimeo"` | `type14Schema` |
+| `Type15` | `Channel` to `"channel"` · `Custom` to `"custom"` · `Organization` to `"organization"` · `Page` to `"page"` · `Profile` to `"profile"` | `type15Schema` |
+| `Type17` | `Folder` to `"folder"` · `LiveEvent` to `"live_event"` · `Showcase` to `"showcase"` · `Video` to `"video"` | `type17Schema` |
+| `Type18` | `Batch` to `"batch"` · `BatchPrefix` to `"batch_prefix"` · `Single` to `"single"` | `type18Schema` |
+| `Type19` | `Extra` to `"extra"` · `Main` to `"main"` · `Trailer` to `"trailer"` | `type19Schema` |
 | `Type2` | `Advanced` to `"advanced"` · `Basic` to `"basic"` · `Business` to `"business"` · `Creator` to `"creator"` · `Custom` to `"custom"` · `Enterprise` to `"enterprise"` · `Free` to `"free"` · `LiveBusiness` to `"live_business"` · `LivePremium` to `"live_premium"` · `LivePro` to `"live_pro"` · `OttCustom` to `"ott_custom"` · `Plus` to `"plus"` · `Pro` to `"pro"` · `ProUnlimited` to `"pro_unlimited"` · `Producer` to `"producer"` · `Production` to `"production"` · `Professional` to `"professional"` · `Standard` to `"standard"` · `Starter` to `"starter"` · `Studio` to `"studio"` | `type2Schema` |
-| `Type21` | `Folder` to `"folder"` · `LiveEvent` to `"live_event"` · `Showcase` to `"showcase"` · `Video` to `"video"` | `type21Schema` |
-| `Type22` | `Batch` to `"batch"` · `BatchPrefix` to `"batch_prefix"` · `Single` to `"single"` | `type22Schema` |
-| `Type23` | `Extra` to `"extra"` · `Main` to `"main"` · `Trailer` to `"trailer"` | `type23Schema` |
-| `Type24` | `PaymentMethodTypesApplepay` to `"PAYMENT_METHOD_TYPES_APPLEPAY"` · `PaymentMethodTypesBankAccount` to `"PAYMENT_METHOD_TYPES_BANK_ACCOUNT"` · `PaymentMethodTypesCard` to `"PAYMENT_METHOD_TYPES_CARD"` · `PaymentMethodTypesCcRef` to `"PAYMENT_METHOD_TYPES_CC_REF"` · `PaymentMethodTypesGooglepay` to `"PAYMENT_METHOD_TYPES_GOOGLEPAY"` · `PaymentMethodTypesPaypal` to `"PAYMENT_METHOD_TYPES_PAYPAL"` · `PaymentMethodTypesTypesUnspecified` to `"PAYMENT_METHOD_TYPES_TYPES_UNSPECIFIED"` | `type24Schema` |
-| `Type25` | `Beginning` to `"beginning"` · `Custom` to `"custom"` · `Email` to `"email"` · `Image` to `"image"` · `Link` to `"link"` · `Loop` to `"loop"` · `Nothing` to `"nothing"` · `Share` to `"share"` · `Text` to `"text"` · `Threevideos` to `"threevideos"` · `Videos` to `"videos"` | `type25Schema` |
-| `Type26` | `Link` to `"link"` · `NoIdea` to `"no idea"` · `Text` to `"text"` · `UploadedClips` to `"uploaded_clips"` · `UploadedVideos` to `"uploaded_videos"` | `type26Schema` |
-| `Type28` | `Captions` to `"captions"` · `Subtitles` to `"subtitles"` | `type28Schema` |
-| `Type29` | `Captions` to `"captions"` · `Chapters` to `"chapters"` · `Descriptions` to `"descriptions"` · `Metadata` to `"metadata"` · `Subtitles` to `"subtitles"` | `type29Schema` |
+| `Type20` | `PaymentMethodTypesApplepay` to `"PAYMENT_METHOD_TYPES_APPLEPAY"` · `PaymentMethodTypesBankAccount` to `"PAYMENT_METHOD_TYPES_BANK_ACCOUNT"` · `PaymentMethodTypesCard` to `"PAYMENT_METHOD_TYPES_CARD"` · `PaymentMethodTypesCcRef` to `"PAYMENT_METHOD_TYPES_CC_REF"` · `PaymentMethodTypesGooglepay` to `"PAYMENT_METHOD_TYPES_GOOGLEPAY"` · `PaymentMethodTypesPaypal` to `"PAYMENT_METHOD_TYPES_PAYPAL"` · `PaymentMethodTypesTypesUnspecified` to `"PAYMENT_METHOD_TYPES_TYPES_UNSPECIFIED"` | `type20Schema` |
+| `Type21` | `Beginning` to `"beginning"` · `Custom` to `"custom"` · `Email` to `"email"` · `Image` to `"image"` · `Link` to `"link"` · `Loop` to `"loop"` · `Nothing` to `"nothing"` · `Share` to `"share"` · `Text` to `"text"` · `Threevideos` to `"threevideos"` · `Videos` to `"videos"` | `type21Schema` |
+| `Type22` | `Link` to `"link"` · `NoIdea` to `"no idea"` · `Text` to `"text"` · `UploadedClips` to `"uploaded_clips"` · `UploadedVideos` to `"uploaded_videos"` | `type22Schema` |
+| `Type24` | `Captions` to `"captions"` · `Subtitles` to `"subtitles"` | `type24Schema` |
+| `Type25` | `Captions` to `"captions"` · `Chapters` to `"chapters"` · `Descriptions` to `"descriptions"` · `Metadata` to `"metadata"` · `Subtitles` to `"subtitles"` | `type25Schema` |
+| `Type28` | `Custom` to `"custom"` · `None` to `"none"` · `Vimeo` to `"vimeo"` | `type28Schema` |
 | `Type3` | `AudioMp4` to `"audio/mp4"` · `Source` to `"source"` · `VideoMp4` to `"video/mp4"` · `VideoWebm` to `"video/webm"` · `Vp6XVideo` to `"vp6/x-video"` | `type3Schema` |
-| `Type32` | `Custom` to `"custom"` · `None` to `"none"` · `Vimeo` to `"vimeo"` | `type32Schema` |
-| `Type37` | `Film` to `"film"` · `Series` to `"series"` | `type37Schema` |
-| `Type38` | `Beginning` to `"beginning"` · `Custom` to `"custom"` · `Email` to `"email"` · `Image` to `"image"` · `Link` to `"link"` · `Loop` to `"loop"` · `Nothing` to `"nothing"` · `Share` to `"share"` · `Text` to `"text"` · `Threevideos` to `"threevideos"` · `Videos` to `"videos"` | `type38Schema` |
+| `Type33` | `Film` to `"film"` · `Series` to `"series"` | `type33Schema` |
+| `Type34` | `Beginning` to `"beginning"` · `Custom` to `"custom"` · `Email` to `"email"` · `Image` to `"image"` · `Link` to `"link"` · `Loop` to `"loop"` · `Nothing` to `"nothing"` · `Share` to `"share"` · `Text` to `"text"` · `Threevideos` to `"threevideos"` · `Videos` to `"videos"` | `type34Schema` |
+| `Type36` | `Empty` to `"empty"` · `Loop` to `"loop"` · `Share` to `"share"` · `Thumbnail` to `"thumbnail"` | `type36Schema` |
+| `Type37` | `Batch` to `"batch"` · `Single` to `"single"` | `type37Schema` |
+| `Type38` | `Extra` to `"extra"` · `Main` to `"main"` · `Trailer` to `"trailer"` | `type38Schema` |
+| `Type39` | `Bool` to `"bool"` · `Date` to `"date"` · `Int` to `"int"` · `MultiSelect` to `"multi-select"` · `Select` to `"select"` · `Str` to `"str"` | `type39Schema` |
 | `Type4` | `Empty` to `"empty"` · `Loop` to `"loop"` · `Share` to `"share"` · `Thumbnail` to `"thumbnail"` | `type4Schema` |
-| `Type40` | `Empty` to `"empty"` · `Loop` to `"loop"` · `Share` to `"share"` · `Thumbnail` to `"thumbnail"` | `type40Schema` |
-| `Type41` | `Batch` to `"batch"` · `Single` to `"single"` | `type41Schema` |
-| `Type42` | `Extra` to `"extra"` · `Main` to `"main"` · `Trailer` to `"trailer"` | `type42Schema` |
-| `Type43` | `Bool` to `"bool"` · `Date` to `"date"` · `Int` to `"int"` · `MultiSelect` to `"multi-select"` · `Select` to `"select"` · `Str` to `"str"` | `type43Schema` |
 | `Type5` | `Ranking` to `"ranking"` · `Thumbs` to `"thumbs"` | `type5Schema` |
-| `Type54` | `Ranking` to `"ranking"` · `Thumbs` to `"thumbs"` | `type54Schema` |
-| `Type57` | `Commentary` to `"commentary"` · `Descriptive` to `"descriptive"` · `Main` to `"main"` | `type57Schema` |
+| `Type50` | `Ranking` to `"ranking"` · `Thumbs` to `"thumbs"` | `type50Schema` |
+| `Type53` | `Commentary` to `"commentary"` · `Descriptive` to `"descriptive"` · `Main` to `"main"` | `type53Schema` |
 | `Type6` | `Source` to `"source"` · `VideoMp4` to `"video/mp4"` · `VideoWebm` to `"video/webm"` · `Vp6XVideo` to `"vp6/x-video"` | `type6Schema` |
 | `Type7` | `Live` to `"live"` · `Stock` to `"stock"` · `Video` to `"video"` | `type7Schema` |
 | `Type8` | `Member` to `"member"` · `Moderator` to `"moderator"` | `type8Schema` |
 | `Type9` | `Film` to `"film"` · `Series` to `"series"` | `type9Schema` |
 | `Unit` | `VideoCount` to `"video_count"` · `VideoSize` to `"video_size"` | `unitSchema` |
-| `Unit2` | `VideoSize` to `"video_size"` | `unit2Schema` |
 | `VersionTranscodeStatus1` | `Complete` to `"complete"` · `Error` to `"error"` · `InProgress` to `"in_progress"` | `versionTranscodeStatus1Schema` |
 | `VersionType` | `Regular` to `"regular"` · `ScreenRecording` to `"screen-recording"` · `VimeoCreate` to `"vimeo-create"` | `versionTypeSchema` |
 | `VideoStorageQuotaPeriod` | `Lifetime` to `"lifetime"` · `Month` to `"month"` · `Week` to `"week"` · `Year` to `"year"` | `videoStorageQuotaPeriodSchema` |
@@ -571,9 +560,9 @@ Take the pair from an operation's **Type sources** table. **Do not derive the pa
 | `Standard` | `Aicc` to `"aicc"` · `Cmi5` to `"cmi5"` · `Scorm12` to `"scorm12"` · `Scorm20043Rd` to `"scorm2004_3rd"` · `Tincan` to `"tincan"` | `standardSchema` |
 | `Tier1` | `Advanced` to `"advanced"` · `Business` to `"business"` · `Free` to `"free"` · `LivePremium` to `"live_premium"` · `Plus` to `"plus"` · `Pro` to `"pro"` · `ProUnlimited` to `"pro_unlimited"` · `Standard` to `"standard"` · `Starter` to `"starter"` | `tier1Schema` |
 | `TimeInterval` | `Day` to `"day"` · `Month` to `"month"` · `None` to `"none"` · `Week` to `"week"` · `Year` to `"year"` | `timeIntervalSchema` |
-| `Type31` | `All` to `"all"` · `OneTime` to `"one_time"` · `Recurring` to `"recurring"` | `type31Schema` |
-| `Type33` | `Appears` to `"appears"` · `CategoryFeatured` to `"category_featured"` · `Channel` to `"channel"` · `FacebookFeed` to `"facebook_feed"` · `Following` to `"following"` · `Group` to `"group"` · `Likes` to `"likes"` · `OndemandPublish` to `"ondemand_publish"` · `Share` to `"share"` · `TaggedWith` to `"tagged_with"` · `TwitterTimeline` to `"twitter_timeline"` · `Uploads` to `"uploads"` | `type33Schema` |
-| `Type52` | `Dubbing` to `"dubbing"` · `Subtitling` to `"subtitling"` · `Transcription` to `"transcription"` | `type52Schema` |
+| `Type27` | `All` to `"all"` · `OneTime` to `"one_time"` · `Recurring` to `"recurring"` | `type27Schema` |
+| `Type29` | `Appears` to `"appears"` · `CategoryFeatured` to `"category_featured"` · `Channel` to `"channel"` · `FacebookFeed` to `"facebook_feed"` · `Following` to `"following"` · `Group` to `"group"` · `Likes` to `"likes"` · `OndemandPublish` to `"ondemand_publish"` · `Share` to `"share"` · `TaggedWith` to `"tagged_with"` · `TwitterTimeline` to `"twitter_timeline"` · `Uploads` to `"uploads"` | `type29Schema` |
+| `Type48` | `Dubbing` to `"dubbing"` · `Subtitling` to `"subtitling"` · `Transcription` to `"transcription"` | `type48Schema` |
 
 **Unions.** A discriminated union is narrowed with an exhaustive `switch` on its tag, with no fallback arm and no type guard to import. One without a discriminant is narrowed on the shape of its arms.
 

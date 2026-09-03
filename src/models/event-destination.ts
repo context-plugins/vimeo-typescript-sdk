@@ -4,7 +4,7 @@ import { metadata16Schema, type Metadata16 } from "./metadata16.js";
 import { privacy6Schema, type Privacy6 } from "./privacy6.js";
 import { serviceNameSchema, type ServiceName } from "./service-name.js";
 import { stateSchema, type State } from "./state.js";
-import { type19Schema, type Type19 } from "./type19.js";
+import { type15Schema, type Type15 } from "./type15.js";
 
 export type EventDestination = {
   displayName: string;
@@ -23,7 +23,7 @@ export type EventDestination = {
   stateMessage: string | null;
   streamKey: string | null;
   streamUrl: string | null;
-  type: Type19;
+  type: Type15;
   userDisplayName: string;
   userId: number;
 };
@@ -45,7 +45,7 @@ export const eventDestinationSchema: Schema<EventDestination> = s.object<EventDe
   stateMessage: s.nullable(s.string()),
   streamKey: s.nullable(s.string()),
   streamUrl: s.nullable(s.string()),
-  type: type19Schema,
+  type: type15Schema,
   userDisplayName: s.string(),
   userId: s.number(),
   _keysMap: {

@@ -7,7 +7,7 @@ import { ResponseError, type Declared, type ErrorDecoders } from "../core/respon
 import * as s from "../core/validation/index.js";
 import { errorSchema, type Error } from "../models/error.js";
 import { legacyErrorSchema, type LegacyError } from "../models/legacy-error.js";
-import { type52Schema, type Type52 } from "../models/type52.js";
+import { type48Schema, type Type48 } from "../models/type48.js";
 import { videosAiAskRequestSchema, type VideosAiAskRequest } from "../models/videos-ai-ask-request.js";
 import {
   videosAiTexttracksRequestSchema,
@@ -110,7 +110,7 @@ export class VideosAi {
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
-        query: [{ name: "type", value: request.type, schema: s.optional(s.lazy(() => type52Schema)) }],
+        query: [{ name: "type", value: request.type, schema: s.optional(s.lazy(() => type48Schema)) }],
         body: { kind: "empty" },
       },
       {
@@ -366,7 +366,7 @@ export namespace VideosAi {
   }
 
   export type GetAiLanguagesRequest = {
-    type?: Type52;
+    type?: Type48;
   };
 
   export class GetAiLanguagesError extends ResponseError<Declared<"error", Error>> {

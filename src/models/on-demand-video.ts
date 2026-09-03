@@ -5,7 +5,7 @@ import { interactions13Schema, type Interactions13 } from "./interactions13.js";
 import { metadata21Schema, type Metadata21 } from "./metadata21.js";
 import { pictureSchema, type Picture } from "./picture.js";
 import { rent2Schema, type Rent2 } from "./rent2.js";
-import { type23Schema, type Type23 } from "./type23.js";
+import { type19Schema, type Type19 } from "./type19.js";
 import { userSchema, type User } from "./user.js";
 
 export type OnDemandVideo = {
@@ -24,7 +24,7 @@ export type OnDemandVideo = {
   releaseDate?: string;
   releaseYear: number | null;
   rent: Rent2 | null;
-  type: Type23;
+  type: Type19;
   uri: string;
   user?: User;
 };
@@ -45,7 +45,7 @@ export const onDemandVideoSchema: Schema<OnDemandVideo> = s.object<OnDemandVideo
   releaseDate: s.optional(s.string()),
   releaseYear: s.nullable(s.number()),
   rent: s.nullable(s.lazy(() => rent2Schema)),
-  type: type23Schema,
+  type: type19Schema,
   uri: s.string(),
   user: s.optional(s.lazy(() => userSchema)),
   _keysMap: {

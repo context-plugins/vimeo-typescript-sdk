@@ -3,7 +3,7 @@ import type { Schema } from "../core/validation/schema.js";
 import { downloadLinksSchema, type DownloadLinks } from "./download-links.js";
 import { metadata27Schema, type Metadata27 } from "./metadata27.js";
 import { provenance1Schema, type Provenance1 } from "./provenance1.js";
-import { type28Schema, type Type28 } from "./type28.js";
+import { type24Schema, type Type24 } from "./type24.js";
 
 export type TextTrack = {
   active: boolean;
@@ -23,7 +23,7 @@ export type TextTrack = {
   provenance: Provenance1;
   sourceLink: string;
   sourceLinkExpiresTime: string;
-  type: Type28 | null;
+  type: Type24 | null;
   uri: string;
   version: number | null;
 };
@@ -46,7 +46,7 @@ export const textTrackSchema: Schema<TextTrack> = s.object<TextTrack>({
   provenance: provenance1Schema,
   sourceLink: s.string(),
   sourceLinkExpiresTime: s.string(),
-  type: s.nullable(s.lazy(() => type28Schema)),
+  type: s.nullable(s.lazy(() => type24Schema)),
   uri: s.string(),
   version: s.nullable(s.number()),
   _keysMap: {

@@ -2,7 +2,12 @@ import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
 export const Type13 = {
-  Video: "video",
+  Bool: "bool",
+  Date: "date",
+  Int: "int",
+  MultiSelect: "multi-select",
+  Select: "select",
+  Str: "str",
 } as const;
 export type Type13 = (typeof Type13)[keyof typeof Type13] | (string & {});
 

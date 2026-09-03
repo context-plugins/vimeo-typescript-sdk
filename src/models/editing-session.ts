@@ -1,6 +1,6 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
-import { status2Schema, type Status2 } from "./status2.js";
+import { status1Schema, type Status1 } from "./status1.js";
 
 export type EditingSession = {
   hasWatermark: boolean;
@@ -10,7 +10,7 @@ export type EditingSession = {
   isRated: boolean;
   minTierForMovie: string;
   resultVideoHash: string;
-  status: Status2;
+  status: Status1;
   uploadAttemptIdVersionUri?: string;
   versionUri?: string;
   vsid: number;
@@ -24,7 +24,7 @@ export const editingSessionSchema: Schema<EditingSession> = s.object<EditingSess
   isRated: s.boolean(),
   minTierForMovie: s.string(),
   resultVideoHash: s.string(),
-  status: status2Schema,
+  status: status1Schema,
   uploadAttemptIdVersionUri: s.optional(s.string()),
   versionUri: s.optional(s.string()),
   vsid: s.number(),

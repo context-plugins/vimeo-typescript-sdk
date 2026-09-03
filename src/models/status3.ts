@@ -1,12 +1,13 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { EnumSchema } from "../core/validation/schema.js";
 
-export type Status3 = {
-  required: boolean;
-  value: string;
-};
+export const Status3 = {
+  DrmPlaysExceeded: "drm_plays_exceeded",
+  Playable: "playable",
+  PurchaseRequired: "purchase_required",
+  Restricted: "restricted",
+  Unavailable: "unavailable",
+} as const;
+export type Status3 = (typeof Status3)[keyof typeof Status3] | (string & {});
 
-export const status3Schema: Schema<Status3> = s.object<Status3>({
-  required: s.boolean(),
-  value: s.string(),
-});
+export const status3Schema: EnumSchema<Status3> = s.enumOf<Status3>(Status3);

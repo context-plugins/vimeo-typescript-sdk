@@ -2,7 +2,7 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 import { privacy9Schema, type Privacy9 } from "./privacy9.js";
 import { serviceName1Schema, type ServiceName1 } from "./service-name1.js";
-import { type19Schema, type Type19 } from "./type19.js";
+import { type15Schema, type Type15 } from "./type15.js";
 
 export type DestinationRequest = {
   displayName?: string;
@@ -12,7 +12,7 @@ export type DestinationRequest = {
   serviceName?: ServiceName1;
   streamKey?: string;
   streamUrl?: string;
-  type?: Type19;
+  type?: Type15;
 };
 
 export const destinationRequestSchema: Schema<DestinationRequest> = s.object<DestinationRequest>({
@@ -23,7 +23,7 @@ export const destinationRequestSchema: Schema<DestinationRequest> = s.object<Des
   serviceName: s.optional(s.lazy(() => serviceName1Schema)),
   streamKey: s.optional(s.string()),
   streamUrl: s.optional(s.string()),
-  type: s.optional(s.lazy(() => type19Schema)),
+  type: s.optional(s.lazy(() => type15Schema)),
   _keysMap: {
     displayName: "display_name",
     isEnabled: "is_enabled",

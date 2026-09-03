@@ -5,7 +5,7 @@ import { discountTypeSchema, type DiscountType } from "./discount-type.js";
 import { metadata19Schema, type Metadata19 } from "./metadata19.js";
 import { productTypeSchema, type ProductType } from "./product-type.js";
 import { streamPeriodSchema, type StreamPeriod } from "./stream-period.js";
-import { type22Schema, type Type22 } from "./type22.js";
+import { type18Schema, type Type18 } from "./type18.js";
 
 export type OnDemandPromotion = {
   accessType: AccessType;
@@ -17,7 +17,7 @@ export type OnDemandPromotion = {
   productType: ProductType;
   streamPeriod: StreamPeriod | null;
   total: number;
-  type: Type22;
+  type: Type18;
   uri: string;
 };
 
@@ -31,7 +31,7 @@ export const onDemandPromotionSchema: Schema<OnDemandPromotion> = s.object<OnDem
   productType: productTypeSchema,
   streamPeriod: s.nullable(s.lazy(() => streamPeriodSchema)),
   total: s.number(),
-  type: type22Schema,
+  type: type18Schema,
   uri: s.string(),
   _keysMap: {
     accessType: "access_type",

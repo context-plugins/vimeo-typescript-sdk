@@ -2,7 +2,6 @@ import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
 export const Status8 = {
-  Canceled: "canceled",
   Complete: "complete",
   Error: "error",
   InProgress: "in_progress",

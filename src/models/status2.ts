@@ -1,11 +1,12 @@
 import * as s from "../core/validation/index.js";
-import type { EnumSchema } from "../core/validation/schema.js";
+import type { Schema } from "../core/validation/schema.js";
 
-export const Status2 = {
-  Done: "done",
-  Failed: "failed",
-  Processing: "processing",
-} as const;
-export type Status2 = (typeof Status2)[keyof typeof Status2] | (string & {});
+export type Status2 = {
+  required: boolean;
+  value: string;
+};
 
-export const status2Schema: EnumSchema<Status2> = s.enumOf<Status2>(Status2);
+export const status2Schema: Schema<Status2> = s.object<Status2>({
+  required: s.boolean(),
+  value: s.string(),
+});

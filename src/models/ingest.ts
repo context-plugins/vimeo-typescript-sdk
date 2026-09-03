@@ -1,7 +1,7 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 import { encoderTypeSchema, type EncoderType } from "./encoder-type.js";
-import { status14Schema, type Status14 } from "./status14.js";
+import { status12Schema, type Status12 } from "./status12.js";
 
 export type Ingest = {
   encoderType: EncoderType;
@@ -15,7 +15,7 @@ export type Ingest = {
   scheduledStartTime: string | null;
   sessionId: string | null;
   startTime: number | null;
-  status: Status14 | null;
+  status: Status12 | null;
   streamEndedReason: number | null;
   streamKey: string | null;
   width: number | null;
@@ -33,7 +33,7 @@ export const ingestSchema: Schema<Ingest> = s.object<Ingest>({
   scheduledStartTime: s.nullable(s.string()),
   sessionId: s.nullable(s.string()),
   startTime: s.nullable(s.number()),
-  status: s.nullable(s.lazy(() => status14Schema)),
+  status: s.nullable(s.lazy(() => status12Schema)),
   streamEndedReason: s.nullable(s.number()),
   streamKey: s.nullable(s.string()),
   width: s.nullable(s.number()),

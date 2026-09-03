@@ -67,11 +67,11 @@ Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operat
 
 | Field | Channel | Type | Req |
 | --- | --- | --- | --- |
-| `type` | `query` | `Type52` | no |
+| `type` | `query` | `Type48` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
-| `Type52` | `type52Schema` | `src/models/type52.ts` |
+| `Type48` | `type48Schema` | `src/models/type48.ts` |
 | `Error` | `errorSchema` | `src/models/error.ts` |
 
 ### getAiMetadata

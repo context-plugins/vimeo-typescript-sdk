@@ -6,7 +6,7 @@ import { contentRating1Schema, type ContentRating1 } from "./content-rating1.js"
 import { episodes1Schema, type Episodes1 } from "./episodes1.js";
 import { rent4Schema, type Rent4 } from "./rent4.js";
 import { subscription2Schema, type Subscription2 } from "./subscription2.js";
-import { type37Schema, type Type37 } from "./type37.js";
+import { type33Schema, type Type33 } from "./type33.js";
 
 export type UsersOndemandPagesRequest = {
   acceptedCurrencies?: AcceptedCurrencies;
@@ -19,7 +19,7 @@ export type UsersOndemandPagesRequest = {
   name: string;
   rent?: Rent4;
   subscription?: Subscription2;
-  type: Type37;
+  type: Type33;
 };
 
 export const usersOndemandPagesRequestSchema: Schema<UsersOndemandPagesRequest> =
@@ -34,7 +34,7 @@ export const usersOndemandPagesRequestSchema: Schema<UsersOndemandPagesRequest> 
     name: s.string(),
     rent: s.optional(s.lazy(() => rent4Schema)),
     subscription: s.optional(s.lazy(() => subscription2Schema)),
-    type: type37Schema,
+    type: type33Schema,
     _keysMap: {
       acceptedCurrencies: "accepted_currencies",
       contentRating: "content_rating",

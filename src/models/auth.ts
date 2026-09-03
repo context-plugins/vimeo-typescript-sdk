@@ -1,7 +1,6 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 import { apiAppSchema, type ApiApp } from "./api-app.js";
-import { tokenTypeSchema, type TokenType } from "./token-type.js";
 import { userSchema, type User } from "./user.js";
 
 export type Auth = {
@@ -10,7 +9,7 @@ export type Auth = {
   expiresOn?: string;
   refreshToken?: string;
   scope: string;
-  tokenType: TokenType;
+  tokenType: "bearer";
   user?: User;
 };
 
@@ -20,7 +19,7 @@ export const authSchema: Schema<Auth> = s.object<Auth>({
   expiresOn: s.optional(s.string()),
   refreshToken: s.optional(s.string()),
   scope: s.string(),
-  tokenType: tokenTypeSchema,
+  tokenType: s.literal("bearer"),
   user: s.optional(s.lazy(() => userSchema)),
   _keysMap: {
     accessToken: "access_token",

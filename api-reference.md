@@ -11159,7 +11159,7 @@ try {
 | <code>perPage?</code> | <code>number</code> | The number of items to show on each page of results, up to a maximum of 100. |
 | <code>query?</code> | <code>string</code> | The search query to use to filter the results. |
 | <code>sort?</code> | <code>[Sort8](src/models/sort8.ts)</code> | The way to sort the results.<br><br>Option descriptions:<br> * `alphabetical` - Sort the results alphabetically.<br> * `date` - Sort the results by creation date. |
-| <code>type?</code> | <code>[Type31](src/models/type31.ts)</code> | The type of event to return.<br><br>Option descriptions:<br> * `all` - Return all events.<br> * `one_time` - Return one-time events only.<br> * `recurring` - Return recurring events only. |
+| <code>type?</code> | <code>[Type27](src/models/type27.ts)</code> | The type of event to return.<br><br>Option descriptions:<br> * `all` - Return all events.<br> * `one_time` - Return one-time events only.<br> * `recurring` - Return recurring events only. |
 
 </dd>
 </dl>
@@ -11227,7 +11227,7 @@ try {
 | <code>perPage?</code> | <code>number</code> | The number of items to show on each page of results, up to a maximum of 100. |
 | <code>query?</code> | <code>string</code> | The search query to use to filter the results. |
 | <code>sort?</code> | <code>[Sort8](src/models/sort8.ts)</code> | The way to sort the results.<br><br>Option descriptions:<br> * `alphabetical` - Sort the results alphabetically.<br> * `date` - Sort the results by creation date. |
-| <code>type?</code> | <code>[Type31](src/models/type31.ts)</code> | The type of event to return.<br><br>Option descriptions:<br> * `all` - Return all events.<br> * `one_time` - Return one-time events only.<br> * `recurring` - Return recurring events only. |
+| <code>type?</code> | <code>[Type27](src/models/type27.ts)</code> | The type of event to return.<br><br>Option descriptions:<br> * `all` - Return all events.<br> * `one_time` - Return one-time events only.<br> * `recurring` - Return recurring events only. |
 
 </dd>
 </dl>
@@ -11295,7 +11295,7 @@ try {
 | <code>perPage?</code> | <code>number</code> | The number of items to show on each page of results, up to a maximum of 100. |
 | <code>query?</code> | <code>string</code> | The search query to use to filter the results. |
 | <code>sort?</code> | <code>[Sort8](src/models/sort8.ts)</code> | The way to sort the results.<br><br>Option descriptions:<br> * `alphabetical` - Sort the results alphabetically.<br> * `date` - Sort the results by creation date. |
-| <code>type?</code> | <code>[Type31](src/models/type31.ts)</code> | The type of event to return.<br><br>Option descriptions:<br> * `all` - Return all events.<br> * `one_time` - Return one-time events only.<br> * `recurring` - Return recurring events only. |
+| <code>type?</code> | <code>[Type27](src/models/type27.ts)</code> | The type of event to return.<br><br>Option descriptions:<br> * `all` - Return all events.<br> * `one_time` - Return one-time events only.<br> * `recurring` - Return recurring events only. |
 
 </dd>
 </dl>
@@ -23958,7 +23958,7 @@ try {
 | <code>offset?</code> | <code>string</code> | The pagination offset. We recommend that you use the pagination links in the feed response instead of working with this value directly. For more details, see our [pagination documentation](https://developer.vimeo.com/api/common-formats#using-the-pagination-parameter). |
 | <code>page?</code> | <code>number</code> | The page number of the results to show. |
 | <code>perPage?</code> | <code>number</code> | The number of items to show on each page of results, up to a maximum of 100. |
-| <code>type?</code> | <code>[Type33](src/models/type33.ts)</code> | The feed type.<br><br>Option descriptions:<br> * `appears` - Videos in which the user appears.<br> * `category_featured` - Featured videos.<br> * `channel` - Channel videos.<br> * `facebook_feed` - Videos from the user's Facebook feed.<br> * `following` - Videos from accounts that the user follows.<br> * `group` - Group videos.<br> * `likes` - Liked videos.<br> * `ondemand_publish` - On Demand videos.<br> * `share` - Shared videos.<br> * `tagged_with` - Tagged videos.<br> * `twitter_timeline` - Videos from the user's Twitter timeline.<br> * `uploads` - Uploaded videos. |
+| <code>type?</code> | <code>[Type29](src/models/type29.ts)</code> | The feed type.<br><br>Option descriptions:<br> * `appears` - Videos in which the user appears.<br> * `category_featured` - Featured videos.<br> * `channel` - Channel videos.<br> * `facebook_feed` - Videos from the user's Facebook feed.<br> * `following` - Videos from accounts that the user follows.<br> * `group` - Group videos.<br> * `likes` - Liked videos.<br> * `ondemand_publish` - On Demand videos.<br> * `share` - Shared videos.<br> * `tagged_with` - Tagged videos.<br> * `twitter_timeline` - Videos from the user's Twitter timeline.<br> * `uploads` - Uploaded videos. |
 
 </dd>
 </dl>
@@ -24025,7 +24025,7 @@ try {
 | <code>offset?</code> | <code>string</code> | The pagination offset. We recommend that you use the pagination links in the feed response instead of working with this value directly. For more details, see our [pagination documentation](https://developer.vimeo.com/api/common-formats#using-the-pagination-parameter). |
 | <code>page?</code> | <code>number</code> | The page number of the results to show. |
 | <code>perPage?</code> | <code>number</code> | The number of items to show on each page of results, up to a maximum of 100. |
-| <code>type?</code> | <code>[Type33](src/models/type33.ts)</code> | The feed type.<br><br>Option descriptions:<br> * `appears` - Videos in which the user appears.<br> * `category_featured` - Featured videos.<br> * `channel` - Channel videos.<br> * `facebook_feed` - Videos from the user's Facebook feed.<br> * `following` - Videos from accounts that the user follows.<br> * `group` - Group videos.<br> * `likes` - Liked videos.<br> * `ondemand_publish` - On Demand videos.<br> * `share` - Shared videos.<br> * `tagged_with` - Tagged videos.<br> * `twitter_timeline` - Videos from the user's Twitter timeline.<br> * `uploads` - Uploaded videos. |
+| <code>type?</code> | <code>[Type29](src/models/type29.ts)</code> | The feed type.<br><br>Option descriptions:<br> * `appears` - Videos in which the user appears.<br> * `category_featured` - Featured videos.<br> * `channel` - Channel videos.<br> * `facebook_feed` - Videos from the user's Facebook feed.<br> * `following` - Videos from accounts that the user follows.<br> * `group` - Group videos.<br> * `likes` - Liked videos.<br> * `ondemand_publish` - On Demand videos.<br> * `share` - Shared videos.<br> * `tagged_with` - Tagged videos.<br> * `twitter_timeline` - Videos from the user's Twitter timeline.<br> * `uploads` - Uploaded videos. |
 
 </dd>
 </dl>
@@ -25987,7 +25987,7 @@ try {
 
 | Name | Type | Description |
 | --- | --- | --- |
-| <code>type?</code> | <code>[Type52](src/models/type52.ts)</code> | The AI feature type to list languages for.<br><br>Option descriptions:<br> * `dubbing` - Languages supported for AI audio dubbing. Includes available accents per language.<br> * `subtitling` - Languages supported for AI subtitle translation.<br> * `transcription` - Languages supported for AI transcription (speech-to-text). |
+| <code>type?</code> | <code>[Type48](src/models/type48.ts)</code> | The AI feature type to list languages for.<br><br>Option descriptions:<br> * `dubbing` - Languages supported for AI audio dubbing. Includes available accents per language.<br> * `subtitling` - Languages supported for AI subtitle translation.<br> * `transcription` - Languages supported for AI transcription (speech-to-text). |
 
 </dd>
 </dl>

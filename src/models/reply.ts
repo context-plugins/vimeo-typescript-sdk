@@ -2,7 +2,6 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 import { metadata14Schema, type Metadata14 } from "./metadata14.js";
 import { textDecorationSchema, type TextDecoration } from "./text-decoration.js";
-import { type13Schema, type Type13 } from "./type13.js";
 
 export type Reply = {
   createdOn: string;
@@ -14,7 +13,7 @@ export type Reply = {
   richtext: string | null;
   text: string;
   textDecorations: TextDecoration[];
-  type: Type13;
+  type: "video";
   uri: string;
 };
 
@@ -28,7 +27,7 @@ export const replySchema: Schema<Reply> = s.object<Reply>({
   richtext: s.nullable(s.string()),
   text: s.string(),
   textDecorations: s.array(s.lazy(() => textDecorationSchema)),
-  type: type13Schema,
+  type: s.literal("video"),
   uri: s.string(),
   _keysMap: {
     createdOn: "created_on",

@@ -17,7 +17,7 @@ import { playlistSortSchema, type PlaylistSort } from "./playlist-sort.js";
 import { preferredStreamMethodSchema, type PreferredStreamMethod } from "./preferred-stream-method.js";
 import { projectSchema, type Project } from "./project.js";
 import { recordingSchema, type Recording } from "./recording.js";
-import { status13Schema, type Status13 } from "./status13.js";
+import { status11Schema, type Status11 } from "./status11.js";
 import { streamModeSchema, type StreamMode } from "./stream-mode.js";
 import { streamPrivacySchema, type StreamPrivacy } from "./stream-privacy.js";
 import { userSchema, type User } from "./user.js";
@@ -73,7 +73,7 @@ export type Event = {
   srtEncryptionEnabled: boolean;
   srtLink?: string;
   srtPassphrase: string | null;
-  status: Status13 | null;
+  status: Status11 | null;
   streamDescription: string | null;
   streamKey: string | null;
   streamMode: StreamMode;
@@ -145,7 +145,7 @@ export const eventSchema: Schema<Event> = s.object<Event>({
   srtEncryptionEnabled: s.boolean(),
   srtLink: s.optional(s.string()),
   srtPassphrase: s.nullable(s.string()),
-  status: s.nullable(s.lazy(() => status13Schema)),
+  status: s.nullable(s.lazy(() => status11Schema)),
   streamDescription: s.nullable(s.string()),
   streamKey: s.nullable(s.string()),
   streamMode: streamModeSchema,

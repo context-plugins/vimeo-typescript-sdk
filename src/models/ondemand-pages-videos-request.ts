@@ -2,14 +2,14 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 import { buy5Schema, type Buy5 } from "./buy5.js";
 import { rent5Schema, type Rent5 } from "./rent5.js";
-import { type42Schema, type Type42 } from "./type42.js";
+import { type38Schema, type Type38 } from "./type38.js";
 
 export type OndemandPagesVideosRequest = {
   buy?: Buy5;
   position?: number;
   releaseYear?: number;
   rent?: Rent5;
-  type: Type42;
+  type: Type38;
 };
 
 export const ondemandPagesVideosRequestSchema: Schema<OndemandPagesVideosRequest> =
@@ -18,7 +18,7 @@ export const ondemandPagesVideosRequestSchema: Schema<OndemandPagesVideosRequest
     position: s.optional(s.number()),
     releaseYear: s.optional(s.number()),
     rent: s.optional(s.lazy(() => rent5Schema)),
-    type: type42Schema,
+    type: type38Schema,
     _keysMap: {
       releaseYear: "release_year",
     },

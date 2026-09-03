@@ -2,7 +2,8 @@ import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
 export const Status11 = {
-  Streaming: "streaming",
+  Ended: "ended",
+  Started: "started",
 } as const;
 export type Status11 = (typeof Status11)[keyof typeof Status11] | (string & {});
 

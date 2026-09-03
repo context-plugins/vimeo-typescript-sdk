@@ -1,11 +1,11 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
-export const Type31 = {
+export const Type27 = {
   All: "all",
   OneTime: "one_time",
   Recurring: "recurring",
 } as const;
-export type Type31 = (typeof Type31)[keyof typeof Type31] | (string & {});
+export type Type27 = (typeof Type27)[keyof typeof Type27] | (string & {});
 
-export const type31Schema: EnumSchema<Type31> = s.enumOf<Type31>(Type31);
+export const type27Schema: EnumSchema<Type27> = s.enumOf<Type27>(Type27);

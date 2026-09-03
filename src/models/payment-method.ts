@@ -1,7 +1,7 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 import { card1Schema, type Card1 } from "./card1.js";
-import { type24Schema, type Type24 } from "./type24.js";
+import { type20Schema, type Type20 } from "./type20.js";
 
 export type PaymentMethod = {
   accountId: string;
@@ -10,7 +10,7 @@ export type PaymentMethod = {
   disabledAt: string;
   id: string;
   isDefault: boolean;
-  type: Type24;
+  type: Type20;
   updatedAt: string;
 };
 
@@ -21,7 +21,7 @@ export const paymentMethodSchema: Schema<PaymentMethod> = s.object<PaymentMethod
   disabledAt: s.string(),
   id: s.string(),
   isDefault: s.boolean(),
-  type: type24Schema,
+  type: type20Schema,
   updatedAt: s.string(),
   _keysMap: {
     accountId: "account_id",

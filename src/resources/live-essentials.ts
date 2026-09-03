@@ -21,7 +21,7 @@ import { meLiveEventsRequest1Schema, type MeLiveEventsRequest1 } from "../models
 import { meLiveEventsRequest2Schema, type MeLiveEventsRequest2 } from "../models/me-live-events-request2.js";
 import { recurringEventSchema, type RecurringEvent } from "../models/recurring-event.js";
 import { sort8Schema, type Sort8 } from "../models/sort8.js";
-import { type31Schema, type Type31 } from "../models/type31.js";
+import { type27Schema, type Type27 } from "../models/type27.js";
 import {
   usersLiveEventsRequestSchema,
   type UsersLiveEventsRequest,
@@ -391,7 +391,7 @@ export class LiveEssentials {
           { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
           { name: "query", value: request.query, schema: s.optional(s.string()) },
           { name: "sort", value: request.sort, schema: s.optional(s.lazy(() => sort8Schema)) },
-          { name: "type", value: request.type, schema: s.optional(s.lazy(() => type31Schema)) },
+          { name: "type", value: request.type, schema: s.optional(s.lazy(() => type27Schema)) },
         ],
         body: { kind: "empty" },
       },
@@ -423,7 +423,7 @@ export class LiveEssentials {
           { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
           { name: "query", value: request.query, schema: s.optional(s.string()) },
           { name: "sort", value: request.sort, schema: s.optional(s.lazy(() => sort8Schema)) },
-          { name: "type", value: request.type, schema: s.optional(s.lazy(() => type31Schema)) },
+          { name: "type", value: request.type, schema: s.optional(s.lazy(() => type27Schema)) },
         ],
         body: { kind: "empty" },
       },
@@ -455,7 +455,7 @@ export class LiveEssentials {
           { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
           { name: "query", value: request.query, schema: s.optional(s.string()) },
           { name: "sort", value: request.sort, schema: s.optional(s.lazy(() => sort8Schema)) },
-          { name: "type", value: request.type, schema: s.optional(s.lazy(() => type31Schema)) },
+          { name: "type", value: request.type, schema: s.optional(s.lazy(() => type27Schema)) },
         ],
         body: { kind: "empty" },
       },
@@ -732,7 +732,7 @@ export namespace LiveEssentials {
     perPage?: number;
     query?: string;
     sort?: Sort8;
-    type?: Type31;
+    type?: Type27;
   };
 
   export type GetLiveEventsAlt1Request = {
@@ -742,7 +742,7 @@ export namespace LiveEssentials {
     perPage?: number;
     query?: string;
     sort?: Sort8;
-    type?: Type31;
+    type?: Type27;
   };
 
   export type GetLiveEventsAlt2Request = {
@@ -752,7 +752,7 @@ export namespace LiveEssentials {
     perPage?: number;
     query?: string;
     sort?: Sort8;
-    type?: Type31;
+    type?: Type27;
   };
 
   export type UpdateLiveEventRequest = {

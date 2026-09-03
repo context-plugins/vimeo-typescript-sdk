@@ -308,14 +308,14 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 | `perPage` | `query` | `per_page` | `number` | no |
 | `query` | `query` | — | `string` | no |
 | `sort` | `query` | — | `Sort8` | no |
-| `type` | `query` | — | `Type31` | no |
+| `type` | `query` | — | `Type27` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
 | `Direction` | `directionSchema` | `src/models/direction.ts` |
 | `Filter8` | `filter8Schema` | `src/models/filter8.ts` |
 | `Sort8` | `sort8Schema` | `src/models/sort8.ts` |
-| `Type31` | `type31Schema` | `src/models/type31.ts` |
+| `Type27` | `type27Schema` | `src/models/type27.ts` |
 | `EventConnection` | `eventConnectionSchema` | `src/models/event-connection.ts` |
 
 ### getLiveEventsAlt1
@@ -337,14 +337,14 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 | `perPage` | `query` | `per_page` | `number` | no |
 | `query` | `query` | — | `string` | no |
 | `sort` | `query` | — | `Sort8` | no |
-| `type` | `query` | — | `Type31` | no |
+| `type` | `query` | — | `Type27` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
 | `Direction` | `directionSchema` | `src/models/direction.ts` |
 | `Filter8` | `filter8Schema` | `src/models/filter8.ts` |
 | `Sort8` | `sort8Schema` | `src/models/sort8.ts` |
-| `Type31` | `type31Schema` | `src/models/type31.ts` |
+| `Type27` | `type27Schema` | `src/models/type27.ts` |
 | `EventConnection` | `eventConnectionSchema` | `src/models/event-connection.ts` |
 
 ### getLiveEventsAlt2
@@ -366,14 +366,14 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 | `perPage` | `query` | `per_page` | `number` | no |
 | `query` | `query` | — | `string` | no |
 | `sort` | `query` | — | `Sort8` | no |
-| `type` | `query` | — | `Type31` | no |
+| `type` | `query` | — | `Type27` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
 | `Direction` | `directionSchema` | `src/models/direction.ts` |
 | `Filter8` | `filter8Schema` | `src/models/filter8.ts` |
 | `Sort8` | `sort8Schema` | `src/models/sort8.ts` |
-| `Type31` | `type31Schema` | `src/models/type31.ts` |
+| `Type27` | `type27Schema` | `src/models/type27.ts` |
 | `EventConnection` | `eventConnectionSchema` | `src/models/event-connection.ts` |
 
 ### updateLiveEvent

@@ -4,7 +4,7 @@ import { accessType1Schema, type AccessType1 } from "./access-type1.js";
 import { discountType1Schema, type DiscountType1 } from "./discount-type1.js";
 import { productType1Schema, type ProductType1 } from "./product-type1.js";
 import { streamPeriod1Schema, type StreamPeriod1 } from "./stream-period1.js";
-import { type41Schema, type Type41 } from "./type41.js";
+import { type37Schema, type Type37 } from "./type37.js";
 
 export type OndemandPagesPromotionsRequest = {
   accessType?: AccessType1;
@@ -18,7 +18,7 @@ export type OndemandPagesPromotionsRequest = {
   startTime?: string;
   streamPeriod: StreamPeriod1;
   total: number;
-  type: Type41;
+  type: Type37;
 };
 
 export const ondemandPagesPromotionsRequestSchema: Schema<OndemandPagesPromotionsRequest> =
@@ -34,7 +34,7 @@ export const ondemandPagesPromotionsRequestSchema: Schema<OndemandPagesPromotion
     startTime: s.optional(s.string()),
     streamPeriod: streamPeriod1Schema,
     total: s.number(),
-    type: type41Schema,
+    type: type37Schema,
     _keysMap: {
       accessType: "access_type",
       discountType: "discount_type",

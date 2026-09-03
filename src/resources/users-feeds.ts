@@ -7,7 +7,7 @@ import { ResponseError, type Declared, type ErrorDecoders } from "../core/respon
 import * as s from "../core/validation/index.js";
 import { activity31ConnectionSchema, type Activity31Connection } from "../models/activity31-connection.js";
 import { errorSchema, type Error } from "../models/error.js";
-import { type33Schema, type Type33 } from "../models/type33.js";
+import { type29Schema, type Type29 } from "../models/type29.js";
 import type { Servers } from "../servers.js";
 
 export class UsersFeeds {
@@ -39,7 +39,7 @@ export class UsersFeeds {
           { name: "offset", value: request.offset, schema: s.optional(s.string()) },
           { name: "page", value: request.page, schema: s.optional(s.number()) },
           { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
-          { name: "type", value: request.type, schema: s.optional(s.lazy(() => type33Schema)) },
+          { name: "type", value: request.type, schema: s.optional(s.lazy(() => type29Schema)) },
         ],
         body: { kind: "empty" },
       },
@@ -68,7 +68,7 @@ export class UsersFeeds {
           { name: "offset", value: request.offset, schema: s.optional(s.string()) },
           { name: "page", value: request.page, schema: s.optional(s.number()) },
           { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
-          { name: "type", value: request.type, schema: s.optional(s.lazy(() => type33Schema)) },
+          { name: "type", value: request.type, schema: s.optional(s.lazy(() => type29Schema)) },
         ],
         body: { kind: "empty" },
       },
@@ -87,7 +87,7 @@ export namespace UsersFeeds {
     offset?: string;
     page?: number;
     perPage?: number;
-    type?: Type33;
+    type?: Type29;
   };
 
   export class GetFeedError extends ResponseError<Declared<"error", Error>> {
@@ -100,7 +100,7 @@ export namespace UsersFeeds {
     offset?: string;
     page?: number;
     perPage?: number;
-    type?: Type33;
+    type?: Type29;
   };
 
   export class GetFeedAlt1Error extends ResponseError<Declared<"error", Error>> {

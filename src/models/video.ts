@@ -20,7 +20,7 @@ import { reviewLinkSchema, type ReviewLink } from "./review-link.js";
 import { reviewStatusSchema, type ReviewStatus } from "./review-status.js";
 import { spatialSchema, type Spatial } from "./spatial.js";
 import { statsSchema, type Stats } from "./stats.js";
-import { status5Schema, type Status5 } from "./status5.js";
+import { status4Schema, type Status4 } from "./status4.js";
 import { tagSchema, type Tag } from "./tag.js";
 import { transcodeSchema, type Transcode } from "./transcode.js";
 import { transcriptSchema, type Transcript } from "./transcript.js";
@@ -96,7 +96,7 @@ export type Video = {
   showSvvTimecodedComments: boolean;
   spatial?: Spatial;
   stats: Stats;
-  status: Status5;
+  status: Status4;
   tags: Tag[];
   transcode: Transcode | null;
   transcript: Transcript;
@@ -173,7 +173,7 @@ export const videoSchema: Schema<Video> = s.object<Video>({
   showSvvTimecodedComments: s.boolean(),
   spatial: s.optional(s.lazy(() => spatialSchema)),
   stats: statsSchema,
-  status: status5Schema,
+  status: status4Schema,
   tags: s.array(s.lazy(() => tagSchema)),
   transcode: s.nullable(s.lazy(() => transcodeSchema)),
   transcript: transcriptSchema,

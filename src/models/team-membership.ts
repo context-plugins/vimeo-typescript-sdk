@@ -6,7 +6,7 @@ import {
 } from "./applicable-permission-policies.js";
 import { metadata26Schema, type Metadata26 } from "./metadata26.js";
 import { permissionLevel1Schema, type PermissionLevel1 } from "./permission-level1.js";
-import { status21Schema, type Status21 } from "./status21.js";
+import { status18Schema, type Status18 } from "./status18.js";
 import { teamRoleSchema, type TeamRole } from "./team-role.js";
 import { userSchema, type User } from "./user.js";
 
@@ -29,7 +29,7 @@ export type TeamMembership = {
   recentlyReminded?: boolean;
   resourceKey: string;
   role: string;
-  status: Status21;
+  status: Status18;
   uri: string;
   user: User | null;
 };
@@ -53,7 +53,7 @@ export const teamMembershipSchema: Schema<TeamMembership> = s.object<TeamMembers
   recentlyReminded: s.optional(s.boolean()),
   resourceKey: s.string(),
   role: s.string(),
-  status: status21Schema,
+  status: status18Schema,
   uri: s.string(),
   user: s.nullable(s.lazy(() => userSchema)),
   _keysMap: {

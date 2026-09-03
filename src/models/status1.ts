@@ -2,7 +2,9 @@ import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
 export const Status1 = {
-  FreeTrial: "free_trial",
+  Done: "done",
+  Failed: "failed",
+  Processing: "processing",
 } as const;
 export type Status1 = (typeof Status1)[keyof typeof Status1] | (string & {});
 

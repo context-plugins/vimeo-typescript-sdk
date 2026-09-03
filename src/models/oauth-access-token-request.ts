@@ -1,17 +1,16 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
-import { grantTypeSchema, type GrantType } from "./grant-type.js";
 
 export type OauthAccessTokenRequest = {
   code: string;
-  grantType: GrantType;
+  grantType: "authorization_code";
   redirectUri: string;
 };
 
 export const oauthAccessTokenRequestSchema: Schema<OauthAccessTokenRequest> =
   s.object<OauthAccessTokenRequest>({
     code: s.string(),
-    grantType: grantTypeSchema,
+    grantType: s.literal("authorization_code"),
     redirectUri: s.string(),
     _keysMap: {
       grantType: "grant_type",
