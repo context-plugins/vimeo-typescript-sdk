@@ -4,7 +4,7 @@
 
 Accessor: `client.liveEventAutomatedClosedCaptions` · Source: `src/resources/live-event-automated-closed-captions.ts` · 3 operations · Request and error types: namespace `LiveEventAutomatedClosedCaptions`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### editLiveEventAutoCc
 
@@ -12,8 +12,9 @@ Accessor: `client.liveEventAutomatedClosedCaptions` · Source: `src/resources/li
 - **Wire**: `PATCH /users/{user_id}/live_events/{live_event_id}/auto_cc`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `EventAutomatedClosedCaptions`
-- **Error**: `LiveEventAutomatedClosedCaptions.EditLiveEventAutoCcError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventAutomatedClosedCaptions.EditLiveEventAutoCcError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventAutomatedClosedCaptions.EditLiveEventAutoCcRequest` (3):
@@ -36,8 +37,9 @@ Accessor: `client.liveEventAutomatedClosedCaptions` · Source: `src/resources/li
 - **Wire**: `PATCH /live_events/{live_event_id}/auto_cc`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `EventAutomatedClosedCaptions`
-- **Error**: `LiveEventAutomatedClosedCaptions.EditLiveEventAutoCcAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventAutomatedClosedCaptions.EditLiveEventAutoCcAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventAutomatedClosedCaptions.EditLiveEventAutoCcAlt1Request` (2):
@@ -59,8 +61,9 @@ Accessor: `client.liveEventAutomatedClosedCaptions` · Source: `src/resources/li
 - **Wire**: `PATCH /me/live_events/{live_event_id}/auto_cc`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `EventAutomatedClosedCaptions`
-- **Error**: `LiveEventAutomatedClosedCaptions.EditLiveEventAutoCcAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventAutomatedClosedCaptions.EditLiveEventAutoCcAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventAutomatedClosedCaptions.EditLiveEventAutoCcAlt2Request` (2):

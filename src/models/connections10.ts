@@ -8,11 +8,17 @@ import { seasonsSchema, type Seasons } from "./seasons.js";
 import { videos8Schema, type Videos8 } from "./videos8.js";
 
 export type Connections10 = {
+  /** Information about the comments associated with the On Demand page. */
   comments: Comments3;
+  /** Information about the genres associated with the On Demand page. */
   genres: Genres;
+  /** Information about the likes associated with the On Demand page. */
   likes: Likes2;
+  /** Information about the pictures associated with the On Demand page. */
   pictures: Pictures2;
+  /** Information about the seasons associated with the On Demand page. */
   seasons: Seasons;
+  /** Information about the videos associated with the On Demand page. */
   videos: Videos8;
 };
 

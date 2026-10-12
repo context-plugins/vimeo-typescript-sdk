@@ -4,7 +4,7 @@
 
 Accessor: `client.liveAnalytics` · Source: `src/resources/live-analytics.ts` · 1 operation · Request and error types: namespace `LiveAnalytics`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### exportVpaasViewerAnalytics
 
@@ -12,8 +12,9 @@ Accessor: `client.liveAnalytics` · Source: `src/resources/live-analytics.ts` ·
 - **Wire**: `POST /live_events/{live_event_id}/export_vpaas_analytics`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveAnalytics.ExportVpaasViewerAnalyticsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveAnalytics.ExportVpaasViewerAnalyticsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveAnalytics.ExportVpaasViewerAnalyticsRequest` (1):

@@ -4,7 +4,7 @@
 
 Accessor: `client.videosUploads` · Source: `src/resources/videos-uploads.ts` · 4 operations · Request and error types: namespace `VideosUploads`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### completeStreamingUpload
 
@@ -12,8 +12,9 @@ Accessor: `client.videosUploads` · Source: `src/resources/videos-uploads.ts` ·
 - **Wire**: `DELETE /users/{user_id}/uploads/{upload_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosUploads.CompleteStreamingUploadError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosUploads.CompleteStreamingUploadError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [404] `Error` · `"error3"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosUploads.CompleteStreamingUploadRequest` (4):
@@ -31,12 +32,12 @@ Accessor: `client.videosUploads` · Source: `src/resources/videos-uploads.ts` ·
 
 ### getUploadAttempt
 
-- **Signature**: `getUploadAttempt(request: VideosUploads.GetUploadAttemptRequest, options?: RequestOptions): ApiPromise<UploadAttempt, ResponseError>`
+- **Signature**: `getUploadAttempt(request: VideosUploads.GetUploadAttemptRequest, options?: RequestOptions): ApiPromise<UploadAttempt, ApiError>`
 - **Wire**: `GET /users/{user_id}/uploads/{upload_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UploadAttempt`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosUploads.GetUploadAttemptRequest` (2):
 
@@ -55,8 +56,9 @@ Accessor: `client.videosUploads` · Source: `src/resources/videos-uploads.ts` ·
 - **Wire**: `POST /users/{user_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `VideosUploads.UploadVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosUploads.UploadVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosUploads.UploadVideoRequest` (2):
@@ -78,8 +80,9 @@ Accessor: `client.videosUploads` · Source: `src/resources/videos-uploads.ts` ·
 - **Wire**: `POST /me/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `VideosUploads.UploadVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosUploads.UploadVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosUploads.UploadVideoAlt1Request` (1):

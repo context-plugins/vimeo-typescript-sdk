@@ -4,7 +4,7 @@
 
 Accessor: `client.authenticationExtrasExchange` · Source: `src/resources/authentication-extras-exchange.ts` · 1 operation · Request and error types: namespace `AuthenticationExtrasExchange`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### exchangeAuthCode
 
@@ -12,8 +12,9 @@ Accessor: `client.authenticationExtrasExchange` · Source: `src/resources/authen
 - **Wire**: `POST /oauth/access_token`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Auth`
-- **Error**: `AuthenticationExtrasExchange.ExchangeAuthCodeError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `AuthenticationExtrasExchange.ExchangeAuthCodeError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"authErrorModel"` [400] `AuthErrorModel` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `AuthenticationExtrasExchange.ExchangeAuthCodeRequest` (1):

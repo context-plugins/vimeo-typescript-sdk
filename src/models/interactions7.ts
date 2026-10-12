@@ -15,17 +15,47 @@ import { edit2Schema, type Edit2 } from "./edit2.js";
 import { invite3Schema, type Invite3 } from "./invite3.js";
 import { viewPrivacy1Schema, type ViewPrivacy1 } from "./view-privacy1.js";
 
+/** A list of resource URIs related to the showcase. */
 export type Interactions7 = {
+  /**
+   * An action indicating that the authenticated user is an administrator of the showcase and may
+   * therefore add custom thumbnails. This data requires a bearer token with the `private` scope.
+   */
   addCustomThumbnails: AddCustomThumbnails;
+  /**
+   * An action indicating that the authenticated user is an administrator of the showcase and may
+   * therefore add events. This data requires a bearer token with the `private` scope.
+   */
   addLiveEvents: AddLiveEvents;
+  /**
+   * An action indicating that the authenticated user is an administrator of the showcase and may
+   * therefore add custom logos. This data requires a bearer token with the `private` scope.
+   */
   addLogos: AddLogos;
+  /**
+   * Information about adding or removing a video from the showcase. This data requires a bearer
+   * token with the `private` scope.
+   */
   addTo: AddTo1 | null;
+  /**
+   * An action indicating that the authenticated user is an administrator of the showcase and may
+   * therefore add videos. This data requires a bearer token with the `private` scope.
+   */
   addVideos: AddVideos;
+  /** Whether the user can update the showcase privacy to public. */
   canUpdatePrivacyToPublic: CanUpdatePrivacyToPublic1;
+  /** Information about where and how to delete a showcase. */
   delete: Delete2 | null;
+  /** Information about where and how to edit a showcase. */
   edit: Edit2 | null;
+  /**
+   * An action indicating that the authenticated user can edit event videos inside the showcase.
+   * This data requires a bearer token with the `private` scope.
+   */
   editLiveEvents: EditLiveEvents;
+  /** Information about where and how to invite a team member to a showcase. */
   invite: Invite3 | null;
+  /** Information about whether a user has permissions to view the privacy of the showcase. */
   viewPrivacy: ViewPrivacy1 | null;
 };
 

@@ -2,6 +2,7 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type OndemandPagesRegionsRequest1 = {
+  /** An array of country codes for the regions to add. */
   countries: string[];
 };
 

@@ -2,6 +2,7 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type Publish = {
+  /** Whether to publish the On Demand page. */
   active?: boolean;
 };
 

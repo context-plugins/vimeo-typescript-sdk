@@ -4,16 +4,17 @@
 
 Accessor: `client.videosFragments` · Source: `src/resources/videos-fragments.ts` · 3 operations · Request types: namespace `VideosFragments`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### deleteFragments
 
-- **Signature**: `deleteFragments(request: VideosFragments.DeleteFragmentsRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `deleteFragments(request: VideosFragments.DeleteFragmentsRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /videos/{video_id}/fragments`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosFragments.DeleteFragmentsRequest` (1):
 
@@ -23,12 +24,12 @@ Accessor: `client.videosFragments` · Source: `src/resources/videos-fragments.ts
 
 ### getFragments
 
-- **Signature**: `getFragments(request: VideosFragments.GetFragmentsRequest, options?: RequestOptions): ApiPromise<Fragments, ResponseError>`
+- **Signature**: `getFragments(request: VideosFragments.GetFragmentsRequest, options?: RequestOptions): ApiPromise<Fragments, ApiError>`
 - **Wire**: `GET /videos/{video_id}/fragments`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Fragments`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosFragments.GetFragmentsRequest` (1):
 
@@ -42,12 +43,13 @@ Accessor: `client.videosFragments` · Source: `src/resources/videos-fragments.ts
 
 ### putFragments
 
-- **Signature**: `putFragments(request: VideosFragments.PutFragmentsRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `putFragments(request: VideosFragments.PutFragmentsRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PUT /videos/{video_id}/fragments`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosFragments.PutFragmentsRequest` (1):
 

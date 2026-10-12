@@ -4,16 +4,17 @@
 
 Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operations · Request and error types: namespace `VideosAi`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### askAiQuestion
 
 - **Signature**: `askAiQuestion(request: VideosAi.AskAiQuestionRequest, options?: RequestOptions): ApiPromise<undefined, VideosAi.AskAiQuestionError>`
 - **Wire**: `POST /videos/{video_id}/ai/ask`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAi.AskAiQuestionError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAi.AskAiQuestionError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"error3"` [503] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAi.AskAiQuestionRequest` (2):
@@ -34,9 +35,10 @@ Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operat
 - **Signature**: `editAiTexttrack(request: VideosAi.EditAiTexttrackRequest, options?: RequestOptions): ApiPromise<undefined, VideosAi.EditAiTexttrackError>`
 - **Wire**: `PATCH /videos/{video_id}/ai/texttracks/{texttrack_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAi.EditAiTexttrackError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAi.EditAiTexttrackError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"legacyError"` [404] `LegacyError` · `"error2"` [503] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAi.EditAiTexttrackRequest` (3):
@@ -60,18 +62,18 @@ Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operat
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAi.GetAiLanguagesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAi.GetAiLanguagesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAi.GetAiLanguagesRequest` (1):
 
 | Field | Channel | Type | Req |
 | --- | --- | --- | --- |
-| `type` | `query` | `Type48` | no |
+| `type` | `query` | `Type52` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
-| `Type48` | `type48Schema` | `src/models/type48.ts` |
+| `Type52` | `type52Schema` | `src/models/type52.ts` |
 | `Error` | `errorSchema` | `src/models/error.ts` |
 
 ### getAiMetadata
@@ -81,7 +83,7 @@ Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operat
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAi.GetAiMetadataError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAi.GetAiMetadataError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"error3"` [503] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAi.GetAiMetadataRequest` (1):
@@ -102,7 +104,7 @@ Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operat
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAi.GetAiQuestionsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAi.GetAiQuestionsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"error2"` [503] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAi.GetAiQuestionsRequest` (2):
@@ -124,7 +126,7 @@ Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operat
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAi.GetAiTranscribeStatusError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAi.GetAiTranscribeStatusError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAi.GetAiTranscribeStatusRequest` (1):
@@ -145,7 +147,7 @@ Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operat
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAi.GetAiTranslateDubbingStatusError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAi.GetAiTranslateDubbingStatusError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"error2"` [503] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAi.GetAiTranslateDubbingStatusRequest` (2):
@@ -167,7 +169,7 @@ Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operat
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAi.GetAiTranslateSubtitlesStatusError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAi.GetAiTranslateSubtitlesStatusError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"error2"` [503] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAi.GetAiTranslateSubtitlesStatusRequest` (2):
@@ -187,9 +189,10 @@ Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operat
 - **Signature**: `startAiTranscribe(request: VideosAi.StartAiTranscribeRequest, options?: RequestOptions): ApiPromise<undefined, VideosAi.StartAiTranscribeError>`
 - **Wire**: `POST /videos/{video_id}/ai/transcribe`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAi.StartAiTranscribeError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAi.StartAiTranscribeError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAi.StartAiTranscribeRequest` (2):
@@ -210,9 +213,10 @@ Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operat
 - **Signature**: `startAiTranslateDubbing(request: VideosAi.StartAiTranslateDubbingRequest, options?: RequestOptions): ApiPromise<undefined, VideosAi.StartAiTranslateDubbingError>`
 - **Wire**: `POST /videos/{video_id}/ai/translate/dubbing`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAi.StartAiTranslateDubbingError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAi.StartAiTranslateDubbingError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"error3"` [503] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAi.StartAiTranslateDubbingRequest` (2):
@@ -233,9 +237,10 @@ Accessor: `client.videosAi` · Source: `src/resources/videos-ai.ts` · 11 operat
 - **Signature**: `startAiTranslateSubtitles(request: VideosAi.StartAiTranslateSubtitlesRequest, options?: RequestOptions): ApiPromise<undefined, VideosAi.StartAiTranslateSubtitlesError>`
 - **Wire**: `POST /videos/{video_id}/ai/translate/subtitles`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAi.StartAiTranslateSubtitlesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAi.StartAiTranslateSubtitlesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"error3"` [503] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAi.StartAiTranslateSubtitlesRequest` (2):

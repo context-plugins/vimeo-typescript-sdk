@@ -4,16 +4,17 @@
 
 Accessor: `client.embedPresetsEssentials` · Source: `src/resources/embed-presets-essentials.ts` · 10 operations · Request and error types: namespace `EmbedPresetsEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createEmbedPresets
 
-- **Signature**: `createEmbedPresets(request: EmbedPresetsEssentials.CreateEmbedPresetsRequest, options?: RequestOptions): ApiPromise<Preset, ResponseError>`
+- **Signature**: `createEmbedPresets(request: EmbedPresetsEssentials.CreateEmbedPresetsRequest, options?: RequestOptions): ApiPromise<Preset, ApiError>`
 - **Wire**: `POST /users/{user_id}/presets`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Preset`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `EmbedPresetsEssentials.CreateEmbedPresetsRequest` (2):
 
@@ -29,12 +30,13 @@ Accessor: `client.embedPresetsEssentials` · Source: `src/resources/embed-preset
 
 ### createEmbedPresetsAlt1
 
-- **Signature**: `createEmbedPresetsAlt1(request: EmbedPresetsEssentials.CreateEmbedPresetsAlt1Request, options?: RequestOptions): ApiPromise<Preset, ResponseError>`
+- **Signature**: `createEmbedPresetsAlt1(request: EmbedPresetsEssentials.CreateEmbedPresetsAlt1Request, options?: RequestOptions): ApiPromise<Preset, ApiError>`
 - **Wire**: `POST /me/presets`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Preset`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `EmbedPresetsEssentials.CreateEmbedPresetsAlt1Request` (1):
 
@@ -53,8 +55,9 @@ Accessor: `client.embedPresetsEssentials` · Source: `src/resources/embed-preset
 - **Wire**: `DELETE /users/{user_id}/presets/{preset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `EmbedPresetsEssentials.DeleteEmbedPresetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `EmbedPresetsEssentials.DeleteEmbedPresetError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `EmbedPresetsEssentials.DeleteEmbedPresetRequest` (2):
@@ -74,8 +77,9 @@ Accessor: `client.embedPresetsEssentials` · Source: `src/resources/embed-preset
 - **Wire**: `DELETE /me/presets/{preset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `EmbedPresetsEssentials.DeleteEmbedPresetAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `EmbedPresetsEssentials.DeleteEmbedPresetAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `EmbedPresetsEssentials.DeleteEmbedPresetAlt1Request` (1):
@@ -93,9 +97,10 @@ Accessor: `client.embedPresetsEssentials` · Source: `src/resources/embed-preset
 - **Signature**: `editEmbedPreset(request: EmbedPresetsEssentials.EditEmbedPresetRequest, options?: RequestOptions): ApiPromise<Preset, EmbedPresetsEssentials.EditEmbedPresetError>`
 - **Wire**: `PATCH /users/{user_id}/presets/{preset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Preset`
-- **Error**: `EmbedPresetsEssentials.EditEmbedPresetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `EmbedPresetsEssentials.EditEmbedPresetError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `EmbedPresetsEssentials.EditEmbedPresetRequest` (3):
@@ -117,9 +122,10 @@ Accessor: `client.embedPresetsEssentials` · Source: `src/resources/embed-preset
 - **Signature**: `editEmbedPresetAlt1(request: EmbedPresetsEssentials.EditEmbedPresetAlt1Request, options?: RequestOptions): ApiPromise<Preset, EmbedPresetsEssentials.EditEmbedPresetAlt1Error>`
 - **Wire**: `PATCH /me/presets/{preset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Preset`
-- **Error**: `EmbedPresetsEssentials.EditEmbedPresetAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `EmbedPresetsEssentials.EditEmbedPresetAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `EmbedPresetsEssentials.EditEmbedPresetAlt1Request` (2):
@@ -137,12 +143,12 @@ Accessor: `client.embedPresetsEssentials` · Source: `src/resources/embed-preset
 
 ### getEmbedPreset
 
-- **Signature**: `getEmbedPreset(request: EmbedPresetsEssentials.GetEmbedPresetRequest, options?: RequestOptions): ApiPromise<Preset, ResponseError>`
+- **Signature**: `getEmbedPreset(request: EmbedPresetsEssentials.GetEmbedPresetRequest, options?: RequestOptions): ApiPromise<Preset, ApiError>`
 - **Wire**: `GET /users/{user_id}/presets/{preset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Preset`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `EmbedPresetsEssentials.GetEmbedPresetRequest` (2):
 
@@ -157,12 +163,12 @@ Accessor: `client.embedPresetsEssentials` · Source: `src/resources/embed-preset
 
 ### getEmbedPresetAlt1
 
-- **Signature**: `getEmbedPresetAlt1(request: EmbedPresetsEssentials.GetEmbedPresetAlt1Request, options?: RequestOptions): ApiPromise<Preset, ResponseError>`
+- **Signature**: `getEmbedPresetAlt1(request: EmbedPresetsEssentials.GetEmbedPresetAlt1Request, options?: RequestOptions): ApiPromise<Preset, ApiError>`
 - **Wire**: `GET /me/presets/{preset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Preset`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `EmbedPresetsEssentials.GetEmbedPresetAlt1Request` (1):
 
@@ -176,12 +182,12 @@ Accessor: `client.embedPresetsEssentials` · Source: `src/resources/embed-preset
 
 ### getEmbedPresets
 
-- **Signature**: `getEmbedPresets(request: EmbedPresetsEssentials.GetEmbedPresetsRequest, options?: RequestOptions): ApiPromise<PresetConnection, ResponseError>`
+- **Signature**: `getEmbedPresets(request: EmbedPresetsEssentials.GetEmbedPresetsRequest, options?: RequestOptions): ApiPromise<PresetConnection, ApiError>`
 - **Wire**: `GET /users/{user_id}/presets`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PresetConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `EmbedPresetsEssentials.GetEmbedPresetsRequest` (3):
 
@@ -197,12 +203,12 @@ Accessor: `client.embedPresetsEssentials` · Source: `src/resources/embed-preset
 
 ### getEmbedPresetsAlt1
 
-- **Signature**: `getEmbedPresetsAlt1(request: EmbedPresetsEssentials.GetEmbedPresetsAlt1Request, options?: RequestOptions): ApiPromise<PresetConnection, ResponseError>`
+- **Signature**: `getEmbedPresetsAlt1(request: EmbedPresetsEssentials.GetEmbedPresetsAlt1Request, options?: RequestOptions): ApiPromise<PresetConnection, ApiError>`
 - **Wire**: `GET /me/presets`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PresetConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `EmbedPresetsEssentials.GetEmbedPresetsAlt1Request` (2):
 

@@ -3,8 +3,11 @@ import type { Schema } from "../core/validation/schema.js";
 import { subscribe1Schema, type Subscribe1 } from "./subscribe1.js";
 
 export type PurchaseInteraction = {
+  /** Information on purchasing the On Demand video. */
   buy?: Record<string, unknown> | null;
+  /** Information on renting the On Demand video. */
   rent?: Record<string, unknown> | null;
+  /** Information on subscribing to the On Demand video. */
   subscribe?: Subscribe1 | null;
 };
 

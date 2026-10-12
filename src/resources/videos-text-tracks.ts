@@ -1,9 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { anyAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
   channelsVideosTexttracksRequestSchema,
@@ -23,6 +24,9 @@ import {
 } from "../models/videos-texttracks-request1.js";
 import type { Servers } from "../servers.js";
 
+/**
+ * Use these methods to work with video text tracks.
+ */
 export class VideosTextTracks {
   readonly #rawClient: RawClient;
   readonly #servers: Servers;
@@ -34,6 +38,22 @@ export class VideosTextTracks {
     this.#auth = auth;
   }
 
+  /**
+   * Add a text track to a video
+   *
+   * @remarks
+   * This method adds a text track to the specified video. For more information, see [Working with
+   * Text Track Uploads](https://developer.vimeo.com/api/upload/texttracks).
+   *
+   * @returns The text track was added.
+   *
+   * @throws {@link VideosTextTracks.CreateTextTrackError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createTextTrack(
     request: VideosTextTracks.CreateTextTrackRequest,
     options?: RequestOptions,
@@ -41,13 +61,15 @@ export class VideosTextTracks {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/videos/{video_id}/texttracks"),
+        urlTemplate: this.#servers.default("/videos/{video_id}/texttracks"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
-        pathParams: [{ name: "video_id", value: request.videoId, schema: s.number() }],
+        pathParams: [{ name: "video_id", value: request.videoId, schema: s.float64() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "json", value: request.body, schema: videosTexttracksRequestSchema },
       },
       {
@@ -58,6 +80,22 @@ export class VideosTextTracks {
     );
   }
 
+  /**
+   * Add a text track to a video
+   *
+   * @remarks
+   * This method adds a text track to the specified video. For more information, see [Working with
+   * Text Track Uploads](https://developer.vimeo.com/api/upload/texttracks).
+   *
+   * @returns The text track was added.
+   *
+   * @throws {@link VideosTextTracks.CreateTextTrackAlt1Error} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createTextTrackAlt1(
     request: VideosTextTracks.CreateTextTrackAlt1Request,
     options?: RequestOptions,
@@ -65,16 +103,18 @@ export class VideosTextTracks {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/channels/{channel_id}/videos/{video_id}/texttracks"),
+        urlTemplate: this.#servers.default("/channels/{channel_id}/videos/{video_id}/texttracks"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "channel_id", value: request.channelId, schema: s.number() },
-          { name: "video_id", value: request.videoId, schema: s.number() },
+          { name: "channel_id", value: request.channelId, schema: s.float64() },
+          { name: "video_id", value: request.videoId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "json", value: request.body, schema: channelsVideosTexttracksRequestSchema },
       },
       {
@@ -85,6 +125,22 @@ export class VideosTextTracks {
     );
   }
 
+  /**
+   * Delete a text track
+   *
+   * @remarks
+   * This method deletes the specified text track from a video. The authenticated user must be the
+   * owner of the video.
+   *
+   * @returns The text track was deleted.
+   *
+   * @throws {@link VideosTextTracks.DeleteTextTrackError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   deleteTextTrack(
     request: VideosTextTracks.DeleteTextTrackRequest,
     options?: RequestOptions,
@@ -92,16 +148,18 @@ export class VideosTextTracks {
     return this.#rawClient.execute(
       {
         method: "DELETE",
-        url: this.#servers.default("/videos/{video_id}/texttracks/{texttrack_id}"),
+        urlTemplate: this.#servers.default("/videos/{video_id}/texttracks/{texttrack_id}"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "texttrack_id", value: request.texttrackId, schema: s.number() },
-          { name: "video_id", value: request.videoId, schema: s.number() },
+          { name: "texttrack_id", value: request.texttrackId, schema: s.float64() },
+          { name: "video_id", value: request.videoId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
@@ -112,6 +170,22 @@ export class VideosTextTracks {
     );
   }
 
+  /**
+   * Edit a text track
+   *
+   * @remarks
+   * This method edits the specified text track of a video. The authenticated user must be the owner
+   * of the video.
+   *
+   * @returns The text track was edited.
+   *
+   * @throws {@link VideosTextTracks.EditTextTrackError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   editTextTrack(
     request: VideosTextTracks.EditTextTrackRequest,
     options?: RequestOptions,
@@ -119,16 +193,18 @@ export class VideosTextTracks {
     return this.#rawClient.execute(
       {
         method: "PATCH",
-        url: this.#servers.default("/videos/{video_id}/texttracks/{texttrack_id}"),
+        urlTemplate: this.#servers.default("/videos/{video_id}/texttracks/{texttrack_id}"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "texttrack_id", value: request.texttrackId, schema: s.number() },
-          { name: "video_id", value: request.videoId, schema: s.number() },
+          { name: "texttrack_id", value: request.texttrackId, schema: s.float64() },
+          { name: "video_id", value: request.videoId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -143,6 +219,22 @@ export class VideosTextTracks {
     );
   }
 
+  /**
+   * Get a specific text track
+   *
+   * @remarks
+   * This method returns a single text track of the specified video. The authenticated user must be
+   * the owner of the video.
+   *
+   * @returns The text track was returned.
+   *
+   * @throws {@link VideosTextTracks.GetTextTrackError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getTextTrack(
     request: VideosTextTracks.GetTextTrackRequest,
     options?: RequestOptions,
@@ -150,16 +242,18 @@ export class VideosTextTracks {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/videos/{video_id}/texttracks/{texttrack_id}"),
+        urlTemplate: this.#servers.default("/videos/{video_id}/texttracks/{texttrack_id}"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "texttrack_id", value: request.texttrackId, schema: s.number() },
-          { name: "video_id", value: request.videoId, schema: s.number() },
+          { name: "texttrack_id", value: request.texttrackId, schema: s.float64() },
+          { name: "video_id", value: request.videoId, schema: s.float64() },
         ],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -170,6 +264,22 @@ export class VideosTextTracks {
     );
   }
 
+  /**
+   * Get all the text tracks of a video
+   *
+   * @remarks
+   * This method returns every text track of the specified video. The authenticated user must be the
+   * owner of the video.
+   *
+   * @returns The text tracks were returned.
+   *
+   * @throws {@link VideosTextTracks.GetTextTracksError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getTextTracks(
     request: VideosTextTracks.GetTextTracksRequest,
     options?: RequestOptions,
@@ -177,17 +287,18 @@ export class VideosTextTracks {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/videos/{video_id}/texttracks"),
+        urlTemplate: this.#servers.default("/videos/{video_id}/texttracks"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
-        pathParams: [{ name: "video_id", value: request.videoId, schema: s.number() }],
+        pathParams: [{ name: "video_id", value: request.videoId, schema: s.float64() }],
         query: [
-          { name: "page", value: request.page, schema: s.optional(s.number()) },
-          { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
+          { name: "page", value: request.page, schema: s.optional(s.float64()) },
+          { name: "per_page", value: request.perPage, schema: s.optional(s.float64()) },
         ],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -198,6 +309,22 @@ export class VideosTextTracks {
     );
   }
 
+  /**
+   * Get all the text tracks of a video
+   *
+   * @remarks
+   * This method returns every text track of the specified video. The authenticated user must be the
+   * owner of the video.
+   *
+   * @returns The text tracks were returned.
+   *
+   * @throws {@link VideosTextTracks.GetTextTracksAlt1Error} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getTextTracksAlt1(
     request: VideosTextTracks.GetTextTracksAlt1Request,
     options?: RequestOptions,
@@ -205,20 +332,21 @@ export class VideosTextTracks {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/videos/{video_id}/versions/{version_id}/texttracks"),
+        urlTemplate: this.#servers.default("/videos/{video_id}/versions/{version_id}/texttracks"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "video_id", value: request.videoId, schema: s.number() },
+          { name: "video_id", value: request.videoId, schema: s.float64() },
           { name: "version_id", value: request.versionId, schema: s.string() },
         ],
         query: [
-          { name: "page", value: request.page, schema: s.optional(s.number()) },
-          { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
+          { name: "page", value: request.page, schema: s.optional(s.float64()) },
+          { name: "per_page", value: request.perPage, schema: s.optional(s.float64()) },
         ],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -229,6 +357,22 @@ export class VideosTextTracks {
     );
   }
 
+  /**
+   * Get all the text tracks of a video
+   *
+   * @remarks
+   * This method returns every text track of the specified video. The authenticated user must be the
+   * owner of the video.
+   *
+   * @returns The text tracks were returned.
+   *
+   * @throws {@link VideosTextTracks.GetTextTracksAlt2Error} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getTextTracksAlt2(
     request: VideosTextTracks.GetTextTracksAlt2Request,
     options?: RequestOptions,
@@ -236,20 +380,21 @@ export class VideosTextTracks {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/channels/{channel_id}/videos/{video_id}/texttracks"),
+        urlTemplate: this.#servers.default("/channels/{channel_id}/videos/{video_id}/texttracks"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "channel_id", value: request.channelId, schema: s.number() },
-          { name: "video_id", value: request.videoId, schema: s.number() },
+          { name: "channel_id", value: request.channelId, schema: s.float64() },
+          { name: "video_id", value: request.videoId, schema: s.float64() },
         ],
         query: [
-          { name: "page", value: request.page, schema: s.optional(s.number()) },
-          { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
+          { name: "page", value: request.page, schema: s.optional(s.float64()) },
+          { name: "per_page", value: request.perPage, schema: s.optional(s.float64()) },
         ],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -260,6 +405,22 @@ export class VideosTextTracks {
     );
   }
 
+  /**
+   * Get all the text tracks of a video
+   *
+   * @remarks
+   * This method returns every text track of the specified video. The authenticated user must be the
+   * owner of the video.
+   *
+   * @returns The text tracks were returned.
+   *
+   * @throws {@link VideosTextTracks.GetTextTracksAlt3Error} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getTextTracksAlt3(
     request: VideosTextTracks.GetTextTracksAlt3Request,
     options?: RequestOptions,
@@ -267,20 +428,21 @@ export class VideosTextTracks {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/albums/{album_id}/videos/{video_id}/texttracks"),
+        urlTemplate: this.#servers.default("/albums/{album_id}/videos/{video_id}/texttracks"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "album_id", value: request.albumId, schema: s.number() },
-          { name: "video_id", value: request.videoId, schema: s.number() },
+          { name: "album_id", value: request.albumId, schema: s.float64() },
+          { name: "video_id", value: request.videoId, schema: s.float64() },
         ],
         query: [
-          { name: "page", value: request.page, schema: s.optional(s.number()) },
-          { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
+          { name: "page", value: request.page, schema: s.optional(s.float64()) },
+          { name: "per_page", value: request.perPage, schema: s.optional(s.float64()) },
         ],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -294,36 +456,45 @@ export class VideosTextTracks {
 
 export namespace VideosTextTracks {
   export type CreateTextTrackRequest = {
+    /** The ID of the video. */
     videoId: number;
     body: VideosTexttracksRequest;
   };
 
-  export class CreateTextTrackError extends ResponseError<Declared<"legacyError", LegacyError>> {
+  export class CreateTextTrackError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"legacyError", LegacyError>>;
+
     static readonly errors: ErrorDecoders<CreateTextTrackError> = [
       { on: 403, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
     ];
   }
 
   export type CreateTextTrackAlt1Request = {
+    /** The ID of the channel. */
     channelId: number;
+    /** The ID of the video. */
     videoId: number;
     body: ChannelsVideosTexttracksRequest;
   };
 
-  export class CreateTextTrackAlt1Error extends ResponseError<Declared<"legacyError", LegacyError>> {
+  export class CreateTextTrackAlt1Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"legacyError", LegacyError>>;
+
     static readonly errors: ErrorDecoders<CreateTextTrackAlt1Error> = [
       { on: 403, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
     ];
   }
 
   export type DeleteTextTrackRequest = {
+    /** The ID of the text track. */
     texttrackId: number;
+    /** The ID of the video. */
     videoId: number;
   };
 
-  export class DeleteTextTrackError extends ResponseError<
-    Declared<"error", Error> | Declared<"legacyError", LegacyError>
-  > {
+  export class DeleteTextTrackError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"legacyError", LegacyError>>;
+
     static readonly errors: ErrorDecoders<DeleteTextTrackError> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
@@ -331,14 +502,18 @@ export namespace VideosTextTracks {
   }
 
   export type EditTextTrackRequest = {
+    /** The ID of the text track. */
     texttrackId: number;
+    /** The ID of the video. */
     videoId: number;
     body?: VideosTexttracksRequest1;
   };
 
-  export class EditTextTrackError extends ResponseError<
-    Declared<"legacyError", LegacyError> | Declared<"legacyError2", LegacyError>
-  > {
+  export class EditTextTrackError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"legacyError", LegacyError> | Declared<"legacyError2", LegacyError>
+    >;
+
     static readonly errors: ErrorDecoders<EditTextTrackError> = [
       { on: 403, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
       { on: 404, kind: "legacyError2", decode: { kind: "json", schema: legacyErrorSchema } },
@@ -346,13 +521,15 @@ export namespace VideosTextTracks {
   }
 
   export type GetTextTrackRequest = {
+    /** The ID of the text track. */
     texttrackId: number;
+    /** The ID of the video. */
     videoId: number;
   };
 
-  export class GetTextTrackError extends ResponseError<
-    Declared<"error", Error> | Declared<"legacyError", LegacyError>
-  > {
+  export class GetTextTrackError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"legacyError", LegacyError>>;
+
     static readonly errors: ErrorDecoders<GetTextTrackError> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
@@ -360,51 +537,73 @@ export namespace VideosTextTracks {
   }
 
   export type GetTextTracksRequest = {
+    /** The ID of the video. */
     videoId: number;
+    /** The page number of the results to show. */
     page?: number;
+    /** The number of items to show on each page of results, up to a maximum of 100. */
     perPage?: number;
   };
 
-  export class GetTextTracksError extends ResponseError<Declared<"legacyError", LegacyError>> {
+  export class GetTextTracksError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"legacyError", LegacyError>>;
+
     static readonly errors: ErrorDecoders<GetTextTracksError> = [
       { on: 404, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
     ];
   }
 
   export type GetTextTracksAlt1Request = {
+    /** The ID of the video. */
     videoId: number;
     versionId: string;
+    /** The page number of the results to show. */
     page?: number;
+    /** The number of items to show on each page of results, up to a maximum of 100. */
     perPage?: number;
   };
 
-  export class GetTextTracksAlt1Error extends ResponseError<Declared<"legacyError", LegacyError>> {
+  export class GetTextTracksAlt1Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"legacyError", LegacyError>>;
+
     static readonly errors: ErrorDecoders<GetTextTracksAlt1Error> = [
       { on: 404, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
     ];
   }
 
   export type GetTextTracksAlt2Request = {
+    /** The ID of the channel. */
     channelId: number;
+    /** The ID of the video. */
     videoId: number;
+    /** The page number of the results to show. */
     page?: number;
+    /** The number of items to show on each page of results, up to a maximum of 100. */
     perPage?: number;
   };
 
-  export class GetTextTracksAlt2Error extends ResponseError<Declared<"legacyError", LegacyError>> {
+  export class GetTextTracksAlt2Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"legacyError", LegacyError>>;
+
     static readonly errors: ErrorDecoders<GetTextTracksAlt2Error> = [
       { on: 404, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
     ];
   }
 
   export type GetTextTracksAlt3Request = {
+    /** The ID of the showcase. */
     albumId: number;
+    /** The ID of the video. */
     videoId: number;
+    /** The page number of the results to show. */
     page?: number;
+    /** The number of items to show on each page of results, up to a maximum of 100. */
     perPage?: number;
   };
 
-  export class GetTextTracksAlt3Error extends ResponseError<Declared<"legacyError", LegacyError>> {
+  export class GetTextTracksAlt3Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"legacyError", LegacyError>>;
+
     static readonly errors: ErrorDecoders<GetTextTracksAlt3Error> = [
       { on: 404, kind: "legacyError", decode: { kind: "json", schema: legacyErrorSchema } },
     ];

@@ -1,5 +1,5 @@
 export { VimeoApiClient } from "./client.js";
-export { DEFAULT_CLIENT_OPTIONS, type ClientOptions } from "./client-options.js";
+export type { ClientOptions } from "./client-options.js";
 
 export {
   PkceMethod,
@@ -15,9 +15,6 @@ export type {
   OAuth2CredentialPlacement,
   OAuthTokenRefreshable,
 } from "./core/auth/oauth2-strategies.js";
-
-export { ServerEnvironment, DEFAULT_SERVER_OPTIONS } from "./servers.js";
-export type { ServerOptions, DefaultServerOptions } from "./servers.js";
 
 export { ApiAppsWebhooks } from "./resources/api-apps-webhooks.js";
 export { ApiInformationEssentials } from "./resources/api-information-essentials.js";
@@ -455,6 +452,9 @@ export { fragmentsSchema, type Fragments } from "./models/fragments.js";
 export { Gender, genderSchema } from "./models/gender.js";
 export { genresSchema, type Genres } from "./models/genres.js";
 export { glossaryTermsSchema, type GlossaryTerms } from "./models/glossary-terms.js";
+export { GrantType, grantTypeSchema } from "./models/grant-type.js";
+export { GrantType1, grantType1Schema } from "./models/grant-type1.js";
+export { GrantType2, grantType2Schema } from "./models/grant-type2.js";
 export { graphicSchema, type Graphic } from "./models/graphic.js";
 export { gridSizeSchema, type GridSize } from "./models/grid-size.js";
 export { groupSchema, type Group } from "./models/group.js";
@@ -907,6 +907,7 @@ export { related1Schema, type Related1 } from "./models/related1.js";
 export { removeSchema, type Remove } from "./models/remove.js";
 export { Rendition, renditionSchema } from "./models/rendition.js";
 export { Rendition1, rendition1Schema } from "./models/rendition1.js";
+export { Rendition2, rendition2Schema } from "./models/rendition2.js";
 export { renewalSchema, type Renewal } from "./models/renewal.js";
 export { rentSchema, type Rent } from "./models/rent.js";
 export { rent1Schema, type Rent1 } from "./models/rent1.js";
@@ -1054,13 +1055,15 @@ export { Status10, status10Schema } from "./models/status10.js";
 export { Status11, status11Schema } from "./models/status11.js";
 export { Status12, status12Schema } from "./models/status12.js";
 export { Status13, status13Schema } from "./models/status13.js";
-export { Status16, status16Schema } from "./models/status16.js";
-export { Status17, status17Schema } from "./models/status17.js";
-export { Status18, status18Schema } from "./models/status18.js";
+export { Status14, status14Schema } from "./models/status14.js";
+export { Status15, status15Schema } from "./models/status15.js";
 export { Status19, status19Schema } from "./models/status19.js";
-export { status2Schema, type Status2 } from "./models/status2.js";
+export { Status2, status2Schema } from "./models/status2.js";
 export { Status20, status20Schema } from "./models/status20.js";
-export { Status3, status3Schema } from "./models/status3.js";
+export { Status21, status21Schema } from "./models/status21.js";
+export { Status22, status22Schema } from "./models/status22.js";
+export { Status23, status23Schema } from "./models/status23.js";
+export { status3Schema, type Status3 } from "./models/status3.js";
 export { Status4, status4Schema } from "./models/status4.js";
 export { Status5, status5Schema } from "./models/status5.js";
 export { Status6, status6Schema } from "./models/status6.js";
@@ -1120,6 +1123,7 @@ export { Title1, title1Schema } from "./models/title1.js";
 export { title2Schema, type Title2 } from "./models/title2.js";
 export { TitleFontFamily, titleFontFamilySchema } from "./models/title-font-family.js";
 export { TitleFontWeight, titleFontWeightSchema } from "./models/title-font-weight.js";
+export { TokenType, tokenTypeSchema } from "./models/token-type.js";
 export { trailerSchema, type Trailer } from "./models/trailer.js";
 export { transcodeSchema, type Transcode } from "./models/transcode.js";
 export { transcode1Schema, type Transcode1 } from "./models/transcode1.js";
@@ -1138,34 +1142,38 @@ export { Type10, type10Schema } from "./models/type10.js";
 export { Type11, type11Schema } from "./models/type11.js";
 export { Type12, type12Schema } from "./models/type12.js";
 export { Type13, type13Schema } from "./models/type13.js";
-export { Type14, type14Schema } from "./models/type14.js";
 export { Type15, type15Schema } from "./models/type15.js";
+export { Type16, type16Schema } from "./models/type16.js";
 export { Type17, type17Schema } from "./models/type17.js";
 export { Type18, type18Schema } from "./models/type18.js";
 export { Type19, type19Schema } from "./models/type19.js";
 export { Type2, type2Schema } from "./models/type2.js";
-export { Type20, type20Schema } from "./models/type20.js";
 export { Type21, type21Schema } from "./models/type21.js";
 export { Type22, type22Schema } from "./models/type22.js";
+export { Type23, type23Schema } from "./models/type23.js";
 export { Type24, type24Schema } from "./models/type24.js";
 export { Type25, type25Schema } from "./models/type25.js";
+export { Type26, type26Schema } from "./models/type26.js";
 export { Type28, type28Schema } from "./models/type28.js";
+export { Type29, type29Schema } from "./models/type29.js";
 export { Type3, type3Schema } from "./models/type3.js";
-export { Type33, type33Schema } from "./models/type33.js";
-export { Type34, type34Schema } from "./models/type34.js";
-export { Type36, type36Schema } from "./models/type36.js";
+export { Type32, type32Schema } from "./models/type32.js";
 export { Type37, type37Schema } from "./models/type37.js";
 export { Type38, type38Schema } from "./models/type38.js";
-export { Type39, type39Schema } from "./models/type39.js";
 export { Type4, type4Schema } from "./models/type4.js";
+export { Type40, type40Schema } from "./models/type40.js";
+export { Type41, type41Schema } from "./models/type41.js";
+export { Type42, type42Schema } from "./models/type42.js";
+export { Type43, type43Schema } from "./models/type43.js";
 export { Type5, type5Schema } from "./models/type5.js";
-export { Type50, type50Schema } from "./models/type50.js";
-export { Type53, type53Schema } from "./models/type53.js";
+export { Type54, type54Schema } from "./models/type54.js";
+export { Type57, type57Schema } from "./models/type57.js";
 export { Type6, type6Schema } from "./models/type6.js";
 export { Type7, type7Schema } from "./models/type7.js";
 export { Type8, type8Schema } from "./models/type8.js";
 export { Type9, type9Schema } from "./models/type9.js";
 export { Unit, unitSchema } from "./models/unit.js";
+export { Unit2, unit2Schema } from "./models/unit2.js";
 export { upgradeToRoleSchema, type UpgradeToRole } from "./models/upgrade-to-role.js";
 export { uploadSchema, type Upload } from "./models/upload.js";
 export { uploadAttemptSchema, type UploadAttempt } from "./models/upload-attempt.js";
@@ -1589,9 +1597,9 @@ export { tagConnectionSchema, type TagConnection } from "./models/tag-connection
 export { textTrackConnectionSchema, type TextTrackConnection } from "./models/text-track-connection.js";
 export { Tier1, tier1Schema } from "./models/tier1.js";
 export { TimeInterval, timeIntervalSchema } from "./models/time-interval.js";
-export { Type27, type27Schema } from "./models/type27.js";
-export { Type29, type29Schema } from "./models/type29.js";
-export { Type48, type48Schema } from "./models/type48.js";
+export { Type31, type31Schema } from "./models/type31.js";
+export { Type33, type33Schema } from "./models/type33.js";
+export { Type52, type52Schema } from "./models/type52.js";
 export { userConnectionSchema, type UserConnection } from "./models/user-connection.js";
 export { videoConnectionSchema, type VideoConnection } from "./models/video-connection.js";
 export {
@@ -1601,16 +1609,35 @@ export {
 
 export {
   CoreError as VimeoApiError,
+  ResponseError,
+  DecodeError,
+  EncodeError,
   ConnectionError,
   TimeoutError,
-  AbortError,
-  SdkError,
   AuthError,
+  ConfigurationError,
 } from "./core/errors.js";
-export { ResponseError } from "./core/response-error.js";
+export { ApiError } from "./core/api-error.js";
 export { SchemaError } from "./core/validation/schema-error.js";
+export {
+  defaultLoggingOptions,
+  type LoggingOptions,
+  type RequestLoggingOptions,
+  type Logger,
+  type LogDetails,
+  type HttpRequestDetails,
+  type RequestHeadersDetails,
+  type RequestBodyDetails,
+  type HttpResponseDetails,
+  type ResponseHeadersDetails,
+  type HttpRetryingDetails,
+  type HttpFailedDetails,
+  type LogLevel,
+} from "./core/logging.js";
 export type { ApiPromise, ApiResult } from "./core/api-promise.js";
-export type { RequestOptions } from "./core/api-request.js";
+export type { HttpMethod, RequestOptions } from "./core/api-request.js";
+export type { RetryOptions, RequestRetryOptions, RetryAttempt, RetryReason } from "./core/retry.js";
+export type { BinaryContent, BinaryData, BinaryErrorContent, FileData, FileInput } from "./core/binary.js";
 export type { ErrorKind } from "./core/errors.js";
-export type { ErrorPayload, Declared } from "./core/response-error.js";
+export type { ErrorPayload, Declared, Undeclared } from "./core/api-error.js";
 export type { Schema, EnumSchema, Encoded } from "./core/validation/schema.js";

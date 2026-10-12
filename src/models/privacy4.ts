@@ -6,11 +6,48 @@ import { join1Schema, type Join1 } from "./join1.js";
 import { videos7Schema, type Videos7 } from "./videos7.js";
 import { view5Schema, type View5 } from "./view5.js";
 
+/** The group's privacy settings. */
 export type Privacy4 = {
+  /**
+   * Who can comment on the group.
+   *
+   * Option descriptions:
+   *  * `all` - Anyone can comment on the group.
+   *  * `members` - Only group members can comment on the group.
+   */
   comment: Comment2;
+  /**
+   * Who can invite new members to the group.
+   *
+   * Option descriptions:
+   *  * `all` - Anyone can invite new members to the group.
+   *  * `members` - Only group members can invite new members to the group.
+   */
   invite: Invite2;
+  /**
+   * Who can join the group.
+   *
+   * Option descriptions:
+   *  * `anybody` - Anyone can join the group.
+   *  * `members` - Only people with a Vimeo account can join the group.
+   */
   join: Join1;
+  /**
+   * Who can add videos to the group.
+   *
+   * Option descriptions:
+   *  * `all` - Anyone can add videos to the group.
+   *  * `members` - Only group members can add videos to the group.
+   */
   videos: Videos7;
+  /**
+   * Who can access the group.
+   *
+   * Option descriptions:
+   *  * `anybody` - Anyone can access the group. This privacy setting appears as `Public` on the
+   *    Vimeo front end.
+   *  * `members` - Only group members can access the group.
+   */
   view: View5;
 };
 

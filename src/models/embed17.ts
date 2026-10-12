@@ -8,24 +8,41 @@ import { playButton3Schema, type PlayButton3 } from "./play-button3.js";
 import { title2Schema, type Title2 } from "./title2.js";
 
 export type Embed17 = {
+  /** Whether AirPlay is enabled in the embeddable player. */
   airplay?: boolean;
+  /** Whether multiple audio tracks can appear in the embeddable player. */
   audioTracks?: boolean;
   buttons?: Buttons2;
+  /**
+   * Whether clicking the closed-captions button reveals the caption-language menu in the embeddable
+   * player.
+   */
   ccTrackMenu?: boolean;
+  /** Whether chapters are enabled in the embeddable player. */
   chapters?: boolean;
+  /** Whether the Chromecast button appears in the embeddable player. */
   chromecast?: boolean;
+  /** Whether closed captions are enabled in the embeddable player. */
   closedCaptions?: boolean;
+  /** The main color of the embeddable player. */
   color?: string;
   colors?: Colors6;
   endScreen?: EndScreen2;
   logos?: Logos8;
+  /** An object representing the play button's settings. */
   playButton?: PlayButton3;
+  /** Whether to show the playbar on the embeddable player. */
   playbar?: boolean;
+  /** Whether to show the quality selector in the embeddable player. */
   qualitySelector?: boolean;
+  /** Whether users can skip forward in the embeddable player. */
   skippingForward?: boolean;
+  /** Whether to show speed options in the embeddable player. */
   speed?: boolean;
   title?: Title2;
+  /** Whether the transcript controls appear in the embeddable player. */
   transcript?: boolean;
+  /** Whether to show the volume selector on the embeddable player. */
   volume?: boolean;
 };
 

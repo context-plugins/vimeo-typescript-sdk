@@ -4,7 +4,7 @@
 
 Accessor: `client.foldersVideos` · Source: `src/resources/folders-videos.ts` · 10 operations · Request and error types: namespace `FoldersVideos`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoToProject
 
@@ -12,8 +12,9 @@ Accessor: `client.foldersVideos` · Source: `src/resources/folders-videos.ts` ·
 - **Wire**: `PUT /users/{user_id}/projects/{project_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `FoldersVideos.AddVideoToProjectError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersVideos.AddVideoToProjectError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersVideos.AddVideoToProjectRequest` (3):
@@ -34,8 +35,9 @@ Accessor: `client.foldersVideos` · Source: `src/resources/folders-videos.ts` ·
 - **Wire**: `PUT /me/projects/{project_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `FoldersVideos.AddVideoToProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersVideos.AddVideoToProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersVideos.AddVideoToProjectAlt1Request` (2):
@@ -55,8 +57,9 @@ Accessor: `client.foldersVideos` · Source: `src/resources/folders-videos.ts` ·
 - **Wire**: `PUT /users/{user_id}/projects/{project_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `FoldersVideos.AddVideosToProjectError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersVideos.AddVideosToProjectError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersVideos.AddVideosToProjectRequest` (3):
@@ -78,8 +81,9 @@ Accessor: `client.foldersVideos` · Source: `src/resources/folders-videos.ts` ·
 - **Wire**: `PUT /me/projects/{project_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `FoldersVideos.AddVideosToProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersVideos.AddVideosToProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersVideos.AddVideosToProjectAlt1Request` (2):
@@ -101,7 +105,7 @@ Accessor: `client.foldersVideos` · Source: `src/resources/folders-videos.ts` ·
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `FoldersVideos.GetProjectVideosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersVideos.GetProjectVideosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersVideos.GetProjectVideosRequest` (12):
@@ -135,7 +139,7 @@ Accessor: `client.foldersVideos` · Source: `src/resources/folders-videos.ts` ·
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `FoldersVideos.GetProjectVideosAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersVideos.GetProjectVideosAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersVideos.GetProjectVideosAlt1Request` (11):
@@ -167,8 +171,9 @@ Accessor: `client.foldersVideos` · Source: `src/resources/folders-videos.ts` ·
 - **Wire**: `DELETE /users/{user_id}/projects/{project_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `FoldersVideos.RemoveVideoFromProjectError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersVideos.RemoveVideoFromProjectError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersVideos.RemoveVideoFromProjectRequest` (3):
@@ -189,8 +194,9 @@ Accessor: `client.foldersVideos` · Source: `src/resources/folders-videos.ts` ·
 - **Wire**: `DELETE /me/projects/{project_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `FoldersVideos.RemoveVideoFromProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersVideos.RemoveVideoFromProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersVideos.RemoveVideoFromProjectAlt1Request` (2):
@@ -210,8 +216,9 @@ Accessor: `client.foldersVideos` · Source: `src/resources/folders-videos.ts` ·
 - **Wire**: `DELETE /users/{user_id}/projects/{project_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `FoldersVideos.RemoveVideosFromProjectError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersVideos.RemoveVideosFromProjectError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersVideos.RemoveVideosFromProjectRequest` (3):
@@ -233,8 +240,9 @@ Accessor: `client.foldersVideos` · Source: `src/resources/folders-videos.ts` ·
 - **Wire**: `DELETE /me/projects/{project_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `FoldersVideos.RemoveVideosFromProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersVideos.RemoveVideosFromProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersVideos.RemoveVideosFromProjectAlt1Request` (2):

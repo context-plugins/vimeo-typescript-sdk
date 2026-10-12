@@ -4,7 +4,7 @@
 
 Accessor: `client.videosCredits` · Source: `src/resources/videos-credits.ts` · 8 operations · Request and error types: namespace `VideosCredits`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoCredit
 
@@ -12,8 +12,9 @@ Accessor: `client.videosCredits` · Source: `src/resources/videos-credits.ts` ·
 - **Wire**: `POST /videos/{video_id}/credits`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Credit`
-- **Error**: `VideosCredits.AddVideoCreditError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosCredits.AddVideoCreditError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosCredits.AddVideoCreditRequest` (2):
@@ -35,8 +36,9 @@ Accessor: `client.videosCredits` · Source: `src/resources/videos-credits.ts` ·
 - **Wire**: `POST /channels/{channel_id}/videos/{video_id}/credits`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Credit`
-- **Error**: `VideosCredits.AddVideoCreditAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosCredits.AddVideoCreditAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosCredits.AddVideoCreditAlt1Request` (3):
@@ -55,12 +57,12 @@ Accessor: `client.videosCredits` · Source: `src/resources/videos-credits.ts` ·
 
 ### availableUsers
 
-- **Signature**: `availableUsers(request: VideosCredits.AvailableUsersRequest, options?: RequestOptions): ApiPromise<UserConnection, ResponseError>`
+- **Signature**: `availableUsers(request: VideosCredits.AvailableUsersRequest, options?: RequestOptions): ApiPromise<UserConnection, ApiError>`
 - **Wire**: `GET /videos/{video_id}/credits/available_users`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosCredits.AvailableUsersRequest` (6):
 
@@ -85,8 +87,9 @@ Accessor: `client.videosCredits` · Source: `src/resources/videos-credits.ts` ·
 - **Wire**: `DELETE /videos/{video_id}/credits/{credit_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosCredits.DeleteVideoCreditError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosCredits.DeleteVideoCreditError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosCredits.DeleteVideoCreditRequest` (2):
@@ -105,9 +108,10 @@ Accessor: `client.videosCredits` · Source: `src/resources/videos-credits.ts` ·
 - **Signature**: `editVideoCredit(request: VideosCredits.EditVideoCreditRequest, options?: RequestOptions): ApiPromise<Credit, VideosCredits.EditVideoCreditError>`
 - **Wire**: `PATCH /videos/{video_id}/credits/{credit_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Credit`
-- **Error**: `VideosCredits.EditVideoCreditError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosCredits.EditVideoCreditError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosCredits.EditVideoCreditRequest` (3):
@@ -131,7 +135,7 @@ Accessor: `client.videosCredits` · Source: `src/resources/videos-credits.ts` ·
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Credit`
-- **Error**: `VideosCredits.GetVideoCreditError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosCredits.GetVideoCreditError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosCredits.GetVideoCreditRequest` (2):
@@ -148,12 +152,12 @@ Accessor: `client.videosCredits` · Source: `src/resources/videos-credits.ts` ·
 
 ### getVideoCredits
 
-- **Signature**: `getVideoCredits(request: VideosCredits.GetVideoCreditsRequest, options?: RequestOptions): ApiPromise<CreditConnection, ResponseError>`
+- **Signature**: `getVideoCredits(request: VideosCredits.GetVideoCreditsRequest, options?: RequestOptions): ApiPromise<CreditConnection, ApiError>`
 - **Wire**: `GET /videos/{video_id}/credits`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CreditConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosCredits.GetVideoCreditsRequest` (6):
 
@@ -174,12 +178,12 @@ Accessor: `client.videosCredits` · Source: `src/resources/videos-credits.ts` ·
 
 ### getVideoCreditsAlt1
 
-- **Signature**: `getVideoCreditsAlt1(request: VideosCredits.GetVideoCreditsAlt1Request, options?: RequestOptions): ApiPromise<CreditConnection, ResponseError>`
+- **Signature**: `getVideoCreditsAlt1(request: VideosCredits.GetVideoCreditsAlt1Request, options?: RequestOptions): ApiPromise<CreditConnection, ApiError>`
 - **Wire**: `GET /channels/{channel_id}/videos/{video_id}/credits`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CreditConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosCredits.GetVideoCreditsAlt1Request` (7):
 

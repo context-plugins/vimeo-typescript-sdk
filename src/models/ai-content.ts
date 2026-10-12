@@ -1,10 +1,15 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
+/** Information about the video's AI content. */
 export type AiContent = {
+  /** Whether the video contains AI-generated audio. */
   audio?: boolean;
+  /** Whether the video contains AI-generated audio that is marked automatically. */
   audioAuto?: boolean;
+  /** Whether the video contains AI-generated visuals. */
   visual?: boolean;
+  /** Whether the video contains AI-generated visuals that are marked automatically. */
   visualAuto?: boolean;
 };
 

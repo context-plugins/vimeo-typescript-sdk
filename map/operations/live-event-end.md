@@ -4,7 +4,7 @@
 
 Accessor: `client.liveEventEnd` · Source: `src/resources/live-event-end.ts` · 3 operations · Request and error types: namespace `LiveEventEnd`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### endLiveEvent
 
@@ -12,8 +12,9 @@ Accessor: `client.liveEventEnd` · Source: `src/resources/live-event-end.ts` · 
 - **Wire**: `POST /users/{user_id}/live_events/{live_event_id}/end`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `LiveEventEnd.EndLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventEnd.EndLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"error4"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventEnd.EndLiveEventRequest` (3):
@@ -35,8 +36,9 @@ Accessor: `client.liveEventEnd` · Source: `src/resources/live-event-end.ts` · 
 - **Wire**: `POST /live_events/{live_event_id}/end`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `LiveEventEnd.EndLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventEnd.EndLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"error4"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventEnd.EndLiveEventAlt1Request` (2):
@@ -57,8 +59,9 @@ Accessor: `client.liveEventEnd` · Source: `src/resources/live-event-end.ts` · 
 - **Wire**: `POST /me/live_events/{live_event_id}/end`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `LiveEventEnd.EndLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventEnd.EndLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"error4"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventEnd.EndLiveEventAlt2Request` (2):

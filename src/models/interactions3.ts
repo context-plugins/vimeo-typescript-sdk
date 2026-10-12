@@ -41,42 +41,97 @@ import { viewTeamMembersSchema, type ViewTeamMembers } from "./view-team-members
 import { watchedSchema, type Watched } from "./watched.js";
 import { watchlater1Schema, type Watchlater1 } from "./watchlater1.js";
 
+/** A list of resource URIs related to the video. */
 export type Interactions3 = {
+  /**
+   * Information about adding or removing a video from the showcase. This information is included
+   * only when the video is referenced by the URI of a showcase that's moderated by the user.
+   */
   album: Album4 | null;
+  /** Information about where and how to submit questions to the AI service for this video. */
   askAi: AskAi;
+  /**
+   * Information about where and how to submit questions by managers to the AI service for this
+   * video.
+   */
   askAiManager: AskAiManager;
+  /**
+   * Information about where and how to submit questions by viewers to the AI service for this
+   * video.
+   */
   askAiViewer: AskAiViewer;
+  /** The Buy interaction for the On Demand video. */
   buy: Buy | null;
+  /** Whether the current user can comment on the video on the video management page. */
   canComment?: boolean;
+  /** Whether the current user can add reactions to collaborator comments. */
   canReactToCollabComments: boolean;
+  /** Information about whether the user can request a team upgrade from the Viewer role. */
   canRequestTeamRoleUpgrade: CanRequestTeamRoleUpgrade;
+  /** Whether a user can update the video privacy to public. */
   canUpdatePrivacyToPublic: CanUpdatePrivacyToPublic;
+  /**
+   * Information about removing a video from the channel. This information is included only when the
+   * video is referenced by the URI of a channel that's moderated by the user.
+   */
   channel: Channel1;
+  /** Information about where and how to edit a video using the Vimeo Create editor. */
   createEditor: CreateEditor;
+  /** Information about where and how to delete a video. */
   delete: Delete;
+  /** Information about where and how to edit a video. */
   edit: Edit;
+  /** Information about editing the privacy of the video. */
   editPrivacy: EditPrivacy;
+  /** Whether the current user can report the video. */
   flagClip?: boolean;
+  /** Information about whether the video has restricted privacy options. */
   hasRestrictedPrivacyOptions: HasRestrictedPrivacyOptions;
+  /** Information about where and how to create a highlight for the video. */
   highlights: Highlights;
+  /** Whether the user can interact with the video. */
   interact?: boolean;
+  /**
+   * Information about where and how to get a list of team members or groups who were explicitly
+   * invited to a video, and where and how to invite a team member to a video.
+   */
   invite: Invite;
+  /** The associated legal hold object. */
   legalHold: LegalHold;
+  /** Information about whether the user has liked this video. */
   like: Like;
+  /** Information about whether the video owner has LMS export enabled. */
   lmsExport?: Record<string, unknown>;
+  /** The Rent interaction for the On Demand video. */
   rent: Rent | null;
+  /** Information about where and how to report a video. */
   report: Report1;
+  /** Information about setting a content rating for the video. */
   setContentRating: SetContentRating;
+  /** Subscription information for an On Demand video. */
   subscribe?: Subscribe | null;
+  /** Information about whether the current user can create or get a summary for the video. */
   summary: Summary;
+  /** Information about where and how to create a text translation for the video. */
   textTranslations: TextTranslations;
+  /**
+   * Information about where and how to edit a video using the Transcription-based Video Editor
+   * editor.
+   */
   transcriptVideoEditor: TranscriptVideoEditor;
+  /** Information about where and how to create a translation for the video. */
   translations: Translations;
+  /** Information about where and how to trim the video. */
   trim: Trim;
+  /** Information about where and how to validate a video field. */
   validate: Validate;
+  /** Information about whether a user has permissions to view the privacy of the video. */
   viewPrivacy: ViewPrivacy;
+  /** Information about whether a user can view the team members associated with a video. */
   viewTeamMembers: ViewTeamMembers;
+  /** Information about removing this video from the user's list of watched videos. */
   watched: Watched;
+  /** Information about whether this video appears on the user's Watch Later list. */
   watchlater: Watchlater1;
 };
 

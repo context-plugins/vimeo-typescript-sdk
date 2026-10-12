@@ -4,6 +4,7 @@ import { custom10Schema, type Custom10 } from "./custom10.js";
 
 export type Logos10 = {
   custom?: Custom10;
+  /** Whether to show the Vimeo logo on the embeddable player. */
   vimeo?: boolean;
 };
 

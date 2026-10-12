@@ -4,7 +4,7 @@
 
 Accessor: `client.videosEmbedPrivacy` · Source: `src/resources/videos-embed-privacy.ts` · 3 operations · Request and error types: namespace `VideosEmbedPrivacy`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoPrivacyDomain
 
@@ -12,8 +12,9 @@ Accessor: `client.videosEmbedPrivacy` · Source: `src/resources/videos-embed-pri
 - **Wire**: `PUT /videos/{video_id}/privacy/domains/{domain}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosEmbedPrivacy.AddVideoPrivacyDomainError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEmbedPrivacy.AddVideoPrivacyDomainError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEmbedPrivacy.AddVideoPrivacyDomainRequest` (2):
@@ -33,8 +34,9 @@ Accessor: `client.videosEmbedPrivacy` · Source: `src/resources/videos-embed-pri
 - **Wire**: `DELETE /videos/{video_id}/privacy/domains/{domain}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosEmbedPrivacy.DeleteVideoPrivacyDomainError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEmbedPrivacy.DeleteVideoPrivacyDomainError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEmbedPrivacy.DeleteVideoPrivacyDomainRequest` (2):
@@ -55,7 +57,7 @@ Accessor: `client.videosEmbedPrivacy` · Source: `src/resources/videos-embed-pri
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `DomainConnection`
-- **Error**: `VideosEmbedPrivacy.GetVideoPrivacyDomainsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEmbedPrivacy.GetVideoPrivacyDomainsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEmbedPrivacy.GetVideoPrivacyDomainsRequest` (5):

@@ -4,24 +4,49 @@ import { colors1Schema, type Colors1 } from "./colors1.js";
 import { logos1Schema, type Logos1 } from "./logos1.js";
 import { playButton1Schema, type PlayButton1 } from "./play-button1.js";
 
+/** The contents of the player group. */
 export type Player = {
+  /** Whether AirPlay is enabled in the video page player. */
   airplay?: boolean;
+  /** Whether multiple audio tracks can appear in the video page player. */
   audioTracks?: boolean;
+  /**
+   * Whether the video automatically plays for viewers without their own autoplay preference (e.g.
+   * logged-out visitors).
+   */
   autoplay?: boolean;
+  /**
+   * Whether clicking the closed-captions button reveals the caption-language menu in the video page
+   * player.
+   */
   ccTrackMenu?: boolean;
+  /** Whether the Chromecast button appears in the video page player. */
   chromecast?: boolean;
+  /** Whether closed captions are enabled in the video page player. */
   closedCaptions?: boolean;
+  /** A collection of information about the colors in the video page player. */
   colors?: Colors1;
+  /** Whether the right-click menu is shown in the video page player. */
   contextMenu?: boolean;
+  /** Whether to display the button for fullscreen mode on the video page. */
   fullscreen?: boolean;
+  /** A collection of information about the logo in the corner of the onsite player. */
   logos?: Logos1;
+  /** Whether the video is muted by default for viewers. */
   muted?: boolean;
+  /** Whether picture-in-picture is enabled in the video page player. */
   pip?: boolean;
+  /** A representation of the play button's settings. */
   playButton?: PlayButton1;
+  /** Whether to display the playbar on the video page. */
   playbar?: boolean;
+  /** Whether the quality selector appears in the video page player. */
   qualitySelector?: boolean;
+  /** Whether to enable users to skip forward in the embeddable player. */
   skippingForward?: boolean;
+  /** Whether to display speed options in the video page player. */
   speed?: boolean;
+  /** Whether to display the volume control on the video page. */
   volume?: boolean;
 };
 

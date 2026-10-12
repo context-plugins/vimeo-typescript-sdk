@@ -1,6 +1,13 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * Who can comment on the group.
+ *
+ * Option descriptions:
+ *  * `all` - Anyone can comment on the group.
+ *  * `members` - Only group members can comment on the group.
+ */
 export const Comment2 = {
   All: "all",
   Members: "members",

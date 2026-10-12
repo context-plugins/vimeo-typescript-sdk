@@ -1,6 +1,15 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The renewal frequency of the quota.
+ *
+ * Option descriptions:
+ *  * `lifetime` - The user doesn't have a periodic quota.
+ *  * `month` - The quota renews monthly.
+ *  * `week` - The quota renews weekly.
+ *  * `year` - The quota renews yearly.
+ */
 export const Period3 = {
   Lifetime: "lifetime",
   Month: "month",

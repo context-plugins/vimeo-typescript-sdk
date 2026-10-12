@@ -4,16 +4,17 @@
 
 Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thumbnails.ts` · 15 operations · Request and error types: namespace `LiveEventThumbnails`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createLiveEventThumbnail
 
 - **Signature**: `createLiveEventThumbnail(request: LiveEventThumbnails.CreateLiveEventThumbnailRequest, options?: RequestOptions): ApiPromise<Picture, LiveEventThumbnails.CreateLiveEventThumbnailError>`
 - **Wire**: `POST /users/{user_id}/live_events/{live_event_id}/pictures`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `LiveEventThumbnails.CreateLiveEventThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.CreateLiveEventThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.CreateLiveEventThumbnailRequest` (3):
@@ -35,9 +36,10 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Signature**: `createLiveEventThumbnailAlt1(request: LiveEventThumbnails.CreateLiveEventThumbnailAlt1Request, options?: RequestOptions): ApiPromise<Picture, LiveEventThumbnails.CreateLiveEventThumbnailAlt1Error>`
 - **Wire**: `POST /live_events/{live_event_id}/pictures`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `LiveEventThumbnails.CreateLiveEventThumbnailAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.CreateLiveEventThumbnailAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.CreateLiveEventThumbnailAlt1Request` (2):
@@ -58,9 +60,10 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Signature**: `createLiveEventThumbnailAlt2(request: LiveEventThumbnails.CreateLiveEventThumbnailAlt2Request, options?: RequestOptions): ApiPromise<Picture, LiveEventThumbnails.CreateLiveEventThumbnailAlt2Error>`
 - **Wire**: `POST /me/live_events/{live_event_id}/pictures`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `LiveEventThumbnails.CreateLiveEventThumbnailAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.CreateLiveEventThumbnailAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.CreateLiveEventThumbnailAlt2Request` (2):
@@ -82,8 +85,9 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Wire**: `DELETE /users/{user_id}/live_events/{live_event_id}/pictures/{thumbnail_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventThumbnails.DeleteLiveEventThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.DeleteLiveEventThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.DeleteLiveEventThumbnailRequest` (3):
@@ -104,8 +108,9 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Wire**: `DELETE /live_events/{live_event_id}/pictures/{thumbnail_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventThumbnails.DeleteLiveEventThumbnailAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.DeleteLiveEventThumbnailAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.DeleteLiveEventThumbnailAlt1Request` (2):
@@ -125,8 +130,9 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Wire**: `DELETE /me/live_events/{live_event_id}/pictures/{thumbnail_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventThumbnails.DeleteLiveEventThumbnailAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.DeleteLiveEventThumbnailAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.DeleteLiveEventThumbnailAlt2Request` (2):
@@ -145,9 +151,10 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Signature**: `editLiveEventThumbnail(request: LiveEventThumbnails.EditLiveEventThumbnailRequest, options?: RequestOptions): ApiPromise<Picture, LiveEventThumbnails.EditLiveEventThumbnailError>`
 - **Wire**: `PATCH /users/{user_id}/live_events/{live_event_id}/pictures/{thumbnail_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `LiveEventThumbnails.EditLiveEventThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.EditLiveEventThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.EditLiveEventThumbnailRequest` (4):
@@ -170,9 +177,10 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Signature**: `editLiveEventThumbnailAlt1(request: LiveEventThumbnails.EditLiveEventThumbnailAlt1Request, options?: RequestOptions): ApiPromise<Picture, LiveEventThumbnails.EditLiveEventThumbnailAlt1Error>`
 - **Wire**: `PATCH /live_events/{live_event_id}/pictures/{thumbnail_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `LiveEventThumbnails.EditLiveEventThumbnailAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.EditLiveEventThumbnailAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.EditLiveEventThumbnailAlt1Request` (3):
@@ -194,9 +202,10 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Signature**: `editLiveEventThumbnailAlt2(request: LiveEventThumbnails.EditLiveEventThumbnailAlt2Request, options?: RequestOptions): ApiPromise<Picture, LiveEventThumbnails.EditLiveEventThumbnailAlt2Error>`
 - **Wire**: `PATCH /me/live_events/{live_event_id}/pictures/{thumbnail_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `LiveEventThumbnails.EditLiveEventThumbnailAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.EditLiveEventThumbnailAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.EditLiveEventThumbnailAlt2Request` (3):
@@ -220,7 +229,7 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `LiveEventThumbnails.GetLiveEventThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.GetLiveEventThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.GetLiveEventThumbnailRequest` (3):
@@ -243,7 +252,7 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `LiveEventThumbnails.GetLiveEventThumbnailAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.GetLiveEventThumbnailAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.GetLiveEventThumbnailAlt1Request` (2):
@@ -265,7 +274,7 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `LiveEventThumbnails.GetLiveEventThumbnailAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.GetLiveEventThumbnailAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.GetLiveEventThumbnailAlt2Request` (2):
@@ -287,7 +296,7 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PictureConnection`
-- **Error**: `LiveEventThumbnails.GetLiveEventThumbnailsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.GetLiveEventThumbnailsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.GetLiveEventThumbnailsRequest` (2):
@@ -309,7 +318,7 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PictureConnection`
-- **Error**: `LiveEventThumbnails.GetLiveEventThumbnailsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.GetLiveEventThumbnailsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.GetLiveEventThumbnailsAlt1Request` (1):
@@ -330,7 +339,7 @@ Accessor: `client.liveEventThumbnails` · Source: `src/resources/live-event-thum
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PictureConnection`
-- **Error**: `LiveEventThumbnails.GetLiveEventThumbnailsAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventThumbnails.GetLiveEventThumbnailsAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventThumbnails.GetLiveEventThumbnailsAlt2Request` (1):

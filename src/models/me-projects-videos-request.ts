@@ -2,8 +2,11 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type MeProjectsVideosRequest = {
+  /** When deleting clips, use Recently Deleted purgatory when true. */
   sendToRecentlyDeleted?: boolean;
+  /** Whether to delete the videos when removing them from the folder. */
   shouldDeleteClips?: boolean;
+  /** A comma-separated list of the video URIs to remove. */
   uris: string;
 };
 

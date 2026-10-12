@@ -4,7 +4,7 @@
 
 Accessor: `client.showcasesCustomShowcaseLogos` · Source: `src/resources/showcases-custom-showcase-logos.ts` · 5 operations · Request and error types: namespace `ShowcasesCustomShowcaseLogos`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createShowcaseLogo
 
@@ -12,8 +12,9 @@ Accessor: `client.showcasesCustomShowcaseLogos` · Source: `src/resources/showca
 - **Wire**: `POST /users/{user_id}/albums/{album_id}/logos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `ShowcasesCustomShowcaseLogos.CreateShowcaseLogoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesCustomShowcaseLogos.CreateShowcaseLogoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesCustomShowcaseLogos.CreateShowcaseLogoRequest` (2):
@@ -34,8 +35,9 @@ Accessor: `client.showcasesCustomShowcaseLogos` · Source: `src/resources/showca
 - **Wire**: `DELETE /users/{user_id}/albums/{album_id}/logos/{logo_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ShowcasesCustomShowcaseLogos.DeleteShowcaseLogoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesCustomShowcaseLogos.DeleteShowcaseLogoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesCustomShowcaseLogos.DeleteShowcaseLogoRequest` (3):
@@ -57,7 +59,7 @@ Accessor: `client.showcasesCustomShowcaseLogos` · Source: `src/resources/showca
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `ShowcasesCustomShowcaseLogos.GetShowcaseLogoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesCustomShowcaseLogos.GetShowcaseLogoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesCustomShowcaseLogos.GetShowcaseLogoRequest` (3):
@@ -80,7 +82,7 @@ Accessor: `client.showcasesCustomShowcaseLogos` · Source: `src/resources/showca
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PictureConnection`
-- **Error**: `ShowcasesCustomShowcaseLogos.GetShowcaseLogosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesCustomShowcaseLogos.GetShowcaseLogosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesCustomShowcaseLogos.GetShowcaseLogosRequest` (4):
@@ -102,9 +104,10 @@ Accessor: `client.showcasesCustomShowcaseLogos` · Source: `src/resources/showca
 - **Signature**: `replaceShowcaseLogo(request: ShowcasesCustomShowcaseLogos.ReplaceShowcaseLogoRequest, options?: RequestOptions): ApiPromise<Picture, ShowcasesCustomShowcaseLogos.ReplaceShowcaseLogoError>`
 - **Wire**: `PATCH /users/{user_id}/albums/{album_id}/logos/{logo_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `ShowcasesCustomShowcaseLogos.ReplaceShowcaseLogoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesCustomShowcaseLogos.ReplaceShowcaseLogoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesCustomShowcaseLogos.ReplaceShowcaseLogoRequest` (4):

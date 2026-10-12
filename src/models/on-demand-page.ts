@@ -13,31 +13,61 @@ import { userSchema, type User } from "./user.js";
 import { videoSchema, type Video } from "./video.js";
 
 export type OnDemandPage = {
+  /** The background image for the On Demand page. */
   background: Picture | null;
+  /** The first and second colors of the On Demand page. */
   colors: Colors2;
+  /** An array of the On Demand page's content ratings. */
   contentRating: string[];
+  /** The time in ISO 8601 format when the On Demand page was created. */
   createdTime?: string;
+  /** The description of the On Demand page. */
   description: string | null;
+  /** The link to the On Demand page on its own domain. */
   domainLink: string | null;
+  /** Information about the On Demand page's episodes, if the page is for a series. */
   episodes: Episodes;
+  /** The On Demand page's film, if the page is for a film. */
   film?: Video;
+  /** An array of the genres assigned to the On Demand page. */
   genres: OnDemandGenre[];
+  /** The link to the On Demand page. */
   link: string;
+  /** Metadata about the On Demand page. */
   metadata: Metadata9;
+  /** The time in ISO 8601 format when the On Demand page was last modified. */
   modifiedTime?: string;
+  /** The descriptive title of the On Demand page. */
   name: string;
+  /** The active poster for the On Demand page. */
   pictures: Picture | null;
   preorder: Preorder;
   published: Published;
+  /** The rating of the On Demand page. */
   rating: number | null;
+  /** The On Demand resource key. */
   resourceKey: string;
+  /** The creator-designated SKU for the On Demand page. */
   sku?: string | null;
+  /** Information about subscribing to the On Demand page, if subscription is enabled. */
   subscription: Subscription1 | null;
+  /** The graphical theme for the On Demand page. */
   theme: string;
+  /** The thumbnail image for the On Demand page. */
   thumbnail: Picture | null;
+  /** The trailer for the On Demand page. */
   trailer: Video | null;
+  /**
+   * The type of the On Demand page.
+   *
+   * Option descriptions:
+   *  * `film` - The On Demand page is for a film.
+   *  * `series` - The On Demand page is for a series.
+   */
   type: Type9;
+  /** The relative URI of the On Demand page. */
   uri: string;
+  /** The user who created the On Demand page. */
   user: User | null;
 };
 
@@ -58,7 +88,7 @@ export const onDemandPageSchema: Schema<OnDemandPage> = s.object<OnDemandPage>({
   pictures: s.nullable(s.lazy(() => pictureSchema)),
   preorder: preorderSchema,
   published: publishedSchema,
-  rating: s.nullable(s.number()),
+  rating: s.nullable(s.float64()),
   resourceKey: s.string(),
   sku: s.optionalNullable(s.string()),
   subscription: s.nullable(s.lazy(() => subscription1Schema)),

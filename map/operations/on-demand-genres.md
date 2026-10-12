@@ -4,7 +4,7 @@
 
 Accessor: `client.onDemandGenres` · Source: `src/resources/on-demand-genres.ts` · 8 operations · Request and error types: namespace `OnDemandGenres`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVodGenre
 
@@ -12,8 +12,9 @@ Accessor: `client.onDemandGenres` · Source: `src/resources/on-demand-genres.ts`
 - **Wire**: `PUT /ondemand/pages/{ondemand_id}/genres/{genre_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `OnDemandGenre`
-- **Error**: `OnDemandGenres.AddVodGenreError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandGenres.AddVodGenreError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"legacyError3"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandGenres.AddVodGenreRequest` (2):
@@ -34,8 +35,9 @@ Accessor: `client.onDemandGenres` · Source: `src/resources/on-demand-genres.ts`
 - **Wire**: `DELETE /ondemand/pages/{ondemand_id}/genres/{genre_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `OnDemandGenres.DeleteVodGenreError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandGenres.DeleteVodGenreError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"legacyError3"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandGenres.DeleteVodGenreRequest` (2):
@@ -56,7 +58,7 @@ Accessor: `client.onDemandGenres` · Source: `src/resources/on-demand-genres.ts`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandPage`
-- **Error**: `OnDemandGenres.GetGenreVodError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandGenres.GetGenreVodError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandGenres.GetGenreVodRequest` (2):
@@ -78,7 +80,7 @@ Accessor: `client.onDemandGenres` · Source: `src/resources/on-demand-genres.ts`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandPageConnection`
-- **Error**: `OnDemandGenres.GetGenreVodsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandGenres.GetGenreVodsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandGenres.GetGenreVodsRequest` (7):
@@ -108,7 +110,7 @@ Accessor: `client.onDemandGenres` · Source: `src/resources/on-demand-genres.ts`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandGenre`
-- **Error**: `OnDemandGenres.GetVodGenreError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandGenres.GetVodGenreError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandGenres.GetVodGenreRequest` (1):
@@ -129,7 +131,7 @@ Accessor: `client.onDemandGenres` · Source: `src/resources/on-demand-genres.ts`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandGenre`
-- **Error**: `OnDemandGenres.GetVodGenreByOndemandIdError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandGenres.GetVodGenreByOndemandIdError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandGenres.GetVodGenreByOndemandIdRequest` (2):
@@ -151,7 +153,7 @@ Accessor: `client.onDemandGenres` · Source: `src/resources/on-demand-genres.ts`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandGenreConnection`
-- **Error**: `OnDemandGenres.GetVodGenresError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandGenres.GetVodGenresError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 | Type | Schema value | Source |
@@ -166,7 +168,7 @@ Accessor: `client.onDemandGenres` · Source: `src/resources/on-demand-genres.ts`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandGenreConnection`
-- **Error**: `OnDemandGenres.GetVodGenresByOndemandIdError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandGenres.GetVodGenresByOndemandIdError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandGenres.GetVodGenresByOndemandIdRequest` (1):

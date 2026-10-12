@@ -1,15 +1,18 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { anyAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
 import * as s from "../core/validation/index.js";
 import { errorSchema, type Error } from "../models/error.js";
 import { segmentConnectionSchema, type SegmentConnection } from "../models/segment-connection.js";
 import { transcriptMetadataSchema, type TranscriptMetadata } from "../models/transcript-metadata.js";
 import type { Servers } from "../servers.js";
 
+/**
+ * Use these methods to work with video transcripts.
+ */
 export class VideosTranscripts {
   readonly #rawClient: RawClient;
   readonly #servers: Servers;
@@ -21,6 +24,21 @@ export class VideosTranscripts {
     this.#auth = auth;
   }
 
+  /**
+   * Get transcript segments
+   *
+   * @remarks
+   * This method returns the transcript segments of the specified text track.
+   *
+   * @returns The transcript segments were returned.
+   *
+   * @throws {@link VideosTranscripts.GetTranscriptError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getTranscript(
     request: VideosTranscripts.GetTranscriptRequest,
     options?: RequestOptions,
@@ -28,16 +46,18 @@ export class VideosTranscripts {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/videos/{video_id}/transcripts/{texttrack_id}"),
+        urlTemplate: this.#servers.default("/videos/{video_id}/transcripts/{texttrack_id}"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "texttrack_id", value: request.texttrackId, schema: s.number() },
-          { name: "video_id", value: request.videoId, schema: s.number() },
+          { name: "texttrack_id", value: request.texttrackId, schema: s.float64() },
+          { name: "video_id", value: request.videoId, schema: s.float64() },
         ],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -48,6 +68,21 @@ export class VideosTranscripts {
     );
   }
 
+  /**
+   * Get the transcript metadata of a text track
+   *
+   * @remarks
+   * This method returns the transcript metadata of the specified text track.
+   *
+   * @returns The transcript metadata of the text track was returned.
+   *
+   * @throws {@link VideosTranscripts.GetTranscriptMetadataError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getTranscriptMetadata(
     request: VideosTranscripts.GetTranscriptMetadataRequest,
     options?: RequestOptions,
@@ -55,7 +90,7 @@ export class VideosTranscripts {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/videos/{container_uuid}/transcript/{texttrack_id}/metadata"),
+        urlTemplate: this.#servers.default("/videos/{container_uuid}/transcript/{texttrack_id}/metadata"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
@@ -63,8 +98,10 @@ export class VideosTranscripts {
         ),
         pathParams: [
           { name: "container_uuid", value: request.containerUuid, schema: s.string() },
-          { name: "texttrack_id", value: request.texttrackId, schema: s.number() },
+          { name: "texttrack_id", value: request.texttrackId, schema: s.float64() },
         ],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -78,22 +115,30 @@ export class VideosTranscripts {
 
 export namespace VideosTranscripts {
   export type GetTranscriptRequest = {
+    /** The ID of the text track. */
     texttrackId: number;
+    /** The ID of the video. */
     videoId: number;
   };
 
-  export class GetTranscriptError extends ResponseError<Declared<"error", Error>> {
+  export class GetTranscriptError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error>>;
+
     static readonly errors: ErrorDecoders<GetTranscriptError> = [
       { on: 404, kind: "error", decode: { kind: "json", schema: errorSchema } },
     ];
   }
 
   export type GetTranscriptMetadataRequest = {
+    /** The UUID of the video container. */
     containerUuid: string;
+    /** The ID of the text track. */
     texttrackId: number;
   };
 
-  export class GetTranscriptMetadataError extends ResponseError<Declared<"error", Error>> {
+  export class GetTranscriptMetadataError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error>>;
+
     static readonly errors: ErrorDecoders<GetTranscriptMetadataError> = [
       { on: 404, kind: "error", decode: { kind: "json", schema: errorSchema } },
     ];

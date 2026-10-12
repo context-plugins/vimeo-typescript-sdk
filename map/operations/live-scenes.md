@@ -4,7 +4,7 @@
 
 Accessor: `client.liveScenes` · Source: `src/resources/live-scenes.ts` · 5 operations · Request and error types: namespace `LiveScenes`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### attachGraphicItemToScene
 
@@ -12,8 +12,9 @@ Accessor: `client.liveScenes` · Source: `src/resources/live-scenes.ts` · 5 ope
 - **Wire**: `POST /live_events/{live_event_id}/composer/scenes/{scene_id}/graphics`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ComposerScenes`
-- **Error**: `LiveScenes.AttachGraphicItemToSceneError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveScenes.AttachGraphicItemToSceneError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveScenes.AttachGraphicItemToSceneRequest` (3):
@@ -35,9 +36,10 @@ Accessor: `client.liveScenes` · Source: `src/resources/live-scenes.ts` · 5 ope
 - **Signature**: `createComposerScene(request: LiveScenes.CreateComposerSceneRequest, options?: RequestOptions): ApiPromise<ComposerScenes, LiveScenes.CreateComposerSceneError>`
 - **Wire**: `POST /live_events/{live_event_id}/composer/scenes`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ComposerScenes`
-- **Error**: `LiveScenes.CreateComposerSceneError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveScenes.CreateComposerSceneError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveScenes.CreateComposerSceneRequest` (2):
@@ -60,7 +62,7 @@ Accessor: `client.liveScenes` · Source: `src/resources/live-scenes.ts` · 5 ope
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ComposerScenesConnection`
-- **Error**: `LiveScenes.GetComposerScenesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveScenes.GetComposerScenesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveScenes.GetComposerScenesRequest` (1):
@@ -80,8 +82,9 @@ Accessor: `client.liveScenes` · Source: `src/resources/live-scenes.ts` · 5 ope
 - **Wire**: `DELETE /live_events/{live_event_id}/composer/scenes`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ComposerScenes[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `LiveScenes.ResetComposerScenesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveScenes.ResetComposerScenesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveScenes.ResetComposerScenesRequest` (1):
@@ -101,8 +104,9 @@ Accessor: `client.liveScenes` · Source: `src/resources/live-scenes.ts` · 5 ope
 - **Wire**: `PATCH /live_events/{live_event_id}/composer/scenes/{scene_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ComposerScenes`
-- **Error**: `LiveScenes.UpdateComposerSceneError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveScenes.UpdateComposerSceneError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveScenes.UpdateComposerSceneRequest` (2):

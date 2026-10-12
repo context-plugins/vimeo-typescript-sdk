@@ -1,9 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { anyAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { errorSchema, type Error } from "../models/error.js";
 import {
@@ -24,6 +25,9 @@ import {
 } from "../models/users-live-events-low-latency-request.js";
 import type { Servers } from "../servers.js";
 
+/**
+ * Use these methods to manage an event's low-latency option.
+ */
 export class LiveEventLowLatency {
   readonly #rawClient: RawClient;
   readonly #servers: Servers;
@@ -35,6 +39,21 @@ export class LiveEventLowLatency {
     this.#auth = auth;
   }
 
+  /**
+   * Toggle the low-latency option of an event
+   *
+   * @remarks
+   * This method toggles the low-latency option of the specified event.
+   *
+   * @returns The low-latency status of the event was returned.
+   *
+   * @throws {@link LiveEventLowLatency.ToggleRleLowLatencyError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   toggleRleLowLatency(
     request: LiveEventLowLatency.ToggleRleLowLatencyRequest,
     options?: RequestOptions,
@@ -42,16 +61,18 @@ export class LiveEventLowLatency {
     return this.#rawClient.execute(
       {
         method: "PATCH",
-        url: this.#servers.default("/users/{user_id}/live_events/{live_event_id}/low_latency"),
+        urlTemplate: this.#servers.default("/users/{user_id}/live_events/{live_event_id}/low_latency"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "user_id", value: request.userId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "user_id", value: request.userId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -66,6 +87,21 @@ export class LiveEventLowLatency {
     );
   }
 
+  /**
+   * Toggle the low-latency option of an event
+   *
+   * @remarks
+   * This method toggles the low-latency option of the specified event.
+   *
+   * @returns The low-latency status of the event was returned.
+   *
+   * @throws {@link LiveEventLowLatency.ToggleRleLowLatencyAlt1Error} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   toggleRleLowLatencyAlt1(
     request: LiveEventLowLatency.ToggleRleLowLatencyAlt1Request,
     options?: RequestOptions,
@@ -73,13 +109,15 @@ export class LiveEventLowLatency {
     return this.#rawClient.execute(
       {
         method: "PATCH",
-        url: this.#servers.default("/live_events/{live_event_id}/low_latency"),
+        urlTemplate: this.#servers.default("/live_events/{live_event_id}/low_latency"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
-        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.number() }],
+        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.float64() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -94,6 +132,21 @@ export class LiveEventLowLatency {
     );
   }
 
+  /**
+   * Toggle the low-latency option of an event
+   *
+   * @remarks
+   * This method toggles the low-latency option of the specified event.
+   *
+   * @returns The low-latency status of the event was returned.
+   *
+   * @throws {@link LiveEventLowLatency.ToggleRleLowLatencyAlt2Error} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   toggleRleLowLatencyAlt2(
     request: LiveEventLowLatency.ToggleRleLowLatencyAlt2Request,
     options?: RequestOptions,
@@ -101,13 +154,15 @@ export class LiveEventLowLatency {
     return this.#rawClient.execute(
       {
         method: "PATCH",
-        url: this.#servers.default("/me/live_events/{live_event_id}/low_latency"),
+        urlTemplate: this.#servers.default("/me/live_events/{live_event_id}/low_latency"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
-        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.number() }],
+        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.float64() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -125,14 +180,16 @@ export class LiveEventLowLatency {
 
 export namespace LiveEventLowLatency {
   export type ToggleRleLowLatencyRequest = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the user. */
     userId: number;
     body?: UsersLiveEventsLowLatencyRequest;
   };
 
-  export class ToggleRleLowLatencyError extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class ToggleRleLowLatencyError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<ToggleRleLowLatencyError> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -140,13 +197,14 @@ export namespace LiveEventLowLatency {
   }
 
   export type ToggleRleLowLatencyAlt1Request = {
+    /** The ID of the event. */
     liveEventId: number;
     body?: LiveEventsLowLatencyRequest;
   };
 
-  export class ToggleRleLowLatencyAlt1Error extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class ToggleRleLowLatencyAlt1Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<ToggleRleLowLatencyAlt1Error> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -154,13 +212,14 @@ export namespace LiveEventLowLatency {
   }
 
   export type ToggleRleLowLatencyAlt2Request = {
+    /** The ID of the event. */
     liveEventId: number;
     body?: MeLiveEventsLowLatencyRequest;
   };
 
-  export class ToggleRleLowLatencyAlt2Error extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class ToggleRleLowLatencyAlt2Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<ToggleRleLowLatencyAlt2Error> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },

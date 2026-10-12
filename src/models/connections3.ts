@@ -27,33 +27,76 @@ import { viewProfileSchema, type ViewProfile } from "./view-profile.js";
 import { watchedVideosSchema, type WatchedVideos } from "./watched-videos.js";
 import { watchlaterSchema, type Watchlater } from "./watchlater.js";
 
+/** The list of resource URIs related to the authenticated user. */
 export type Connections3 = {
+  /** Information about the showcases created by the authenticated user. */
   albums: Albums;
+  /** Information about the appearances of the authenticated user in other videos. */
   appearances: Appearances;
+  /**
+   * Information about the users who have been blocked by the authenticated user. This data requires
+   * a bearer token with the `private` scope. This data requires a bearer token with the `private`
+   * scope.
+   */
   block?: Block;
+  /** Information about the categories that the authenticated user is following. */
   categories: Categories;
+  /** Information about the channels to which the authenticated user subscribes. */
   channels: Channels1;
+  /** Information about the authenticated user's connected apps. */
   connectedApps?: ConnectedApps;
+  /** Information about the authenticated user's feed. */
   feed: Feed;
+  /** Information about the authenticated user's root level folders and videos. */
   foldersRoot: FoldersRoot;
+  /** Information about the authenticated user's followers. */
   followers: Followers;
+  /** Information about the users who are followed by the authenticated user. */
   following: Following;
+  /** Information about the groups created by the authenticated user. */
   groups: Groups1;
+  /** Information about the authenticated user's auto upload apps. */
   importApps?: ImportApps;
+  /**
+   * Information about the authenticated user's lead capture form. This data requires a bearer token
+   * with the `private` scope.
+   */
   leadCaptureForm?: LeadCaptureForm;
+  /** Information about the videos that the authenticated user has liked. */
   likes: Likes;
+  /** Information about the channels that the authenticated user moderates. */
   moderatedChannels: ModeratedChannels;
+  /** Information about the upload folder for Microsoft Teams recordings. */
   msTeamsTeamFolderId?: MsTeamsTeamFolderId | null;
+  /** Information about the Microsoft Teams tenant token ID. */
   msTeamsTenantTokenId?: string | null;
+  /** Information about the authenticated user's portraits. */
   pictures: Pictures;
+  /** Information about the authenticated user's portfolios. */
   portfolios: Portfolios;
+  /** Information about the authenticated user's projects. */
   projects?: Projects;
+  /**
+   * A collection of recommended channels for the authenticated user to follow. This data requires a
+   * bearer token with the `private` scope. This data requires a bearer token with the `private`
+   * scope.
+   */
   recommendedChannels?: RecommendedChannels;
+  /**
+   * A collection of recommended users for the authenticated user to follow. This data requires a
+   * bearer token with the `private` scope. This data requires a bearer token with the `private`
+   * scope.
+   */
   recommendedUsers?: RecommendedUsers;
+  /** Information about the videos that have been shared with the authenticated user. */
   shared: Shared;
+  /** Information about the videos that the authenticated user has uploaded. */
   videos: Videos3;
+  /** Information about the user's profile. */
   viewProfile?: ViewProfile;
+  /** Information about the videos that the authenticated user has watched. */
   watchedVideos?: WatchedVideos;
+  /** Information about the videos that the authenticated user has marked to watch later. */
   watchlater: Watchlater;
 };
 

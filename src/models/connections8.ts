@@ -2,7 +2,9 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 import { pagesSchema, type Pages } from "./pages.js";
 
+/** A collection of information connected to this resource. */
 export type Connections8 = {
+  /** Information about the On Demand pages related to this group. */
   pages: Pages;
 };
 

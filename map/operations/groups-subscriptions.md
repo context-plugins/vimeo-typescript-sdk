@@ -4,7 +4,7 @@
 
 Accessor: `client.groupsSubscriptions` · Source: `src/resources/groups-subscriptions.ts` · 4 operations · Request and error types: namespace `GroupsSubscriptions`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### joinGroup
 
@@ -12,8 +12,9 @@ Accessor: `client.groupsSubscriptions` · Source: `src/resources/groups-subscrip
 - **Wire**: `PUT /users/{user_id}/groups/{group_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `GroupsSubscriptions.JoinGroupError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsSubscriptions.JoinGroupError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsSubscriptions.JoinGroupRequest` (2):
@@ -34,8 +35,9 @@ Accessor: `client.groupsSubscriptions` · Source: `src/resources/groups-subscrip
 - **Wire**: `PUT /me/groups/{group_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `GroupsSubscriptions.JoinGroupAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsSubscriptions.JoinGroupAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsSubscriptions.JoinGroupAlt1Request` (1):
@@ -55,8 +57,9 @@ Accessor: `client.groupsSubscriptions` · Source: `src/resources/groups-subscrip
 - **Wire**: `DELETE /users/{user_id}/groups/{group_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `GroupsSubscriptions.LeaveGroupError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsSubscriptions.LeaveGroupError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsSubscriptions.LeaveGroupRequest` (2):
@@ -77,8 +80,9 @@ Accessor: `client.groupsSubscriptions` · Source: `src/resources/groups-subscrip
 - **Wire**: `DELETE /me/groups/{group_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `GroupsSubscriptions.LeaveGroupAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsSubscriptions.LeaveGroupAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsSubscriptions.LeaveGroupAlt1Request` (1):

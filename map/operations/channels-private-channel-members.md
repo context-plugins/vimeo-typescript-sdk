@@ -4,7 +4,7 @@
 
 Accessor: `client.channelsPrivateChannelMembers` · Source: `src/resources/channels-private-channel-members.ts` · 4 operations · Request and error types: namespace `ChannelsPrivateChannelMembers`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### deleteChannelPrivacyUser
 
@@ -12,8 +12,9 @@ Accessor: `client.channelsPrivateChannelMembers` · Source: `src/resources/chann
 - **Wire**: `DELETE /channels/{channel_id}/privacy/users/{user_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsPrivateChannelMembers.DeleteChannelPrivacyUserError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsPrivateChannelMembers.DeleteChannelPrivacyUserError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsPrivateChannelMembers.DeleteChannelPrivacyUserRequest` (2):
@@ -34,7 +35,7 @@ Accessor: `client.channelsPrivateChannelMembers` · Source: `src/resources/chann
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserConnection`
-- **Error**: `ChannelsPrivateChannelMembers.GetChannelPrivacyUsersError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsPrivateChannelMembers.GetChannelPrivacyUsersError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsPrivateChannelMembers.GetChannelPrivacyUsersRequest` (4):
@@ -58,8 +59,9 @@ Accessor: `client.channelsPrivateChannelMembers` · Source: `src/resources/chann
 - **Wire**: `PUT /channels/{channel_id}/privacy/users/{user_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsPrivateChannelMembers.SetChannelPrivacyUserError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsPrivateChannelMembers.SetChannelPrivacyUserError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsPrivateChannelMembers.SetChannelPrivacyUserRequest` (2):
@@ -79,8 +81,9 @@ Accessor: `client.channelsPrivateChannelMembers` · Source: `src/resources/chann
 - **Wire**: `PUT /channels/{channel_id}/privacy/users`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `User[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `ChannelsPrivateChannelMembers.SetChannelPrivacyUsersError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsPrivateChannelMembers.SetChannelPrivacyUsersError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsPrivateChannelMembers.SetChannelPrivacyUsersRequest` (2):

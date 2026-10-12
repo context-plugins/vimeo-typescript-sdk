@@ -3,6 +3,7 @@ import type { Schema } from "../core/validation/schema.js";
 import { videos12Schema, type Videos12 } from "./videos12.js";
 
 export type Connections19 = {
+  /** The connection to the associated videos. */
   videos: Videos12;
 };
 

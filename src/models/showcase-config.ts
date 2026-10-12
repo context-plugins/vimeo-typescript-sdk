@@ -13,16 +13,27 @@ import { showVideoTitleSchema, type ShowVideoTitle } from "./show-video-title.js
 import { textCtaAlignmentSchema, type TextCtaAlignment } from "./text-cta-alignment.js";
 
 export type ShowcaseConfig = {
+  /** An object containing the showcase's banner display settings. */
   banner: BannerConfig;
+  /** An object containing the showcase's layout display settings. */
   layout: LayoutConfig;
+  /** An object containing the showcase's navigation display settings. */
   navigation: NavigationConfig;
+  /** An object containing the showcase's playback display settings. */
   playback: PlaybackConfig;
+  /** Information about showing the account name on the showcase page. */
   showAccountName: ShowAccountName;
+  /** Information about showing the avatar on the showcase page. */
   showAvatar: ShowAvatar;
+  /** Information about showing the description on the showcase page. */
   showVideoDescription: ShowVideoDescription;
+  /** Information about showing video details on the showcase page. */
   showVideoDetails: ShowVideoDetails;
+  /** Information about showing video player cards on the showcase page. */
   showVideoPlayerCards: ShowVideoPlayerCards;
+  /** Information about showing the title on the showcase page. */
   showVideoTitle: ShowVideoTitle;
+  /** Information about the alignment of the call-to-action text on the showcase page. */
   textCtaAlignment: TextCtaAlignment;
 };
 

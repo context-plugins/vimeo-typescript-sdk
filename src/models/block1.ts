@@ -1,10 +1,15 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
+/** Information about the block status of the authenticated user. */
 export type Block1 = {
+  /** Whether the authenticated user is blocking the requested user. */
   added: boolean;
+  /** The time in ISO 8601 format when the block occurred, or the null value if no block exists. */
   addedTime?: string;
+  /** An array of HTTP methods permitted on this URI. */
   options: string[];
+  /** The URI to block or unblock the requested user. */
   uri: string;
 };
 

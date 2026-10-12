@@ -3,7 +3,15 @@ import type { Schema } from "../core/validation/schema.js";
 import { reasonSchema, type Reason } from "./reason.js";
 
 export type Disabled1 = {
+  /**
+   * The link to re-enable the showcase presets feature. This data requires a bearer token with the
+   * `private` scope.
+   */
   enableLink?: string;
+  /**
+   * The reasons why showcase presets are disabled for the video. This data requires a bearer token
+   * with the `private` scope.
+   */
   reasons?: Reason[];
 };
 

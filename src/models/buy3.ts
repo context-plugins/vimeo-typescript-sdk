@@ -3,7 +3,14 @@ import type { Schema } from "../core/validation/schema.js";
 import { price2Schema, type Price2 } from "./price2.js";
 
 export type Buy3 = {
+  /**
+   * Whether the video can be purchased. This parameter is required when **rent.active** is `false`.
+   */
   active?: boolean;
+  /**
+   * Whether people who buy the video can download it. To use this parameter, **type** must be
+   * `film`.
+   */
   download?: boolean;
   price?: Price2;
 };

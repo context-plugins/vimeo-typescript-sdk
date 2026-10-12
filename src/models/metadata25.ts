@@ -4,11 +4,16 @@ import { entitlementsSchema, type Entitlements } from "./entitlements.js";
 import { interactions15Schema, type Interactions15 } from "./interactions15.js";
 import { purchasedProductSchema, type PurchasedProduct } from "./purchased-product.js";
 
+/** The URLs and entitlements of the associated products in the store. */
 export type Metadata25 = {
+  /** The URLs and entitlements of the associated products in the store. */
   entitlements: Entitlements;
   interactions: Interactions15;
+  /** Whether the product is a bandwidth product. */
   isBandwidthProduct: boolean;
+  /** Whether the product is a Vimeo payments service product. */
   isPsPlan: boolean;
+  /** Information about the purchased product. */
   purchasedProduct: PurchasedProduct;
 };
 

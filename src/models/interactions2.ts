@@ -8,9 +8,12 @@ import { reportSchema, type Report } from "./report.js";
 
 export type Interactions2 = {
   addPrivacyUser?: AddPrivacyUser;
+  /** Information about the block status of the authenticated user. */
   block: Block1;
   connectedApps?: ConnectedApps1;
+  /** Information about the followed status of the authenticated user. */
   follow?: Follow2;
+  /** Information about where and how to report the requested user. */
   report: Report;
 };
 

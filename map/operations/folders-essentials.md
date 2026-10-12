@@ -4,7 +4,7 @@
 
 Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essentials.ts` · 11 operations · Request and error types: namespace `FoldersEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createProject
 
@@ -12,8 +12,9 @@ Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essential
 - **Wire**: `POST /users/{user_id}/projects`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Project`
-- **Error**: `FoldersEssentials.CreateProjectError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersEssentials.CreateProjectError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersEssentials.CreateProjectRequest` (2):
@@ -35,8 +36,9 @@ Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essential
 - **Wire**: `POST /me/projects`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Project`
-- **Error**: `FoldersEssentials.CreateProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersEssentials.CreateProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersEssentials.CreateProjectAlt1Request` (1):
@@ -56,9 +58,10 @@ Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essential
 - **Signature**: `deleteProject(request: FoldersEssentials.DeleteProjectRequest, options?: RequestOptions): ApiPromise<undefined, FoldersEssentials.DeleteProjectError>`
 - **Wire**: `DELETE /users/{user_id}/projects/{project_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `FoldersEssentials.DeleteProjectError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersEssentials.DeleteProjectError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersEssentials.DeleteProjectRequest` (3):
@@ -79,9 +82,10 @@ Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essential
 - **Signature**: `deleteProjectAlt1(request: FoldersEssentials.DeleteProjectAlt1Request, options?: RequestOptions): ApiPromise<undefined, FoldersEssentials.DeleteProjectAlt1Error>`
 - **Wire**: `DELETE /me/projects/{project_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `FoldersEssentials.DeleteProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersEssentials.DeleteProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersEssentials.DeleteProjectAlt1Request` (2):
@@ -102,8 +106,9 @@ Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essential
 - **Wire**: `PATCH /users/{user_id}/projects/{project_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Project`
-- **Error**: `FoldersEssentials.EditProjectError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersEssentials.EditProjectError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersEssentials.EditProjectRequest` (3):
@@ -126,8 +131,9 @@ Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essential
 - **Wire**: `PATCH /me/projects/{project_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Project`
-- **Error**: `FoldersEssentials.EditProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersEssentials.EditProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersEssentials.EditProjectAlt1Request` (2):
@@ -150,7 +156,7 @@ Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essential
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Project`
-- **Error**: `FoldersEssentials.GetPrivateToMeFolderError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersEssentials.GetPrivateToMeFolderError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersEssentials.GetPrivateToMeFolderRequest` (1):
@@ -171,7 +177,7 @@ Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essential
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Project`
-- **Error**: `FoldersEssentials.GetProjectError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersEssentials.GetProjectError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersEssentials.GetProjectRequest` (2):
@@ -193,7 +199,7 @@ Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essential
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Project`
-- **Error**: `FoldersEssentials.GetProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersEssentials.GetProjectAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersEssentials.GetProjectAlt1Request` (1):
@@ -214,7 +220,7 @@ Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essential
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ProjectConnection`
-- **Error**: `FoldersEssentials.GetProjectsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersEssentials.GetProjectsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersEssentials.GetProjectsRequest` (6):
@@ -242,7 +248,7 @@ Accessor: `client.foldersEssentials` · Source: `src/resources/folders-essential
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ProjectConnection`
-- **Error**: `FoldersEssentials.GetProjectsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `FoldersEssentials.GetProjectsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `FoldersEssentials.GetProjectsAlt1Request` (5):

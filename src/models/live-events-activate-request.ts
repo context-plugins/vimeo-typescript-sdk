@@ -2,7 +2,13 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type LiveEventsActivateRequest = {
+  /**
+   * Whether the stream activates from the cloud composer.
+   *
+   * @deprecated
+   */
   cloudComposingStreaming?: boolean;
+  /** Whether the stream activates from the cloud composer. */
   streamingStartRequested?: boolean;
 };
 

@@ -1,6 +1,15 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The relevant contextual action.
+ *
+ * Option descriptions:
+ *  * `Added to` - An Added To action.
+ *  * `Appearance by` - An Appearance By action.
+ *  * `Liked by` - A Liked By action.
+ *  * `Uploaded by` - An Uploaded By action.
+ */
 export const Action = {
   AddedTo: "Added to",
   AppearanceBy: "Appearance by",

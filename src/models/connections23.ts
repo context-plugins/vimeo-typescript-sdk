@@ -3,8 +3,11 @@ import type { Schema } from "../core/validation/schema.js";
 import { sharedTeamSchema, type SharedTeam } from "./shared-team.js";
 import { sharedUserSchema, type SharedUser } from "./shared-user.js";
 
+/** A list of resource URIs related to the item. */
 export type Connections23 = {
+  /** Information about the team of the shared item. */
   sharedTeam?: SharedTeam | null;
+  /** Information about the user who shared the item. */
   sharedUser?: SharedUser | null;
 };
 

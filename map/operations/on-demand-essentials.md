@@ -4,16 +4,17 @@
 
 Accessor: `client.onDemandEssentials` · Source: `src/resources/on-demand-essentials.ts` · 7 operations · Request and error types: namespace `OnDemandEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createVod
 
-- **Signature**: `createVod(request: OnDemandEssentials.CreateVodRequest, options?: RequestOptions): ApiPromise<OnDemandPage, ResponseError>`
+- **Signature**: `createVod(request: OnDemandEssentials.CreateVodRequest, options?: RequestOptions): ApiPromise<OnDemandPage, ApiError>`
 - **Wire**: `POST /users/{user_id}/ondemand/pages`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `OnDemandPage`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `OnDemandEssentials.CreateVodRequest` (2):
 
@@ -29,12 +30,13 @@ Accessor: `client.onDemandEssentials` · Source: `src/resources/on-demand-essent
 
 ### createVodAlt1
 
-- **Signature**: `createVodAlt1(request: OnDemandEssentials.CreateVodAlt1Request, options?: RequestOptions): ApiPromise<OnDemandPage, ResponseError>`
+- **Signature**: `createVodAlt1(request: OnDemandEssentials.CreateVodAlt1Request, options?: RequestOptions): ApiPromise<OnDemandPage, ApiError>`
 - **Wire**: `POST /me/ondemand/pages`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `OnDemandPage`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `OnDemandEssentials.CreateVodAlt1Request` (1):
 
@@ -53,8 +55,9 @@ Accessor: `client.onDemandEssentials` · Source: `src/resources/on-demand-essent
 - **Wire**: `DELETE /ondemand/pages/{ondemand_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `OnDemandEssentials.DeleteVodDraftError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandEssentials.DeleteVodDraftError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandEssentials.DeleteVodDraftRequest` (1):
@@ -72,9 +75,10 @@ Accessor: `client.onDemandEssentials` · Source: `src/resources/on-demand-essent
 - **Signature**: `editVod(request: OnDemandEssentials.EditVodRequest, options?: RequestOptions): ApiPromise<OnDemandPage, OnDemandEssentials.EditVodError>`
 - **Wire**: `PATCH /ondemand/pages/{ondemand_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `OnDemandPage`
-- **Error**: `OnDemandEssentials.EditVodError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandEssentials.EditVodError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandEssentials.EditVodRequest` (2):
@@ -97,7 +101,7 @@ Accessor: `client.onDemandEssentials` · Source: `src/resources/on-demand-essent
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandPageConnection`
-- **Error**: `OnDemandEssentials.GetUserVodsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandEssentials.GetUserVodsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandEssentials.GetUserVodsRequest` (6):
@@ -126,7 +130,7 @@ Accessor: `client.onDemandEssentials` · Source: `src/resources/on-demand-essent
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandPageConnection`
-- **Error**: `OnDemandEssentials.GetUserVodsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandEssentials.GetUserVodsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandEssentials.GetUserVodsAlt1Request` (5):
@@ -154,7 +158,7 @@ Accessor: `client.onDemandEssentials` · Source: `src/resources/on-demand-essent
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandPage`
-- **Error**: `OnDemandEssentials.GetVodError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandEssentials.GetVodError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandEssentials.GetVodRequest` (1):

@@ -4,6 +4,7 @@ import { custom4Schema, type Custom4 } from "./custom4.js";
 
 export type Logos4 = {
   custom?: Custom4;
+  /** Whether to show the Vimeo logo on the embed player. */
   vimeo?: boolean;
 };
 

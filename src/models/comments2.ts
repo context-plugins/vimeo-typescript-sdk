@@ -1,6 +1,14 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The video's comment permission setting.
+ *
+ * Option descriptions:
+ *  * `anybody` - Anyone can comment on the video.
+ *  * `contacts` - Only contacts can comment on the video.
+ *  * `nobody` - No one can comment on the video.
+ */
 export const Comments2 = {
   Anybody: "anybody",
   Contacts: "contacts",

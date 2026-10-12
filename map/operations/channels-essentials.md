@@ -4,7 +4,7 @@
 
 Accessor: `client.channelsEssentials` · Source: `src/resources/channels-essentials.ts` · 7 operations · Request and error types: namespace `ChannelsEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createChannel
 
@@ -12,8 +12,9 @@ Accessor: `client.channelsEssentials` · Source: `src/resources/channels-essenti
 - **Wire**: `POST /channels`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Channel`
-- **Error**: `ChannelsEssentials.CreateChannelError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsEssentials.CreateChannelError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsEssentials.CreateChannelRequest` (1):
@@ -34,8 +35,9 @@ Accessor: `client.channelsEssentials` · Source: `src/resources/channels-essenti
 - **Wire**: `DELETE /channels/{channel_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsEssentials.DeleteChannelError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsEssentials.DeleteChannelError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsEssentials.DeleteChannelRequest` (1):
@@ -53,9 +55,10 @@ Accessor: `client.channelsEssentials` · Source: `src/resources/channels-essenti
 - **Signature**: `editChannel(request: ChannelsEssentials.EditChannelRequest, options?: RequestOptions): ApiPromise<Channel, ChannelsEssentials.EditChannelError>`
 - **Wire**: `PATCH /channels/{channel_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Channel`
-- **Error**: `ChannelsEssentials.EditChannelError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsEssentials.EditChannelError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsEssentials.EditChannelRequest` (2):
@@ -73,12 +76,12 @@ Accessor: `client.channelsEssentials` · Source: `src/resources/channels-essenti
 
 ### getChannel
 
-- **Signature**: `getChannel(request: ChannelsEssentials.GetChannelRequest, options?: RequestOptions): ApiPromise<Channel, ResponseError>`
+- **Signature**: `getChannel(request: ChannelsEssentials.GetChannelRequest, options?: RequestOptions): ApiPromise<Channel, ApiError>`
 - **Wire**: `GET /channels/{channel_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Channel`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `ChannelsEssentials.GetChannelRequest` (2):
 
@@ -98,7 +101,7 @@ Accessor: `client.channelsEssentials` · Source: `src/resources/channels-essenti
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ChannelConnection`
-- **Error**: `ChannelsEssentials.GetChannelSubscriptionsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsEssentials.GetChannelSubscriptionsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error304"` [304] no body · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsEssentials.GetChannelSubscriptionsRequest` (7):
@@ -128,7 +131,7 @@ Accessor: `client.channelsEssentials` · Source: `src/resources/channels-essenti
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ChannelConnection`
-- **Error**: `ChannelsEssentials.GetChannelSubscriptionsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsEssentials.GetChannelSubscriptionsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error304"` [304] no body · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsEssentials.GetChannelSubscriptionsAlt1Request` (6):
@@ -157,7 +160,7 @@ Accessor: `client.channelsEssentials` · Source: `src/resources/channels-essenti
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ChannelConnection`
-- **Error**: `ChannelsEssentials.GetChannelsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsEssentials.GetChannelsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsEssentials.GetChannelsRequest` (6):

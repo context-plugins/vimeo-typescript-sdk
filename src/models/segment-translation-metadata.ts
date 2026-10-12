@@ -2,11 +2,17 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type SegmentTranslationMetadata = {
+  /** Whether the audio of the translation's segment is out of sync. */
   audioOutOfSync?: boolean;
+  /** The ID of the translation's audio track. */
   audioTrackId?: string;
+  /** The translation language in ISO 639-1 format. */
   dominantLanguage?: string;
+  /** The vendor ID of the translation's dubbing. */
   dubbingId?: string;
+  /** The vendor ID of the translation's segment. */
   dubbingSegmentId?: string;
+  /** Whether the translation's segment is out of sync. */
   translationOutOfSync?: boolean;
 };
 

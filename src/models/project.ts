@@ -7,26 +7,55 @@ import { settingsSchema, type Settings } from "./settings.js";
 import { userSchema, type User } from "./user.js";
 
 export type Project = {
+  /**
+   * The access grant response that applies to the team member. _This field is deprecated because
+   * grants are no longer exposed via API responses._
+   *
+   * @deprecated
+   */
   accessGrant: Record<string, unknown>;
+  /** The time in ISO 8601 format when the folder was created. */
   createdTime: string;
+  /** The URI for the user who created the folder. */
   creatorUri: string;
+  /** Whether this folder has at least one subfolder. */
   hasSubfolder: boolean;
+  /** Whether the folder is pinned. */
   isPinned: boolean;
+  /** Whether the folder is a private-to-me folder for the user. */
   isPrivateToUser: boolean;
+  /** Whether the current user has starred this folder. */
   isStarredByCurUser: boolean;
+  /** The time in ISO 8601 format when a user last performed an action on the folder. */
   lastUserActionEventDate: string | null;
+  /** The link to the folder on Vimeo. */
   link: string;
+  /** The link to the folder management page. */
   manageLink: string;
+  /** Information about the folders's metadata. */
   metadata: Metadata5;
+  /** The time in ISO 8601 format when the folder was last modified. */
   modifiedTime: string;
+  /** The name of the folder. */
   name: string;
+  /** The time in ISO 8601 format when the folder was pinned. */
   pinnedOn: string | null;
+  /** The privacy settings of the folder. */
   privacy: Privacy2;
+  /** The resource key string of the folder. */
   resourceKey: string;
+  /** All active review links associated with the folder. */
   reviewLinks?: ReviewLink[];
+  /** The settings of the folder. */
   settings: Settings;
+  /**
+   * Whether to display a folder notification that directs the current user to the team library
+   * page.
+   */
   shouldShowTeamLibraryNotification: boolean;
+  /** The URI of the folder. */
   uri: string;
+  /** The owner of the folder. */
   user: User;
 };
 

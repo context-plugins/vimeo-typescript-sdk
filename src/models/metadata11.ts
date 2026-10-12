@@ -3,8 +3,11 @@ import type { Schema } from "../core/validation/schema.js";
 import { connections11Schema, type Connections11 } from "./connections11.js";
 import { interactions7Schema, type Interactions7 } from "./interactions7.js";
 
+/** Metadata about the showcase. */
 export type Metadata11 = {
+  /** Information about showcase connections. */
   connections: Connections11;
+  /** A list of resource URIs related to the showcase. */
   interactions: Interactions7 | null;
 };
 

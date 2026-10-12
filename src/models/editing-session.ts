@@ -1,18 +1,36 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
-import { status1Schema, type Status1 } from "./status1.js";
+import { status2Schema, type Status2 } from "./status2.js";
 
 export type EditingSession = {
+  /** Whether the video has a watermark. */
   hasWatermark: boolean;
+  /** Whether the video has been edited by Transcript Video Editing. */
   isEditedByTve: boolean;
+  /** Whether the current version of the video is at the maximum resolution. */
   isMaxResolution: boolean;
+  /** Whether the video has licensed music. */
   isMusicLicensed: boolean;
+  /** Whether the video has been rated. */
   isRated: boolean;
+  /** The minimum required Vimeo membership for the user to be able to share the video. */
   minTierForMovie: string;
+  /** The result video hash for the created video. */
   resultVideoHash: string;
-  status: Status1;
+  /**
+   * The status of the video.
+   *
+   * Option descriptions:
+   *  * `done` - The video is finished processing.
+   *  * `failed` - Video processing has failed.
+   *  * `processing` - The video is still being processed.
+   */
+  status: Status2;
+  /** The version's canonical relative URI. */
   uploadAttemptIdVersionUri?: string;
+  /** The version's canonical relative URI. */
   versionUri?: string;
+  /** The ID of the video's editing session. */
   vsid: number;
 };
 
@@ -24,10 +42,10 @@ export const editingSessionSchema: Schema<EditingSession> = s.object<EditingSess
   isRated: s.boolean(),
   minTierForMovie: s.string(),
   resultVideoHash: s.string(),
-  status: status1Schema,
+  status: status2Schema,
   uploadAttemptIdVersionUri: s.optional(s.string()),
   versionUri: s.optional(s.string()),
-  vsid: s.number(),
+  vsid: s.float64(),
   _keysMap: {
     hasWatermark: "has_watermark",
     isEditedByTve: "is_edited_by_tve",

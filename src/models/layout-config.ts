@@ -8,11 +8,17 @@ import { showGridVideoCountSchema, type ShowGridVideoCount } from "./show-grid-v
 import { showGridVideoTitlesSchema, type ShowGridVideoTitles } from "./show-grid-video-titles.js";
 
 export type LayoutConfig = {
+  /** Information about the grid size configuration. */
   gridSize: GridSize;
+  /** Information about showing the profile image on each video. */
   showGridProfileImage: ShowGridProfileImage;
+  /** Information about showing the profile name on each video. */
   showGridProfileName: ShowGridProfileName;
+  /** Information about showing the section names. */
   showGridSectionName: ShowGridSectionName;
+  /** Information about showing the video count above the video list. */
   showGridVideoCount: ShowGridVideoCount;
+  /** Information about showing the video titles below thumbnails. */
   showGridVideoTitles: ShowGridVideoTitles;
 };
 

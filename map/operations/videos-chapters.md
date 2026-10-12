@@ -4,16 +4,17 @@
 
 Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` · 12 operations · Request and error types: namespace `VideosChapters`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createChapter
 
 - **Signature**: `createChapter(request: VideosChapters.CreateChapterRequest, options?: RequestOptions): ApiPromise<Chapter, VideosChapters.CreateChapterError>`
 - **Wire**: `POST /videos/{video_id}/chapters`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Chapter`
-- **Error**: `VideosChapters.CreateChapterError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.CreateChapterError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.CreateChapterRequest` (2):
@@ -34,9 +35,10 @@ Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` 
 - **Signature**: `createChapterThumbnailOrUploadLink(request: VideosChapters.CreateChapterThumbnailOrUploadLinkRequest, options?: RequestOptions): ApiPromise<Picture, VideosChapters.CreateChapterThumbnailOrUploadLinkError>`
 - **Wire**: `POST /videos/{video_id}/chapters/{chapter_id}/pictures`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `VideosChapters.CreateChapterThumbnailOrUploadLinkError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.CreateChapterThumbnailOrUploadLinkError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.CreateChapterThumbnailOrUploadLinkRequest` (3):
@@ -58,9 +60,10 @@ Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` 
 - **Signature**: `createUnsavedChapterThumbnailOrUploadLink(request: VideosChapters.CreateUnsavedChapterThumbnailOrUploadLinkRequest, options?: RequestOptions): ApiPromise<Picture, VideosChapters.CreateUnsavedChapterThumbnailOrUploadLinkError>`
 - **Wire**: `POST /videos/{video_id}/chapters/temporary/pictures`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `VideosChapters.CreateUnsavedChapterThumbnailOrUploadLinkError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.CreateUnsavedChapterThumbnailOrUploadLinkError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.CreateUnsavedChapterThumbnailOrUploadLinkRequest` (2):
@@ -82,8 +85,9 @@ Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` 
 - **Wire**: `DELETE /videos/{video_id}/chapters/{chapter_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosChapters.DeleteChapterError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.DeleteChapterError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.DeleteChapterRequest` (2):
@@ -103,8 +107,9 @@ Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` 
 - **Wire**: `DELETE /videos/{video_id}/chapters/{chapter_id}/pictures/{uid}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosChapters.DeleteChapterThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.DeleteChapterThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.DeleteChapterThumbnailRequest` (3):
@@ -124,9 +129,10 @@ Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` 
 - **Signature**: `editChapter(request: VideosChapters.EditChapterRequest, options?: RequestOptions): ApiPromise<Chapter, VideosChapters.EditChapterError>`
 - **Wire**: `PATCH /videos/{video_id}/chapters/{chapter_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Chapter`
-- **Error**: `VideosChapters.EditChapterError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.EditChapterError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.EditChapterRequest` (3):
@@ -151,7 +157,7 @@ Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Chapter`
-- **Error**: `VideosChapters.GetChapterError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.GetChapterError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.GetChapterRequest` (2):
@@ -173,7 +179,7 @@ Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `VideosChapters.GetChapterThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.GetChapterThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.GetChapterThumbnailRequest` (3):
@@ -196,7 +202,7 @@ Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `VideosChapters.GetChapterThumbnailsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.GetChapterThumbnailsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.GetChapterThumbnailsRequest` (2):
@@ -218,7 +224,7 @@ Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ChapterConnection`
-- **Error**: `VideosChapters.GetChaptersError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.GetChaptersError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.GetChaptersRequest` (3):
@@ -241,7 +247,7 @@ Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `VideosChapters.GetUnsavedChapterThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.GetUnsavedChapterThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.GetUnsavedChapterThumbnailRequest` (2):
@@ -261,9 +267,10 @@ Accessor: `client.videosChapters` · Source: `src/resources/videos-chapters.ts` 
 - **Signature**: `setChapterThumbnailActive(request: VideosChapters.SetChapterThumbnailActiveRequest, options?: RequestOptions): ApiPromise<Picture, VideosChapters.SetChapterThumbnailActiveError>`
 - **Wire**: `PATCH /videos/{video_id}/chapters/{chapter_id}/pictures/{uid}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `VideosChapters.SetChapterThumbnailActiveError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosChapters.SetChapterThumbnailActiveError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosChapters.SetChapterThumbnailActiveRequest` (4):

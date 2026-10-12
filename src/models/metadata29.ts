@@ -2,6 +2,7 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 import { connections27Schema, type Connections27 } from "./connections27.js";
 
+/** The video version's metadata. */
 export type Metadata29 = {
   connections: Connections27;
 };

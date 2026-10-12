@@ -1,9 +1,13 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
+/** Information about purchasing the video. */
 export type Buy2 = {
+  /** Whether the video can be purchased. */
   active: boolean;
+  /** The purchase price of the video by currency type. */
   price: Record<string, unknown>;
+  /** Whether the video has been purchased. */
   purchased?: boolean;
 };
 

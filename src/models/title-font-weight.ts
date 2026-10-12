@@ -1,6 +1,15 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The selected video title font weight.
+ *
+ * Option descriptions:
+ *  * `300` - Light
+ *  * `400` - Regular
+ *  * `500` - Medium
+ *  * `700` - Bold
+ */
 export const TitleFontWeight = {
   _300: 300,
   _400: 400,

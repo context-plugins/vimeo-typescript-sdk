@@ -4,7 +4,7 @@
 
 Accessor: `client.onDemandBackgrounds` · Source: `src/resources/on-demand-backgrounds.ts` · 5 operations · Request and error types: namespace `OnDemandBackgrounds`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createVodBackground
 
@@ -12,8 +12,9 @@ Accessor: `client.onDemandBackgrounds` · Source: `src/resources/on-demand-backg
 - **Wire**: `POST /ondemand/pages/{ondemand_id}/backgrounds`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `OnDemandBackgrounds.CreateVodBackgroundError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandBackgrounds.CreateVodBackgroundError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandBackgrounds.CreateVodBackgroundRequest` (1):
@@ -33,8 +34,9 @@ Accessor: `client.onDemandBackgrounds` · Source: `src/resources/on-demand-backg
 - **Wire**: `DELETE /ondemand/pages/{ondemand_id}/backgrounds/{background_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `OnDemandBackgrounds.DeleteVodBackgroundError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandBackgrounds.DeleteVodBackgroundError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandBackgrounds.DeleteVodBackgroundRequest` (2):
@@ -53,9 +55,10 @@ Accessor: `client.onDemandBackgrounds` · Source: `src/resources/on-demand-backg
 - **Signature**: `editVodBackground(request: OnDemandBackgrounds.EditVodBackgroundRequest, options?: RequestOptions): ApiPromise<Picture, OnDemandBackgrounds.EditVodBackgroundError>`
 - **Wire**: `PATCH /ondemand/pages/{ondemand_id}/backgrounds/{background_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `OnDemandBackgrounds.EditVodBackgroundError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandBackgrounds.EditVodBackgroundError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandBackgrounds.EditVodBackgroundRequest` (3):
@@ -79,7 +82,7 @@ Accessor: `client.onDemandBackgrounds` · Source: `src/resources/on-demand-backg
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `OnDemandBackgrounds.GetVodBackgroundError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandBackgrounds.GetVodBackgroundError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandBackgrounds.GetVodBackgroundRequest` (2):
@@ -101,7 +104,7 @@ Accessor: `client.onDemandBackgrounds` · Source: `src/resources/on-demand-backg
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PictureConnection`
-- **Error**: `OnDemandBackgrounds.GetVodBackgroundsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandBackgrounds.GetVodBackgroundsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandBackgrounds.GetVodBackgroundsRequest` (3):

@@ -5,18 +5,27 @@ import { periodicSchema, type Periodic } from "./periodic.js";
 import { restrictedSchema, type Restricted } from "./restricted.js";
 import { spaceSchema, type Space } from "./space.js";
 
+/**
+ * The upload quota. This information appears only when the authenticated user has upload access and
+ * is looking at their own user record.
+ */
 export type UploadQuota = {
+  /** Information about the authenticated user's lifetime upload usage. */
   lifetime: Lifetime;
+  /** Information about the authenticated user's usage for the current period. */
   periodic: Periodic;
+  /** The number of bytes used by videos currently in the Recently Deleted folder. */
   recentlyDeletedDiskSpace: number;
+  /** The restricted video storage quota (for embeddable and private videos). */
   restricted: Restricted;
+  /** Information about the authenticated user's upload space remaining for the current period. */
   space: Space;
 };
 
 export const uploadQuotaSchema: Schema<UploadQuota> = s.object<UploadQuota>({
   lifetime: lifetimeSchema,
   periodic: periodicSchema,
-  recentlyDeletedDiskSpace: s.number(),
+  recentlyDeletedDiskSpace: s.float64(),
   restricted: restrictedSchema,
   space: spaceSchema,
   _keysMap: {

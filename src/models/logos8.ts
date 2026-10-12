@@ -4,6 +4,7 @@ import { custom8Schema, type Custom8 } from "./custom8.js";
 
 export type Logos8 = {
   custom?: Custom8;
+  /** Whether to show the Vimeo logo on the embeddable player. */
   vimeo?: boolean;
 };
 

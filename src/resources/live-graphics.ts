@@ -1,9 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { anyAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
   composerGraphicsConnectionSchema,
@@ -17,6 +18,9 @@ import {
 } from "../models/live-events-composer-graphics-videos-request.js";
 import type { Servers } from "../servers.js";
 
+/**
+ * Use these methods to work with event media.
+ */
 export class LiveGraphics {
   readonly #rawClient: RawClient;
   readonly #servers: Servers;
@@ -28,6 +32,21 @@ export class LiveGraphics {
     this.#auth = auth;
   }
 
+  /**
+   * Add a new video graphics item to an event
+   *
+   * @remarks
+   * This method add a new video graphics item to the specified event.
+   *
+   * @returns The video graphic item was added.
+   *
+   * @throws {@link LiveGraphics.AddComposerVideoGraphicItemError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   addComposerVideoGraphicItem(
     request: LiveGraphics.AddComposerVideoGraphicItemRequest,
     options?: RequestOptions,
@@ -35,13 +54,15 @@ export class LiveGraphics {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/live_events/{live_event_id}/composer/graphics/videos"),
+        urlTemplate: this.#servers.default("/live_events/{live_event_id}/composer/graphics/videos"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
-        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.number() }],
+        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.float64() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "json", value: request.body, schema: liveEventsComposerGraphicsVideosRequestSchema },
       },
       {
@@ -52,6 +73,21 @@ export class LiveGraphics {
     );
   }
 
+  /**
+   * Delete a video graphics item that belongs to an event
+   *
+   * @remarks
+   * This method deletes a video graphics item belonging to the specified event.
+   *
+   * @returns The video graphic item was deleted.
+   *
+   * @throws {@link LiveGraphics.DeleteComposerVideoGraphicItemError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   deleteComposerVideoGraphicItem(
     request: LiveGraphics.DeleteComposerVideoGraphicItemRequest,
     options?: RequestOptions,
@@ -59,16 +95,20 @@ export class LiveGraphics {
     return this.#rawClient.execute(
       {
         method: "DELETE",
-        url: this.#servers.default("/live_events/{live_event_id}/composer/graphics/videos/{video_id}"),
+        urlTemplate: this.#servers.default(
+          "/live_events/{live_event_id}/composer/graphics/videos/{video_id}",
+        ),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "video_id", value: request.videoId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "video_id", value: request.videoId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
@@ -79,6 +119,21 @@ export class LiveGraphics {
     );
   }
 
+  /**
+   * Get all the video graphics items that belong to an event
+   *
+   * @remarks
+   * The method returns every video graphics item belonging to the specified event.
+   *
+   * @returns The video graphic items were returned.
+   *
+   * @throws {@link LiveGraphics.GetComposerVideoGraphicItemsError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getComposerVideoGraphicItems(
     request: LiveGraphics.GetComposerVideoGraphicItemsRequest,
     options?: RequestOptions,
@@ -86,13 +141,15 @@ export class LiveGraphics {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/live_events/{live_event_id}/composer/graphics/videos"),
+        urlTemplate: this.#servers.default("/live_events/{live_event_id}/composer/graphics/videos"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
-        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.number() }],
+        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.float64() }],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -106,13 +163,14 @@ export class LiveGraphics {
 
 export namespace LiveGraphics {
   export type AddComposerVideoGraphicItemRequest = {
+    /** The ID of the event. */
     liveEventId: number;
     body: LiveEventsComposerGraphicsVideosRequest;
   };
 
-  export class AddComposerVideoGraphicItemError extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class AddComposerVideoGraphicItemError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<AddComposerVideoGraphicItemError> = [
       { on: 400, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 401, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -120,13 +178,15 @@ export namespace LiveGraphics {
   }
 
   export type DeleteComposerVideoGraphicItemRequest = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the associated video. */
     videoId: number;
   };
 
-  export class DeleteComposerVideoGraphicItemError extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class DeleteComposerVideoGraphicItemError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<DeleteComposerVideoGraphicItemError> = [
       { on: 400, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 401, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -134,12 +194,13 @@ export namespace LiveGraphics {
   }
 
   export type GetComposerVideoGraphicItemsRequest = {
+    /** The ID of the event. */
     liveEventId: number;
   };
 
-  export class GetComposerVideoGraphicItemsError extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class GetComposerVideoGraphicItemsError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<GetComposerVideoGraphicItemsError> = [
       { on: 400, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 401, kind: "error2", decode: { kind: "json", schema: errorSchema } },

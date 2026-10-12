@@ -4,7 +4,7 @@
 
 Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts` · 11 operations · Request and error types: namespace `LikesEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### checkIfUserLikedVideo
 
@@ -13,7 +13,7 @@ Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LikesEssentials.CheckIfUserLikedVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LikesEssentials.CheckIfUserLikedVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LikesEssentials.CheckIfUserLikedVideoRequest` (2):
@@ -34,7 +34,7 @@ Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LikesEssentials.CheckIfUserLikedVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LikesEssentials.CheckIfUserLikedVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LikesEssentials.CheckIfUserLikedVideoAlt1Request` (1):
@@ -54,7 +54,7 @@ Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `LikesEssentials.GetLikesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LikesEssentials.GetLikesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LikesEssentials.GetLikesRequest` (7):
@@ -83,7 +83,7 @@ Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `LikesEssentials.GetLikesAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LikesEssentials.GetLikesAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LikesEssentials.GetLikesAlt1Request` (6):
@@ -106,12 +106,12 @@ Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts
 
 ### getVideoLikes
 
-- **Signature**: `getVideoLikes(request: LikesEssentials.GetVideoLikesRequest, options?: RequestOptions): ApiPromise<UserConnection, ResponseError>`
+- **Signature**: `getVideoLikes(request: LikesEssentials.GetVideoLikesRequest, options?: RequestOptions): ApiPromise<UserConnection, ApiError>`
 - **Wire**: `GET /videos/{video_id}/likes`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `LikesEssentials.GetVideoLikesRequest` (5):
 
@@ -131,12 +131,12 @@ Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts
 
 ### getVideoLikesAlt1
 
-- **Signature**: `getVideoLikesAlt1(request: LikesEssentials.GetVideoLikesAlt1Request, options?: RequestOptions): ApiPromise<UserConnection, ResponseError>`
+- **Signature**: `getVideoLikesAlt1(request: LikesEssentials.GetVideoLikesAlt1Request, options?: RequestOptions): ApiPromise<UserConnection, ApiError>`
 - **Wire**: `GET /channels/{channel_id}/videos/{video_id}/likes`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `LikesEssentials.GetVideoLikesAlt1Request` (6):
 
@@ -162,7 +162,7 @@ Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserConnection`
-- **Error**: `LikesEssentials.GetVodLikesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LikesEssentials.GetVodLikesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LikesEssentials.GetVodLikesRequest` (6):
@@ -190,8 +190,9 @@ Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts
 - **Wire**: `PUT /users/{user_id}/likes/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LikesEssentials.LikeVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LikesEssentials.LikeVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LikesEssentials.LikeVideoRequest` (2):
@@ -211,8 +212,9 @@ Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts
 - **Wire**: `PUT /me/likes/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LikesEssentials.LikeVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LikesEssentials.LikeVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LikesEssentials.LikeVideoAlt1Request` (1):
@@ -231,8 +233,9 @@ Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts
 - **Wire**: `DELETE /users/{user_id}/likes/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LikesEssentials.UnlikeVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LikesEssentials.UnlikeVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LikesEssentials.UnlikeVideoRequest` (2):
@@ -252,8 +255,9 @@ Accessor: `client.likesEssentials` · Source: `src/resources/likes-essentials.ts
 - **Wire**: `DELETE /me/likes/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LikesEssentials.UnlikeVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LikesEssentials.UnlikeVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LikesEssentials.UnlikeVideoAlt1Request` (1):

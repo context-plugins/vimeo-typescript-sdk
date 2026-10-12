@@ -3,6 +3,7 @@ import type { Schema } from "../core/validation/schema.js";
 import { videos17Schema, type Videos17 } from "./videos17.js";
 
 export type MeLiveEventsVideosRequest1 = {
+  /** An array of video objects. */
   videos?: Videos17[];
 };
 

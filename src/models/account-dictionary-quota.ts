@@ -6,8 +6,11 @@ import {
   type LanguageReplacementTerms,
 } from "./language-replacement-terms.js";
 
+/** Account dictionary usage and entry limits. */
 export type AccountDictionaryQuota = {
+  /** Glossary term usage and limit. */
   glossaryTerms?: GlossaryTerms;
+  /** Language replacement source-term usage and limit. */
   languageReplacementTerms?: LanguageReplacementTerms;
 };
 

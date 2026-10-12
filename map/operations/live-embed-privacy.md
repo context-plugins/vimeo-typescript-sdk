@@ -4,7 +4,7 @@
 
 Accessor: `client.liveEmbedPrivacy` · Source: `src/resources/live-embed-privacy.ts` · 6 operations · Request and error types: namespace `LiveEmbedPrivacy`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### getLiveEventWhitelist
 
@@ -13,7 +13,7 @@ Accessor: `client.liveEmbedPrivacy` · Source: `src/resources/live-embed-privacy
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `DomainConnection`
-- **Error**: `LiveEmbedPrivacy.GetLiveEventWhitelistError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEmbedPrivacy.GetLiveEventWhitelistError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"error4"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEmbedPrivacy.GetLiveEventWhitelistRequest` (2):
@@ -35,7 +35,7 @@ Accessor: `client.liveEmbedPrivacy` · Source: `src/resources/live-embed-privacy
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `DomainConnection`
-- **Error**: `LiveEmbedPrivacy.GetLiveEventWhitelistAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEmbedPrivacy.GetLiveEventWhitelistAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"error4"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEmbedPrivacy.GetLiveEventWhitelistAlt1Request` (1):
@@ -56,7 +56,7 @@ Accessor: `client.liveEmbedPrivacy` · Source: `src/resources/live-embed-privacy
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `DomainConnection`
-- **Error**: `LiveEmbedPrivacy.GetLiveEventWhitelistAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEmbedPrivacy.GetLiveEventWhitelistAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"error4"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEmbedPrivacy.GetLiveEventWhitelistAlt2Request` (1):
@@ -75,9 +75,10 @@ Accessor: `client.liveEmbedPrivacy` · Source: `src/resources/live-embed-privacy
 - **Signature**: `setLiveEventWhitelist(request: LiveEmbedPrivacy.SetLiveEventWhitelistRequest, options?: RequestOptions): ApiPromise<undefined, LiveEmbedPrivacy.SetLiveEventWhitelistError>`
 - **Wire**: `PUT /users/{user_id}/live_events/{live_event_id}/privacy/domains`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEmbedPrivacy.SetLiveEventWhitelistError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEmbedPrivacy.SetLiveEventWhitelistError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"error4"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEmbedPrivacy.SetLiveEventWhitelistRequest` (3):
@@ -98,9 +99,10 @@ Accessor: `client.liveEmbedPrivacy` · Source: `src/resources/live-embed-privacy
 - **Signature**: `setLiveEventWhitelistAlt1(request: LiveEmbedPrivacy.SetLiveEventWhitelistAlt1Request, options?: RequestOptions): ApiPromise<undefined, LiveEmbedPrivacy.SetLiveEventWhitelistAlt1Error>`
 - **Wire**: `PUT /live_events/{live_event_id}/privacy/domains`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEmbedPrivacy.SetLiveEventWhitelistAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEmbedPrivacy.SetLiveEventWhitelistAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"error4"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEmbedPrivacy.SetLiveEventWhitelistAlt1Request` (2):
@@ -120,9 +122,10 @@ Accessor: `client.liveEmbedPrivacy` · Source: `src/resources/live-embed-privacy
 - **Signature**: `setLiveEventWhitelistAlt2(request: LiveEmbedPrivacy.SetLiveEventWhitelistAlt2Request, options?: RequestOptions): ApiPromise<undefined, LiveEmbedPrivacy.SetLiveEventWhitelistAlt2Error>`
 - **Wire**: `PUT /me/live_events/{live_event_id}/privacy/domains`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEmbedPrivacy.SetLiveEventWhitelistAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEmbedPrivacy.SetLiveEventWhitelistAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"error4"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEmbedPrivacy.SetLiveEventWhitelistAlt2Request` (2):

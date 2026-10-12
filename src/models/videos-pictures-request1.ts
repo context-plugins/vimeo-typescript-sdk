@@ -2,6 +2,7 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type VideosPicturesRequest1 = {
+  /** Whether this thumbnail is the default. */
   active?: boolean;
 };
 

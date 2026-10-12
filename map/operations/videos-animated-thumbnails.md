@@ -4,7 +4,7 @@
 
 Accessor: `client.videosAnimatedThumbnails` · Source: `src/resources/videos-animated-thumbnails.ts` · 5 operations · Request and error types: namespace `VideosAnimatedThumbnails`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createAnimatedThumbset
 
@@ -12,8 +12,9 @@ Accessor: `client.videosAnimatedThumbnails` · Source: `src/resources/videos-ani
 - **Wire**: `POST /videos/{video_id}/animated_thumbsets`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AnimatedThumbset`
-- **Error**: `VideosAnimatedThumbnails.CreateAnimatedThumbsetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAnimatedThumbnails.CreateAnimatedThumbsetError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"legacyError"` [403] `LegacyError` · `"legacyError2"` [429] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAnimatedThumbnails.CreateAnimatedThumbsetRequest` (2):
@@ -36,8 +37,9 @@ Accessor: `client.videosAnimatedThumbnails` · Source: `src/resources/videos-ani
 - **Wire**: `DELETE /videos/{video_id}/animated_thumbsets/{picture_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosAnimatedThumbnails.DeleteAnimatedThumbsetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAnimatedThumbnails.DeleteAnimatedThumbsetError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAnimatedThumbnails.DeleteAnimatedThumbsetRequest` (2):
@@ -58,7 +60,7 @@ Accessor: `client.videosAnimatedThumbnails` · Source: `src/resources/videos-ani
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AnimatedThumbsetConnection`
-- **Error**: `VideosAnimatedThumbnails.GetAllAnimatedThumbsetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAnimatedThumbnails.GetAllAnimatedThumbsetError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAnimatedThumbnails.GetAllAnimatedThumbsetRequest` (3):
@@ -81,7 +83,7 @@ Accessor: `client.videosAnimatedThumbnails` · Source: `src/resources/videos-ani
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AnimatedThumbset`
-- **Error**: `VideosAnimatedThumbnails.GetAnimatedThumbsetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAnimatedThumbnails.GetAnimatedThumbsetError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAnimatedThumbnails.GetAnimatedThumbsetRequest` (2):
@@ -103,7 +105,7 @@ Accessor: `client.videosAnimatedThumbnails` · Source: `src/resources/videos-ani
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AnimatedThumbset`
-- **Error**: `VideosAnimatedThumbnails.GetAnimatedThumbsetStatusError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosAnimatedThumbnails.GetAnimatedThumbsetStatusError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosAnimatedThumbnails.GetAnimatedThumbsetStatusRequest` (2):

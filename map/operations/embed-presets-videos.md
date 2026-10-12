@@ -4,16 +4,17 @@
 
 Accessor: `client.embedPresetsVideos` · Source: `src/resources/embed-presets-videos.ts` · 5 operations · Request and error types: namespace `EmbedPresetsVideos`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoEmbedPreset
 
-- **Signature**: `addVideoEmbedPreset(request: EmbedPresetsVideos.AddVideoEmbedPresetRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `addVideoEmbedPreset(request: EmbedPresetsVideos.AddVideoEmbedPresetRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PUT /videos/{video_id}/presets/{preset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `EmbedPresetsVideos.AddVideoEmbedPresetRequest` (2):
 
@@ -28,8 +29,9 @@ Accessor: `client.embedPresetsVideos` · Source: `src/resources/embed-presets-vi
 - **Wire**: `DELETE /videos/{video_id}/presets/{preset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `EmbedPresetsVideos.DeleteVideoEmbedPresetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `EmbedPresetsVideos.DeleteVideoEmbedPresetError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `EmbedPresetsVideos.DeleteVideoEmbedPresetRequest` (2):
@@ -45,12 +47,12 @@ Accessor: `client.embedPresetsVideos` · Source: `src/resources/embed-presets-vi
 
 ### getEmbedPresetVideos
 
-- **Signature**: `getEmbedPresetVideos(request: EmbedPresetsVideos.GetEmbedPresetVideosRequest, options?: RequestOptions): ApiPromise<VideoConnection, ResponseError>`
+- **Signature**: `getEmbedPresetVideos(request: EmbedPresetsVideos.GetEmbedPresetVideosRequest, options?: RequestOptions): ApiPromise<VideoConnection, ApiError>`
 - **Wire**: `GET /users/{user_id}/presets/{preset_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `EmbedPresetsVideos.GetEmbedPresetVideosRequest` (4):
 
@@ -67,12 +69,12 @@ Accessor: `client.embedPresetsVideos` · Source: `src/resources/embed-presets-vi
 
 ### getEmbedPresetVideosAlt1
 
-- **Signature**: `getEmbedPresetVideosAlt1(request: EmbedPresetsVideos.GetEmbedPresetVideosAlt1Request, options?: RequestOptions): ApiPromise<VideoConnection, ResponseError>`
+- **Signature**: `getEmbedPresetVideosAlt1(request: EmbedPresetsVideos.GetEmbedPresetVideosAlt1Request, options?: RequestOptions): ApiPromise<VideoConnection, ApiError>`
 - **Wire**: `GET /me/presets/{preset_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `EmbedPresetsVideos.GetEmbedPresetVideosAlt1Request` (3):
 
@@ -93,7 +95,7 @@ Accessor: `client.embedPresetsVideos` · Source: `src/resources/embed-presets-vi
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `EmbedPresetsVideos.GetVideoEmbedPresetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `EmbedPresetsVideos.GetVideoEmbedPresetError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `EmbedPresetsVideos.GetVideoEmbedPresetRequest` (2):

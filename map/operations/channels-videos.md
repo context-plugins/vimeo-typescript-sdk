@@ -4,7 +4,7 @@
 
 Accessor: `client.channelsVideos` · Source: `src/resources/channels-videos.ts` · 7 operations · Request and error types: namespace `ChannelsVideos`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoToChannel
 
@@ -12,8 +12,9 @@ Accessor: `client.channelsVideos` · Source: `src/resources/channels-videos.ts` 
 - **Wire**: `PUT /channels/{channel_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsVideos.AddVideoToChannelError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsVideos.AddVideoToChannelError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsVideos.AddVideoToChannelRequest` (2):
@@ -33,8 +34,9 @@ Accessor: `client.channelsVideos` · Source: `src/resources/channels-videos.ts` 
 - **Wire**: `PUT /channels/{channel_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsVideos.AddVideosToChannelError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsVideos.AddVideosToChannelError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsVideos.AddVideosToChannelRequest` (2):
@@ -55,8 +57,9 @@ Accessor: `client.channelsVideos` · Source: `src/resources/channels-videos.ts` 
 - **Wire**: `DELETE /channels/{channel_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsVideos.DeleteVideoFromChannelError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsVideos.DeleteVideoFromChannelError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsVideos.DeleteVideoFromChannelRequest` (2):
@@ -77,7 +80,7 @@ Accessor: `client.channelsVideos` · Source: `src/resources/channels-videos.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ChannelConnection`
-- **Error**: `ChannelsVideos.GetAvailableVideoChannelsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsVideos.GetAvailableVideoChannelsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsVideos.GetAvailableVideoChannelsRequest` (1):
@@ -98,7 +101,7 @@ Accessor: `client.channelsVideos` · Source: `src/resources/channels-videos.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `ChannelsVideos.GetChannelVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsVideos.GetChannelVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsVideos.GetChannelVideoRequest` (2):
@@ -120,7 +123,7 @@ Accessor: `client.channelsVideos` · Source: `src/resources/channels-videos.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `ChannelsVideos.GetChannelVideosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsVideos.GetChannelVideosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error304"` [304] no body · `"legacyError"` [400] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsVideos.GetChannelVideosRequest` (10):
@@ -152,8 +155,9 @@ Accessor: `client.channelsVideos` · Source: `src/resources/channels-videos.ts` 
 - **Wire**: `DELETE /channels/{channel_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsVideos.RemoveVideosFromChannelError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsVideos.RemoveVideosFromChannelError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsVideos.RemoveVideosFromChannelRequest` (2):

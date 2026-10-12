@@ -4,7 +4,7 @@
 
 Accessor: `client.videosTags` · Source: `src/resources/videos-tags.ts` · 6 operations · Request and error types: namespace `VideosTags`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoTag
 
@@ -12,8 +12,9 @@ Accessor: `client.videosTags` · Source: `src/resources/videos-tags.ts` · 6 ope
 - **Wire**: `PUT /videos/{video_id}/tags/{word}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Tag`
-- **Error**: `VideosTags.AddVideoTagError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTags.AddVideoTagError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTags.AddVideoTagRequest` (2):
@@ -34,8 +35,9 @@ Accessor: `client.videosTags` · Source: `src/resources/videos-tags.ts` · 6 ope
 - **Wire**: `PUT /videos/{video_id}/tags`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Tag[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `VideosTags.AddVideoTagsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTags.AddVideoTagsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTags.AddVideoTagsRequest` (3):
@@ -58,7 +60,7 @@ Accessor: `client.videosTags` · Source: `src/resources/videos-tags.ts` · 6 ope
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Tag`
-- **Error**: `VideosTags.CheckVideoForTagError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTags.CheckVideoForTagError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTags.CheckVideoForTagRequest` (2):
@@ -79,8 +81,9 @@ Accessor: `client.videosTags` · Source: `src/resources/videos-tags.ts` · 6 ope
 - **Wire**: `DELETE /videos/{video_id}/tags/{word}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosTags.DeleteVideoTagError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTags.DeleteVideoTagError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTags.DeleteVideoTagRequest` (2):
@@ -96,12 +99,12 @@ Accessor: `client.videosTags` · Source: `src/resources/videos-tags.ts` · 6 ope
 
 ### getVideoTags
 
-- **Signature**: `getVideoTags(request: VideosTags.GetVideoTagsRequest, options?: RequestOptions): ApiPromise<TagConnection, ResponseError>`
+- **Signature**: `getVideoTags(request: VideosTags.GetVideoTagsRequest, options?: RequestOptions): ApiPromise<TagConnection, ApiError>`
 - **Wire**: `GET /videos/{video_id}/tags`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TagConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosTags.GetVideoTagsRequest` (3):
 
@@ -122,7 +125,7 @@ Accessor: `client.videosTags` · Source: `src/resources/videos-tags.ts` · 6 ope
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `VideosTags.GetVideosWithTagError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTags.GetVideosWithTagError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTags.GetVideosWithTagRequest` (5):

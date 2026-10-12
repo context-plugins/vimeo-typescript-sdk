@@ -4,7 +4,7 @@
 
 Accessor: `client.onDemandPurchasesAndRentals` · Source: `src/resources/on-demand-purchases-and-rentals.ts` · 3 operations · Request and error types: namespace `OnDemandPurchasesAndRentals`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### checkIfVodWasPurchasedAlt1
 
@@ -13,7 +13,7 @@ Accessor: `client.onDemandPurchasesAndRentals` · Source: `src/resources/on-dema
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandPage`
-- **Error**: `OnDemandPurchasesAndRentals.CheckIfVodWasPurchasedAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandPurchasesAndRentals.CheckIfVodWasPurchasedAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandPurchasesAndRentals.CheckIfVodWasPurchasedAlt1Request` (1):
@@ -34,7 +34,7 @@ Accessor: `client.onDemandPurchasesAndRentals` · Source: `src/resources/on-dema
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandPageConnection`
-- **Error**: `OnDemandPurchasesAndRentals.GetVodPurchasesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandPurchasesAndRentals.GetVodPurchasesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandPurchasesAndRentals.GetVodPurchasesRequest` (6):
@@ -63,7 +63,7 @@ Accessor: `client.onDemandPurchasesAndRentals` · Source: `src/resources/on-dema
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandPageConnection`
-- **Error**: `OnDemandPurchasesAndRentals.GetVodPurchasesAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandPurchasesAndRentals.GetVodPurchasesAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandPurchasesAndRentals.GetVodPurchasesAlt1Request` (5):

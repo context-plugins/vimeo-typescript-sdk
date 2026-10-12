@@ -4,9 +4,13 @@ import { preorder1Schema, type Preorder1 } from "./preorder1.js";
 import { publishSchema, type Publish } from "./publish.js";
 
 export type OndemandPagesRequest = {
+  /** The custom string to use in the Vimeo URL of the On Demand page. */
   link?: string;
   preorder?: Preorder1;
   publish?: Publish;
+  /**
+   * Whether to publish the On Demand page automatically after all videos have finished transcoding.
+   */
   publishWhenReady?: boolean;
 };
 

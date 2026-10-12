@@ -1,6 +1,15 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The service to simulcast to.
+ *
+ * Option descriptions:
+ *  * `custom_rtmp` - Simulcast to a custom service.
+ *  * `facebook` - Simulcast to Facebook Live.
+ *  * `linkedin` - Simulcast to LinkedIn Live.
+ *  * `youtube` - Simulcast to YouTube Live.
+ */
 export const ServiceName1 = {
   CustomRtmp: "custom_rtmp",
   Facebook: "facebook",

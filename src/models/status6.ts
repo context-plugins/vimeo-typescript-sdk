@@ -1,16 +1,18 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The video's availability status.
+ *
+ * Option descriptions:
+ *  * `complete` - Transcoding is complete. The video is available.
+ *  * `error` - There was a transcoding error. The video isn't available.
+ *  * `in_progress` - Transcoding is currently underway. The video isn't available yet.
+ */
 export const Status6 = {
-  Blocked: "blocked",
-  Completed: "completed",
-  ExceedsMaximumDuration: "exceeds_maximum_duration",
-  Failed: "failed",
+  Complete: "complete",
+  Error: "error",
   InProgress: "in_progress",
-  LanguageNotSupported: "language_not_supported",
-  NoSpeech: "no_speech",
-  NotStarted: "not_started",
-  Unknown: "unknown",
 } as const;
 export type Status6 = (typeof Status6)[keyof typeof Status6] | (string & {});
 

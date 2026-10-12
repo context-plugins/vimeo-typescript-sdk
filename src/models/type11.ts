@@ -1,6 +1,15 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The type of audio track.
+ *
+ * Option descriptions:
+ *  * `commentary` - The audio track is a commentary.
+ *  * `descriptive` - The audio track is descriptive for accessibility.
+ *  * `main` - The audio track is dubbed audio.
+ *  * `unknown` - The audio track category is unknown.
+ */
 export const Type11 = {
   Commentary: "commentary",
   Descriptive: "descriptive",

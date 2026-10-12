@@ -3,18 +3,29 @@ import type { Schema } from "../core/validation/schema.js";
 import { liveSchema, type Live } from "./live.js";
 import { staffPickSchema, type StaffPick } from "./staff-pick.js";
 
+/** A collection of the video's badges. */
 export type Badges = {
+  /** Whether the video was filmed using Dolby Vision. */
   dolbyVision?: boolean;
+  /** Whether the video has an HDR-compatible transcode. */
   hdr: boolean;
+  /** Whether the video was filmed using HDR10. */
   hdr10?: boolean;
+  /** Whether the video was filmed using HDR10 Plus. */
   hdr10Plus?: boolean;
   live: Live;
+  /** Whether the video has a 4K-quality transcode. */
   ott4K?: boolean;
+  /** Whether the video has 5.1 audio. */
   ott51Audio?: boolean;
+  /** Whether the video has an HEVC-compatible transcode. */
   ottHevc?: boolean;
   staffPick: StaffPick;
+  /** Whether the video was filmed using stereo spatial. */
   stereoSpatial?: boolean;
+  /** Whether the video is a Vimeo On Demand video. */
   vod: boolean;
+  /** Whether the video is a Vimeo Weekend Challenge. */
   weekendChallenge: boolean;
 };
 

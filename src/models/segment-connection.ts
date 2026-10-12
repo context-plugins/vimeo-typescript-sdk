@@ -12,9 +12,9 @@ export type SegmentConnection = {
 };
 
 export const segmentConnectionSchema: Schema<SegmentConnection> = s.object<SegmentConnection>({
-  total: s.optional(s.number()),
-  page: s.optional(s.number()),
-  perPage: s.optional(s.number()),
+  total: s.optional(s.int()),
+  page: s.optional(s.int()),
+  perPage: s.optional(s.int()),
   paging: s.optional(s.lazy(() => pagingSchema)),
   data: s.optional(s.array(s.lazy(() => segmentSchema))),
   _keysMap: {

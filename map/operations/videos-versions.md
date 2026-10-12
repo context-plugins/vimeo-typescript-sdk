@@ -4,7 +4,7 @@
 
 Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` · 13 operations · Request and error types: namespace `VideosVersions`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createAudioTrack
 
@@ -12,8 +12,9 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 - **Wire**: `POST /videos/{video_id}/versions/{version_id}/audiotracks`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AlternateAudioTrack`
-- **Error**: `VideosVersions.CreateAudioTrackError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVersions.CreateAudioTrackError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVersions.CreateAudioTrackRequest` (3):
@@ -36,8 +37,9 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 - **Wire**: `POST /videos/{video_id}/versions`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `VideoVersion`
-- **Error**: `VideosVersions.CreateVideoVersionError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVersions.CreateVideoVersionError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVersions.CreateVideoVersionRequest` (2):
@@ -59,8 +61,9 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 - **Wire**: `DELETE /videos/{video_id}/versions/{version_id}/audiotracks/{audiotrack_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosVersions.DeleteAudioTrackError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVersions.DeleteAudioTrackError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVersions.DeleteAudioTrackRequest` (3):
@@ -81,8 +84,9 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 - **Wire**: `DELETE /videos/{video_id}/versions/{version_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosVersions.DeleteVideoVersionError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVersions.DeleteVideoVersionError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVersions.DeleteVideoVersionRequest` (2):
@@ -101,9 +105,10 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 - **Signature**: `editAudioTrack(request: VideosVersions.EditAudioTrackRequest, options?: RequestOptions): ApiPromise<AlternateAudioTrack, VideosVersions.EditAudioTrackError>`
 - **Wire**: `PATCH /videos/{video_id}/versions/{version_id}/audiotracks/{audiotrack_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AlternateAudioTrack`
-- **Error**: `VideosVersions.EditAudioTrackError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVersions.EditAudioTrackError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVersions.EditAudioTrackRequest` (4):
@@ -126,9 +131,10 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 - **Signature**: `editVideoVersion(request: VideosVersions.EditVideoVersionRequest, options?: RequestOptions): ApiPromise<VideoVersion, VideosVersions.EditVideoVersionError>`
 - **Wire**: `PATCH /videos/{video_id}/versions/{version_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `VideoVersion`
-- **Error**: `VideosVersions.EditVideoVersionError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVersions.EditVideoVersionError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVersions.EditVideoVersionRequest` (3):
@@ -153,7 +159,7 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AlternateAudioTrack`
-- **Error**: `VideosVersions.GetAudioTrackError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVersions.GetAudioTrackError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVersions.GetAudioTrackRequest` (3):
@@ -176,7 +182,7 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AlternateAudioTrackConnection`
-- **Error**: `VideosVersions.GetAudioTracksError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVersions.GetAudioTracksError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVersions.GetAudioTracksRequest` (2):
@@ -193,12 +199,12 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 
 ### getAudiotrackDownloads
 
-- **Signature**: `getAudiotrackDownloads(request: VideosVersions.GetAudiotrackDownloadsRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `getAudiotrackDownloads(request: VideosVersions.GetAudiotrackDownloadsRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `GET /videos/{video_id}/versions/{version_id}/downloads`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosVersions.GetAudiotrackDownloadsRequest` (2):
 
@@ -209,12 +215,12 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 
 ### getVersionThumbnail
 
-- **Signature**: `getVersionThumbnail(request: VideosVersions.GetVersionThumbnailRequest, options?: RequestOptions): ApiPromise<Picture, ResponseError>`
+- **Signature**: `getVersionThumbnail(request: VideosVersions.GetVersionThumbnailRequest, options?: RequestOptions): ApiPromise<Picture, ApiError>`
 - **Wire**: `GET /videos/{video_id}/versions/{version_id}/picture`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosVersions.GetVersionThumbnailRequest` (2):
 
@@ -234,7 +240,7 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoVersion`
-- **Error**: `VideosVersions.GetVideoVersionError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVersions.GetVideoVersionError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVersions.GetVideoVersionRequest` (2):
@@ -256,7 +262,7 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoVersionConnection`
-- **Error**: `VideosVersions.GetVideoVersionsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVersions.GetVideoVersionsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVersions.GetVideoVersionsRequest` (3):
@@ -280,7 +286,7 @@ Accessor: `client.videosVersions` · Source: `src/resources/videos-versions.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoVersionConnection`
-- **Error**: `VideosVersions.GetVideoVersionsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVersions.GetVideoVersionsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVersions.GetVideoVersionsAlt1Request` (4):

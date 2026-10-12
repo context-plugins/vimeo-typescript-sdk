@@ -1,6 +1,23 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The video rendition.
+ *
+ * Option descriptions:
+ *  * `2k` - The video has 2K resolution.
+ *  * `4k` - The video has 4K resolution.
+ *  * `5k` - The video has 5K resolution.
+ *  * `6k` - The video has 6K resolution.
+ *  * `7k` - The video has 7K resolution.
+ *  * `8k` - The video has 8K resolution.
+ *  * `240p` - The video has 240p resolution.
+ *  * `360p` - The video has 360p resolution.
+ *  * `480p` - The video has 480p resolution.
+ *  * `540p` - The video has 540p resolution.
+ *  * `720p` - The video has 720p resolution.
+ *  * `1080p` - The video has 1080p resolution.
+ */
 export const Rendition1 = {
   _2K: "2k",
   _4K: "4k",

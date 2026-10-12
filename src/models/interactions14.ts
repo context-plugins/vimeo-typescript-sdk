@@ -4,7 +4,9 @@ import { likes3Schema, type Likes3 } from "./likes3.js";
 import { watchlater2Schema, type Watchlater2 } from "./watchlater2.js";
 
 export type Interactions14 = {
+  /** Information about the authenticated user's interaction to like the video. */
   likes: Likes3;
+  /** Information about the authenticated user's interaction to watch the video later. */
   watchlater: Watchlater2;
 };
 

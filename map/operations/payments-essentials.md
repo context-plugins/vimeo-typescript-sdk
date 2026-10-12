@@ -4,7 +4,7 @@
 
 Accessor: `client.paymentsEssentials` · Source: `src/resources/payments-essentials.ts` · 4 operations · Request and error types: namespace `PaymentsEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### deletePaymentMethod
 
@@ -12,8 +12,9 @@ Accessor: `client.paymentsEssentials` · Source: `src/resources/payments-essenti
 - **Wire**: `DELETE /me/payment_methods/{payment_method_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `PaymentsEssentials.DeletePaymentMethodError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `PaymentsEssentials.DeletePaymentMethodError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `PaymentsEssentials.DeletePaymentMethodRequest` (1):
@@ -33,7 +34,7 @@ Accessor: `client.paymentsEssentials` · Source: `src/resources/payments-essenti
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PaymentMethod`
-- **Error**: `PaymentsEssentials.GetPaymentMethodInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `PaymentsEssentials.GetPaymentMethodInfoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `PaymentsEssentials.GetPaymentMethodInfoRequest` (1):
@@ -49,12 +50,12 @@ Accessor: `client.paymentsEssentials` · Source: `src/resources/payments-essenti
 
 ### getSubscriptionInfo
 
-- **Signature**: `getSubscriptionInfo(request: PaymentsEssentials.GetSubscriptionInfoRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `getSubscriptionInfo(request: PaymentsEssentials.GetSubscriptionInfoRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `GET /users/{user_id}/subscriptions/{subscription_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PaymentsEssentials.GetSubscriptionInfoRequest` (2):
 
@@ -70,7 +71,7 @@ Accessor: `client.paymentsEssentials` · Source: `src/resources/payments-essenti
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PaymentMethodConnection`
-- **Error**: `PaymentsEssentials.ListPaymentMethodsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `PaymentsEssentials.ListPaymentMethodsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `PaymentsEssentials.ListPaymentMethodsRequest` (4):

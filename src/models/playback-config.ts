@@ -41,23 +41,41 @@ import { showPlaybackVideoTitleSchema, type ShowPlaybackVideoTitle } from "./sho
 import { showPlaybackViewsSchema, type ShowPlaybackViews } from "./show-playback-views.js";
 
 export type PlaybackConfig = {
+  /** Information about enabling the Ask AI functionality during playback. */
   enableAskAi: EnableAskAi;
+  /** Information about enabling the comments functionality during playback. */
   enableComments: EnableComments;
+  /** Information about enabling the download functionality during playback. */
   enableDownload: EnableDownload;
+  /** Information about enabling the like functionality during playback. */
   enableLike: EnableLike;
+  /** Information about enabling the share functionality during playback. */
   enableShare: EnableShare;
+  /** Information about the grid size configuration for playback view. */
   playbackGridSize: PlaybackGridSize;
+  /** Information about showing the date when the video was added during playback. */
   showPlaybackAddedDate: ShowPlaybackAddedDate;
+  /** Information about showing the profile image in grid view. */
   showPlaybackGridProfileImage: ShowPlaybackGridProfileImage;
+  /** Information about showing the profile name in grid view. */
   showPlaybackGridProfileName: ShowPlaybackGridProfileName;
+  /** Information about showing the video card in grid view. */
   showPlaybackGridVideoCard: ShowPlaybackGridVideoCard;
+  /** Information about showing the video title in grid view. */
   showPlaybackGridVideoTitle: ShowPlaybackGridVideoTitle;
+  /** Information about showing the profile image during playback. */
   showPlaybackProfileImage: ShowPlaybackProfileImage;
+  /** Information about showing the profile name during playback. */
   showPlaybackProfileName: ShowPlaybackProfileName;
+  /** Information about showing the date when the video was uploaded during playback. */
   showPlaybackUploadedDate: ShowPlaybackUploadedDate;
+  /** Information about showing the video count during playback. */
   showPlaybackVideoCount: ShowPlaybackVideoCount;
+  /** Information about showing the video description during playback. */
   showPlaybackVideoDescription: ShowPlaybackVideoDescription;
+  /** Information about showing the video title during playback. */
   showPlaybackVideoTitle: ShowPlaybackVideoTitle;
+  /** Information about showing the view count during playback. */
   showPlaybackViews: ShowPlaybackViews;
 };
 

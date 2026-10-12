@@ -2,9 +2,13 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type StaffPick = {
+  /** Whether the video is a Vimeo Staff Pick Best of the Month. */
   bestOfTheMonth: boolean;
+  /** Whether the video is a Vimeo Staff Pick Best of the Year. */
   bestOfTheYear: boolean;
+  /** Whether the video is a Vimeo Staff Pick. */
   normal: boolean;
+  /** Whether the video is a Vimeo Staff Pick Premiere. */
   premiere: boolean;
 };
 

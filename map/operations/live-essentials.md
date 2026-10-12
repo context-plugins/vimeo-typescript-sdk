@@ -4,7 +4,7 @@
 
 Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` · 19 operations · Request and error types: namespace `LiveEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createLiveEvent
 
@@ -12,8 +12,9 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Wire**: `POST /users/{user_id}/live_events`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `RecurringEvent`
-- **Error**: `LiveEssentials.CreateLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.CreateLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.CreateLiveEventRequest` (2):
@@ -35,8 +36,9 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Wire**: `POST /live_events`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `RecurringEvent`
-- **Error**: `LiveEssentials.CreateLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.CreateLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.CreateLiveEventAlt1Request` (1):
@@ -57,8 +59,9 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Wire**: `POST /me/live_events`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `RecurringEvent`
-- **Error**: `LiveEssentials.CreateLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.CreateLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.CreateLiveEventAlt2Request` (1):
@@ -79,8 +82,9 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Wire**: `DELETE /users/{user_id}/live_events/{live_event_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEssentials.DeleteLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.DeleteLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.DeleteLiveEventRequest` (2):
@@ -100,8 +104,9 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Wire**: `DELETE /live_events/{live_event_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEssentials.DeleteLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.DeleteLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.DeleteLiveEventAlt1Request` (1):
@@ -120,8 +125,9 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Wire**: `DELETE /me/live_events/{live_event_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEssentials.DeleteLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.DeleteLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.DeleteLiveEventAlt2Request` (1):
@@ -140,8 +146,9 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Wire**: `DELETE /users/{user_id}/live_events`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEssentials.DeleteLiveEventsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.DeleteLiveEventsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.DeleteLiveEventsRequest` (2):
@@ -162,8 +169,9 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Wire**: `DELETE /live_events`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEssentials.DeleteLiveEventsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.DeleteLiveEventsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.DeleteLiveEventsAlt1Request` (1):
@@ -183,8 +191,9 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Wire**: `DELETE /me/live_events`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEssentials.DeleteLiveEventsAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.DeleteLiveEventsAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.DeleteLiveEventsAlt2Request` (1):
@@ -205,7 +214,7 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `RecurringEvent`
-- **Error**: `LiveEssentials.GetLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.GetLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.GetLiveEventRequest` (3):
@@ -228,7 +237,7 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `RecurringEvent`
-- **Error**: `LiveEssentials.GetLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.GetLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.GetLiveEventAlt1Request` (2):
@@ -250,7 +259,7 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `RecurringEvent`
-- **Error**: `LiveEssentials.GetLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.GetLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.GetLiveEventAlt2Request` (2):
@@ -267,12 +276,12 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 
 ### getLiveEventOccurrences
 
-- **Signature**: `getLiveEventOccurrences(request: LiveEssentials.GetLiveEventOccurrencesRequest, options?: RequestOptions): ApiPromise<LiveEventOccurrenceConnection, ResponseError>`
+- **Signature**: `getLiveEventOccurrences(request: LiveEssentials.GetLiveEventOccurrencesRequest, options?: RequestOptions): ApiPromise<LiveEventOccurrenceConnection, ApiError>`
 - **Wire**: `GET /users/{user_id}/live_events_occurrences`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `LiveEventOccurrenceConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `LiveEssentials.GetLiveEventOccurrencesRequest` (5):
 
@@ -290,12 +299,12 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 
 ### getLiveEvents
 
-- **Signature**: `getLiveEvents(request: LiveEssentials.GetLiveEventsRequest, options?: RequestOptions): ApiPromise<EventConnection, ResponseError>`
+- **Signature**: `getLiveEvents(request: LiveEssentials.GetLiveEventsRequest, options?: RequestOptions): ApiPromise<EventConnection, ApiError>`
 - **Wire**: `GET /users/{user_id}/live_events`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `EventConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `LiveEssentials.GetLiveEventsRequest` (8):
 
@@ -308,24 +317,24 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 | `perPage` | `query` | `per_page` | `number` | no |
 | `query` | `query` | — | `string` | no |
 | `sort` | `query` | — | `Sort8` | no |
-| `type` | `query` | — | `Type27` | no |
+| `type` | `query` | — | `Type31` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
 | `Direction` | `directionSchema` | `src/models/direction.ts` |
 | `Filter8` | `filter8Schema` | `src/models/filter8.ts` |
 | `Sort8` | `sort8Schema` | `src/models/sort8.ts` |
-| `Type27` | `type27Schema` | `src/models/type27.ts` |
+| `Type31` | `type31Schema` | `src/models/type31.ts` |
 | `EventConnection` | `eventConnectionSchema` | `src/models/event-connection.ts` |
 
 ### getLiveEventsAlt1
 
-- **Signature**: `getLiveEventsAlt1(request: LiveEssentials.GetLiveEventsAlt1Request, options?: RequestOptions): ApiPromise<EventConnection, ResponseError>`
+- **Signature**: `getLiveEventsAlt1(request: LiveEssentials.GetLiveEventsAlt1Request, options?: RequestOptions): ApiPromise<EventConnection, ApiError>`
 - **Wire**: `GET /live_events`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `EventConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `LiveEssentials.GetLiveEventsAlt1Request` (7):
 
@@ -337,24 +346,24 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 | `perPage` | `query` | `per_page` | `number` | no |
 | `query` | `query` | — | `string` | no |
 | `sort` | `query` | — | `Sort8` | no |
-| `type` | `query` | — | `Type27` | no |
+| `type` | `query` | — | `Type31` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
 | `Direction` | `directionSchema` | `src/models/direction.ts` |
 | `Filter8` | `filter8Schema` | `src/models/filter8.ts` |
 | `Sort8` | `sort8Schema` | `src/models/sort8.ts` |
-| `Type27` | `type27Schema` | `src/models/type27.ts` |
+| `Type31` | `type31Schema` | `src/models/type31.ts` |
 | `EventConnection` | `eventConnectionSchema` | `src/models/event-connection.ts` |
 
 ### getLiveEventsAlt2
 
-- **Signature**: `getLiveEventsAlt2(request: LiveEssentials.GetLiveEventsAlt2Request, options?: RequestOptions): ApiPromise<EventConnection, ResponseError>`
+- **Signature**: `getLiveEventsAlt2(request: LiveEssentials.GetLiveEventsAlt2Request, options?: RequestOptions): ApiPromise<EventConnection, ApiError>`
 - **Wire**: `GET /me/live_events`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `EventConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `LiveEssentials.GetLiveEventsAlt2Request` (7):
 
@@ -366,14 +375,14 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 | `perPage` | `query` | `per_page` | `number` | no |
 | `query` | `query` | — | `string` | no |
 | `sort` | `query` | — | `Sort8` | no |
-| `type` | `query` | — | `Type27` | no |
+| `type` | `query` | — | `Type31` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
 | `Direction` | `directionSchema` | `src/models/direction.ts` |
 | `Filter8` | `filter8Schema` | `src/models/filter8.ts` |
 | `Sort8` | `sort8Schema` | `src/models/sort8.ts` |
-| `Type27` | `type27Schema` | `src/models/type27.ts` |
+| `Type31` | `type31Schema` | `src/models/type31.ts` |
 | `EventConnection` | `eventConnectionSchema` | `src/models/event-connection.ts` |
 
 ### updateLiveEvent
@@ -381,9 +390,10 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Signature**: `updateLiveEvent(request: LiveEssentials.UpdateLiveEventRequest, options?: RequestOptions): ApiPromise<RecurringEvent, LiveEssentials.UpdateLiveEventError>`
 - **Wire**: `PATCH /users/{user_id}/live_events/{live_event_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `RecurringEvent`
-- **Error**: `LiveEssentials.UpdateLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.UpdateLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.UpdateLiveEventRequest` (3):
@@ -405,9 +415,10 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Signature**: `updateLiveEventAlt1(request: LiveEssentials.UpdateLiveEventAlt1Request, options?: RequestOptions): ApiPromise<RecurringEvent, LiveEssentials.UpdateLiveEventAlt1Error>`
 - **Wire**: `PATCH /live_events/{live_event_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `RecurringEvent`
-- **Error**: `LiveEssentials.UpdateLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.UpdateLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.UpdateLiveEventAlt1Request` (2):
@@ -428,9 +439,10 @@ Accessor: `client.liveEssentials` · Source: `src/resources/live-essentials.ts` 
 - **Signature**: `updateLiveEventAlt2(request: LiveEssentials.UpdateLiveEventAlt2Request, options?: RequestOptions): ApiPromise<RecurringEvent, LiveEssentials.UpdateLiveEventAlt2Error>`
 - **Wire**: `PATCH /me/live_events/{live_event_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `RecurringEvent`
-- **Error**: `LiveEssentials.UpdateLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEssentials.UpdateLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEssentials.UpdateLiveEventAlt2Request` (2):

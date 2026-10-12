@@ -1,18 +1,22 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The play status of the video.
+ *
+ * Option descriptions:
+ *  * `drm_plays_exceeded` - The user's quota for DRM plays has been exceeded.
+ *  * `playable` - The video is playable.
+ *  * `purchase_required` - The video must be purchased.
+ *  * `restricted` - Playback for the video is restricted.
+ *  * `unavailable` - The video is unavailable.
+ */
 export const Status4 = {
-  Available: "available",
-  Failed: "failed",
-  Processing: "processing",
-  QuotaExceeded: "quota_exceeded",
-  TotalCapExceeded: "total_cap_exceeded",
-  TranscodeStarting: "transcode_starting",
-  Transcoding: "transcoding",
-  TranscodingError: "transcoding_error",
+  DrmPlaysExceeded: "drm_plays_exceeded",
+  Playable: "playable",
+  PurchaseRequired: "purchase_required",
+  Restricted: "restricted",
   Unavailable: "unavailable",
-  Uploading: "uploading",
-  UploadingError: "uploading_error",
 } as const;
 export type Status4 = (typeof Status4)[keyof typeof Status4] | (string & {});
 

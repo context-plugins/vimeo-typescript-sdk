@@ -4,7 +4,7 @@
 
 Accessor: `client.groupsVideos` · Source: `src/resources/groups-videos.ts` · 5 operations · Request and error types: namespace `GroupsVideos`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoToGroup
 
@@ -12,8 +12,9 @@ Accessor: `client.groupsVideos` · Source: `src/resources/groups-videos.ts` · 5
 - **Wire**: `PUT /groups/{group_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `GroupsVideos.AddVideoToGroupError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsVideos.AddVideoToGroupError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsVideos.AddVideoToGroupRequest` (2):
@@ -35,8 +36,9 @@ Accessor: `client.groupsVideos` · Source: `src/resources/groups-videos.ts` · 5
 - **Wire**: `DELETE /groups/{group_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `GroupsVideos.DeleteVideoFromGroupError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsVideos.DeleteVideoFromGroupError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsVideos.DeleteVideoFromGroupRequest` (2):
@@ -58,7 +60,7 @@ Accessor: `client.groupsVideos` · Source: `src/resources/groups-videos.ts` · 5
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `GroupConnection`
-- **Error**: `GroupsVideos.GetAvailableVideoGroupsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsVideos.GetAvailableVideoGroupsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsVideos.GetAvailableVideoGroupsRequest` (1):
@@ -79,7 +81,7 @@ Accessor: `client.groupsVideos` · Source: `src/resources/groups-videos.ts` · 5
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `GroupsVideos.GetGroupVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsVideos.GetGroupVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsVideos.GetGroupVideoRequest` (2):
@@ -101,7 +103,7 @@ Accessor: `client.groupsVideos` · Source: `src/resources/groups-videos.ts` · 5
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `GroupsVideos.GetGroupVideosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsVideos.GetGroupVideosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error304"` [304] no body · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsVideos.GetGroupVideosRequest` (8):

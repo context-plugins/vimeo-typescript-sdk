@@ -3,6 +3,7 @@ import type { Schema } from "../core/validation/schema.js";
 import { segment1Schema, type Segment1 } from "./segment1.js";
 
 export type VideosAiTexttracksRequest = {
+  /** The segments to edit. */
   segments?: Segment1[];
 };
 

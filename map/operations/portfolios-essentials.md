@@ -4,16 +4,16 @@
 
 Accessor: `client.portfoliosEssentials` · Source: `src/resources/portfolios-essentials.ts` · 4 operations · Request types: namespace `PortfoliosEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### getPortfolio
 
-- **Signature**: `getPortfolio(request: PortfoliosEssentials.GetPortfolioRequest, options?: RequestOptions): ApiPromise<Portfolio, ResponseError>`
+- **Signature**: `getPortfolio(request: PortfoliosEssentials.GetPortfolioRequest, options?: RequestOptions): ApiPromise<Portfolio, ApiError>`
 - **Wire**: `GET /users/{user_id}/portfolios/{portfolio_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Portfolio`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PortfoliosEssentials.GetPortfolioRequest` (2):
 
@@ -28,12 +28,12 @@ Accessor: `client.portfoliosEssentials` · Source: `src/resources/portfolios-ess
 
 ### getPortfolioAlt1
 
-- **Signature**: `getPortfolioAlt1(request: PortfoliosEssentials.GetPortfolioAlt1Request, options?: RequestOptions): ApiPromise<Portfolio, ResponseError>`
+- **Signature**: `getPortfolioAlt1(request: PortfoliosEssentials.GetPortfolioAlt1Request, options?: RequestOptions): ApiPromise<Portfolio, ApiError>`
 - **Wire**: `GET /me/portfolios/{portfolio_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Portfolio`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PortfoliosEssentials.GetPortfolioAlt1Request` (1):
 
@@ -47,12 +47,12 @@ Accessor: `client.portfoliosEssentials` · Source: `src/resources/portfolios-ess
 
 ### getPortfolios
 
-- **Signature**: `getPortfolios(request: PortfoliosEssentials.GetPortfoliosRequest, options?: RequestOptions): ApiPromise<PortfolioConnection, ResponseError>`
+- **Signature**: `getPortfolios(request: PortfoliosEssentials.GetPortfoliosRequest, options?: RequestOptions): ApiPromise<PortfolioConnection, ApiError>`
 - **Wire**: `GET /users/{user_id}/portfolios`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PortfolioConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PortfoliosEssentials.GetPortfoliosRequest` (6):
 
@@ -73,12 +73,12 @@ Accessor: `client.portfoliosEssentials` · Source: `src/resources/portfolios-ess
 
 ### getPortfoliosAlt1
 
-- **Signature**: `getPortfoliosAlt1(request: PortfoliosEssentials.GetPortfoliosAlt1Request, options?: RequestOptions): ApiPromise<PortfolioConnection, ResponseError>`
+- **Signature**: `getPortfoliosAlt1(request: PortfoliosEssentials.GetPortfoliosAlt1Request, options?: RequestOptions): ApiPromise<PortfolioConnection, ApiError>`
 - **Wire**: `GET /me/portfolios`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PortfolioConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PortfoliosEssentials.GetPortfoliosAlt1Request` (5):
 

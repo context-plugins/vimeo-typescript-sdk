@@ -4,7 +4,7 @@
 
 Accessor: `client.onDemandVideos` · Source: `src/resources/on-demand-videos.ts` · 4 operations · Request and error types: namespace `OnDemandVideos`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoToVod
 
@@ -12,8 +12,9 @@ Accessor: `client.onDemandVideos` · Source: `src/resources/on-demand-videos.ts`
 - **Wire**: `PUT /ondemand/pages/{ondemand_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `OnDemandVideo`
-- **Error**: `OnDemandVideos.AddVideoToVodError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandVideos.AddVideoToVodError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandVideos.AddVideoToVodRequest` (3):
@@ -36,8 +37,9 @@ Accessor: `client.onDemandVideos` · Source: `src/resources/on-demand-videos.ts`
 - **Wire**: `DELETE /ondemand/pages/{ondemand_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `OnDemandVideos.DeleteVideoFromVodError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandVideos.DeleteVideoFromVodError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandVideos.DeleteVideoFromVodRequest` (2):
@@ -53,12 +55,12 @@ Accessor: `client.onDemandVideos` · Source: `src/resources/on-demand-videos.ts`
 
 ### getVodVideo
 
-- **Signature**: `getVodVideo(request: OnDemandVideos.GetVodVideoRequest, options?: RequestOptions): ApiPromise<Video, ResponseError>`
+- **Signature**: `getVodVideo(request: OnDemandVideos.GetVodVideoRequest, options?: RequestOptions): ApiPromise<Video, ApiError>`
 - **Wire**: `GET /ondemand/pages/{ondemand_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `OnDemandVideos.GetVodVideoRequest` (2):
 
@@ -73,12 +75,12 @@ Accessor: `client.onDemandVideos` · Source: `src/resources/on-demand-videos.ts`
 
 ### getVodVideos
 
-- **Signature**: `getVodVideos(request: OnDemandVideos.GetVodVideosRequest, options?: RequestOptions): ApiPromise<OnDemandVideoConnection, ResponseError>`
+- **Signature**: `getVodVideos(request: OnDemandVideos.GetVodVideosRequest, options?: RequestOptions): ApiPromise<OnDemandVideoConnection, ApiError>`
 - **Wire**: `GET /ondemand/pages/{ondemand_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandVideoConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `OnDemandVideos.GetVodVideosRequest` (6):
 

@@ -1,6 +1,19 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The rental period of the video.
+ *
+ * Option descriptions:
+ *  * `1 week` - The video can be rented for a maximum of 1 week.
+ *  * `1 year` - The video can be rented for a maximum of 1 year.
+ *  * `3 month` - The video can be rented for a maximum of 3 months.
+ *  * `6 month` - The video can be rented for a maximum of 6 months.
+ *  * `24 hour` - The video can be rented for a maximum of 24 hours.
+ *  * `30 day` - The video can be rented for a maximum of 30 days.
+ *  * `48 hour` - The video can be rented for a maximum of 48 hours.
+ *  * `72 hour` - The video can be rented for a maximum of 72 hours.
+ */
 export const Period6 = {
   _1Week: "1 week",
   _1Year: "1 year",

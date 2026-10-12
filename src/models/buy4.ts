@@ -3,7 +3,12 @@ import type { Schema } from "../core/validation/schema.js";
 import { price3Schema, type Price3 } from "./price3.js";
 
 export type Buy4 = {
+  /** Whether episodes can be purchased. */
   active?: boolean;
+  /**
+   * Whether people who buy episodes can download them. To use this parameter, **type** must be
+   * `series`.
+   */
   download?: boolean;
   price?: Price3;
 };

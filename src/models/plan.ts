@@ -4,23 +4,41 @@ import { items1Schema, type Items1 } from "./items1.js";
 import { moneySchema, type Money } from "./money.js";
 
 export type Plan = {
+  /** The amount of the plan. */
   amount?: Money;
+  /** The ID of the billing plan. */
   billingPlanId?: string;
+  /** The ID of the billing plan product. */
   billingPlanProductId?: string;
+  /** The type of the billing plan. */
   billingPlanType?: string;
+  /** The time in 8601 format when the plan was created. */
   createdAt: string;
+  /** The ID of the plan. */
   id: string;
+  /** An array of items in the plan. */
   items: Items1[];
+  /** The metadata of the plan. */
   metadata?: Record<string, unknown>;
+  /** The ID of the plan. */
   planId: string;
+  /** The ID of the product. */
   productId: string;
+  /** The promotional code. */
   promoCode?: string;
+  /** The ID of the promotional code. */
   promoCodeId?: string;
+  /** The quantity of the plan. */
   quantity?: number;
+  /** The ID of the subscription plan. */
   subscriptionPlanId: string;
+  /** The number of the subscription plan. */
   subscriptionPlanNumber: string;
+  /** The type of the subscription plan. */
   subscriptionPlanType: string;
+  /** The time in 8601 format when the plan was synced. */
   syncedAt: string;
+  /** The time in 8601 format when the plan was updated. */
   updatedAt: string;
 };
 
@@ -37,7 +55,7 @@ export const planSchema: Schema<Plan> = s.object<Plan>({
   productId: s.string(),
   promoCode: s.optional(s.string()),
   promoCodeId: s.optional(s.string()),
-  quantity: s.optional(s.number()),
+  quantity: s.optional(s.float64()),
   subscriptionPlanId: s.string(),
   subscriptionPlanNumber: s.string(),
   subscriptionPlanType: s.string(),

@@ -7,11 +7,14 @@ import { title2Schema, type Title2 } from "./title2.js";
 
 export type Embed18 = {
   buttons?: Buttons2;
+  /** The main color of the embeddable player. */
   color?: string;
   endScreen?: EndScreen4;
   logos?: Logos10;
+  /** Whether to show the playbar on the embeddable player. */
   playbar?: boolean;
   title?: Title2;
+  /** Whether to show the volume selector on the embeddable player. */
   volume?: boolean;
 };
 

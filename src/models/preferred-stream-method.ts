@@ -1,6 +1,13 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The preferred streaming method.
+ *
+ * Option descriptions:
+ *  * `browser` - Stream in the browser.
+ *  * `encoder` - Stream by the encoder.
+ */
 export const PreferredStreamMethod = {
   Browser: "browser",
   Encoder: "encoder",

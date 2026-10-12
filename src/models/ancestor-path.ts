@@ -2,7 +2,9 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type AncestorPath = {
+  /** The link to the folder. */
   link: string;
+  /** The name of the folder. */
   name: string;
 };
 

@@ -4,22 +4,45 @@ import { metadata13Schema, type Metadata13 } from "./metadata13.js";
 import { metdataSchema, type Metdata } from "./metdata.js";
 import { replySchema, type Reply } from "./reply.js";
 import { textDecorationSchema, type TextDecoration } from "./text-decoration.js";
+import { type15Schema, type Type15 } from "./type15.js";
 import { userSchema, type User } from "./user.js";
 
 export type Comment = {
+  /** The time in ISO 8601 format when the comment was posted. */
   createdOn: string;
+  /** The time in ISO 8601 format when the comment was deleted. */
   deletedOn: string | null;
+  /** The time in ISO 8601 format when the comment was last edited. */
   lastEditedOn: string | null;
+  /** The permalink to the comment. */
   link: string;
   metadata: Metadata13;
   metdata: Metdata;
+  /** The list of replies to the comment. */
   replies: Reply[];
+  /** The comment's resource key string. */
   resourceKey: string;
+  /** The stringified Rich Text JSON. */
   richtext: string | null;
+  /** The content of the comment. */
   text: string;
+  /** An array of text decorations for the note. */
   textDecorations: TextDecoration[];
-  type: "video";
+  /**
+   * The Vimeo content to which the comment relates.
+   *
+   * Option descriptions:
+   *  * `video` - The comment is about a video.
+   */
+  type: Type15;
+  /** The unique identifier to access the comment resource. */
   uri: string;
+  /**
+   * The user who posted the comment. _This field is deprecated. Use the
+   * **metadata.connections.user** field instead._
+   *
+   * @deprecated
+   */
   user: User | null;
 };
 
@@ -35,7 +58,7 @@ export const commentSchema: Schema<Comment> = s.object<Comment>({
   richtext: s.nullable(s.string()),
   text: s.string(),
   textDecorations: s.array(s.lazy(() => textDecorationSchema)),
-  type: s.literal("video"),
+  type: type15Schema,
   uri: s.string(),
   user: s.nullable(s.lazy(() => userSchema)),
   _keysMap: {

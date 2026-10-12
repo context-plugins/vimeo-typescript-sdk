@@ -2,6 +2,7 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type Add = {
+  /** The showcase URI to add the video to. */
   uri?: string;
 };
 

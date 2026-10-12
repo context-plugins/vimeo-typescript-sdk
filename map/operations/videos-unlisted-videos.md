@@ -4,7 +4,7 @@
 
 Accessor: `client.videosUnlistedVideos` · Source: `src/resources/videos-unlisted-videos.ts` · 6 operations · Request and error types: namespace `VideosUnlistedVideos`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoPrivacyUser
 
@@ -12,8 +12,9 @@ Accessor: `client.videosUnlistedVideos` · Source: `src/resources/videos-unliste
 - **Wire**: `PUT /videos/{video_id}/privacy/users/{user_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `User`
-- **Error**: `VideosUnlistedVideos.AddVideoPrivacyUserError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosUnlistedVideos.AddVideoPrivacyUserError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosUnlistedVideos.AddVideoPrivacyUserRequest` (2):
@@ -30,12 +31,13 @@ Accessor: `client.videosUnlistedVideos` · Source: `src/resources/videos-unliste
 
 ### addVideoPrivacyUsers
 
-- **Signature**: `addVideoPrivacyUsers(request: VideosUnlistedVideos.AddVideoPrivacyUsersRequest, options?: RequestOptions): ApiPromise<User[], ResponseError>`
+- **Signature**: `addVideoPrivacyUsers(request: VideosUnlistedVideos.AddVideoPrivacyUsersRequest, options?: RequestOptions): ApiPromise<User[], ApiError>`
 - **Wire**: `PUT /videos/{video_id}/privacy/users`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `User[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosUnlistedVideos.AddVideoPrivacyUsersRequest` (1):
 
@@ -49,12 +51,13 @@ Accessor: `client.videosUnlistedVideos` · Source: `src/resources/videos-unliste
 
 ### addVideoPrivacyUsersAlt1
 
-- **Signature**: `addVideoPrivacyUsersAlt1(request: VideosUnlistedVideos.AddVideoPrivacyUsersAlt1Request, options?: RequestOptions): ApiPromise<User[], ResponseError>`
+- **Signature**: `addVideoPrivacyUsersAlt1(request: VideosUnlistedVideos.AddVideoPrivacyUsersAlt1Request, options?: RequestOptions): ApiPromise<User[], ApiError>`
 - **Wire**: `PUT /channels/{channel_id}/videos/{video_id}/privacy/users`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `User[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosUnlistedVideos.AddVideoPrivacyUsersAlt1Request` (2):
 
@@ -73,8 +76,9 @@ Accessor: `client.videosUnlistedVideos` · Source: `src/resources/videos-unliste
 - **Wire**: `DELETE /videos/{video_id}/privacy/users/{user_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosUnlistedVideos.DeleteVideoPrivacyUserError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosUnlistedVideos.DeleteVideoPrivacyUserError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosUnlistedVideos.DeleteVideoPrivacyUserRequest` (2):
@@ -95,7 +99,7 @@ Accessor: `client.videosUnlistedVideos` · Source: `src/resources/videos-unliste
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserConnection`
-- **Error**: `VideosUnlistedVideos.GetVideoPrivacyUsersError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosUnlistedVideos.GetVideoPrivacyUsersError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosUnlistedVideos.GetVideoPrivacyUsersRequest` (3):
@@ -118,7 +122,7 @@ Accessor: `client.videosUnlistedVideos` · Source: `src/resources/videos-unliste
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserConnection`
-- **Error**: `VideosUnlistedVideos.GetVideoPrivacyUsersAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosUnlistedVideos.GetVideoPrivacyUsersAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosUnlistedVideos.GetVideoPrivacyUsersAlt1Request` (4):

@@ -4,7 +4,7 @@
 
 Accessor: `client.videosTextTracks` · Source: `src/resources/videos-text-tracks.ts` · 9 operations · Request and error types: namespace `VideosTextTracks`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createTextTrack
 
@@ -12,8 +12,9 @@ Accessor: `client.videosTextTracks` · Source: `src/resources/videos-text-tracks
 - **Wire**: `POST /videos/{video_id}/texttracks`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TextTrack`
-- **Error**: `VideosTextTracks.CreateTextTrackError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTextTracks.CreateTextTrackError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTextTracks.CreateTextTrackRequest` (2):
@@ -35,8 +36,9 @@ Accessor: `client.videosTextTracks` · Source: `src/resources/videos-text-tracks
 - **Wire**: `POST /channels/{channel_id}/videos/{video_id}/texttracks`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TextTrack`
-- **Error**: `VideosTextTracks.CreateTextTrackAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTextTracks.CreateTextTrackAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTextTracks.CreateTextTrackAlt1Request` (3):
@@ -59,8 +61,9 @@ Accessor: `client.videosTextTracks` · Source: `src/resources/videos-text-tracks
 - **Wire**: `DELETE /videos/{video_id}/texttracks/{texttrack_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosTextTracks.DeleteTextTrackError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTextTracks.DeleteTextTrackError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTextTracks.DeleteTextTrackRequest` (2):
@@ -80,9 +83,10 @@ Accessor: `client.videosTextTracks` · Source: `src/resources/videos-text-tracks
 - **Signature**: `editTextTrack(request: VideosTextTracks.EditTextTrackRequest, options?: RequestOptions): ApiPromise<TextTrack, VideosTextTracks.EditTextTrackError>`
 - **Wire**: `PATCH /videos/{video_id}/texttracks/{texttrack_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TextTrack`
-- **Error**: `VideosTextTracks.EditTextTrackError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTextTracks.EditTextTrackError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTextTracks.EditTextTrackRequest` (3):
@@ -106,7 +110,7 @@ Accessor: `client.videosTextTracks` · Source: `src/resources/videos-text-tracks
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TextTrack`
-- **Error**: `VideosTextTracks.GetTextTrackError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTextTracks.GetTextTrackError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTextTracks.GetTextTrackRequest` (2):
@@ -129,7 +133,7 @@ Accessor: `client.videosTextTracks` · Source: `src/resources/videos-text-tracks
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TextTrackConnection`
-- **Error**: `VideosTextTracks.GetTextTracksError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTextTracks.GetTextTracksError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTextTracks.GetTextTracksRequest` (3):
@@ -152,7 +156,7 @@ Accessor: `client.videosTextTracks` · Source: `src/resources/videos-text-tracks
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TextTrackConnection`
-- **Error**: `VideosTextTracks.GetTextTracksAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTextTracks.GetTextTracksAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTextTracks.GetTextTracksAlt1Request` (4):
@@ -176,7 +180,7 @@ Accessor: `client.videosTextTracks` · Source: `src/resources/videos-text-tracks
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TextTrackConnection`
-- **Error**: `VideosTextTracks.GetTextTracksAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTextTracks.GetTextTracksAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTextTracks.GetTextTracksAlt2Request` (4):
@@ -200,7 +204,7 @@ Accessor: `client.videosTextTracks` · Source: `src/resources/videos-text-tracks
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TextTrackConnection`
-- **Error**: `VideosTextTracks.GetTextTracksAlt3Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosTextTracks.GetTextTracksAlt3Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosTextTracks.GetTextTracksAlt3Request` (4):

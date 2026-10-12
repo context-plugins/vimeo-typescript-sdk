@@ -1,9 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { anyAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { errorSchema, type Error } from "../models/error.js";
 import {
@@ -26,6 +27,9 @@ import {
 } from "../models/users-live-events-pictures-thumbnail-id-request.js";
 import type { Servers } from "../servers.js";
 
+/**
+ * Use these methods to work with the thumbnail images of events.
+ */
 export class LiveEventThumbnails {
   readonly #rawClient: RawClient;
   readonly #servers: Servers;
@@ -37,6 +41,21 @@ export class LiveEventThumbnails {
     this.#auth = auth;
   }
 
+  /**
+   * Create an event thumbnail
+   *
+   * @remarks
+   * This method creates a thumbnail image for the specified event.
+   *
+   * @returns The thumbnail was created.
+   *
+   * @throws {@link LiveEventThumbnails.CreateLiveEventThumbnailError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createLiveEventThumbnail(
     request: LiveEventThumbnails.CreateLiveEventThumbnailRequest,
     options?: RequestOptions,
@@ -44,16 +63,18 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/users/{user_id}/live_events/{live_event_id}/pictures"),
+        urlTemplate: this.#servers.default("/users/{user_id}/live_events/{live_event_id}/pictures"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "user_id", value: request.userId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "user_id", value: request.userId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -68,6 +89,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Create an event thumbnail
+   *
+   * @remarks
+   * This method creates a thumbnail image for the specified event.
+   *
+   * @returns The thumbnail was created.
+   *
+   * @throws {@link LiveEventThumbnails.CreateLiveEventThumbnailAlt1Error} when the API answers with
+   * an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createLiveEventThumbnailAlt1(
     request: LiveEventThumbnails.CreateLiveEventThumbnailAlt1Request,
     options?: RequestOptions,
@@ -75,13 +111,15 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/live_events/{live_event_id}/pictures"),
+        urlTemplate: this.#servers.default("/live_events/{live_event_id}/pictures"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
-        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.number() }],
+        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.float64() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -96,6 +134,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Create an event thumbnail
+   *
+   * @remarks
+   * This method creates a thumbnail image for the specified event.
+   *
+   * @returns The thumbnail was created.
+   *
+   * @throws {@link LiveEventThumbnails.CreateLiveEventThumbnailAlt2Error} when the API answers with
+   * an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createLiveEventThumbnailAlt2(
     request: LiveEventThumbnails.CreateLiveEventThumbnailAlt2Request,
     options?: RequestOptions,
@@ -103,13 +156,15 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/me/live_events/{live_event_id}/pictures"),
+        urlTemplate: this.#servers.default("/me/live_events/{live_event_id}/pictures"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
-        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.number() }],
+        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.float64() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -124,6 +179,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Delete an event thumbnail
+   *
+   * @remarks
+   * This method deletes a thumbnail image for the specified event.
+   *
+   * @returns The thumbnail was deleted.
+   *
+   * @throws {@link LiveEventThumbnails.DeleteLiveEventThumbnailError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   deleteLiveEventThumbnail(
     request: LiveEventThumbnails.DeleteLiveEventThumbnailRequest,
     options?: RequestOptions,
@@ -131,17 +201,21 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "DELETE",
-        url: this.#servers.default("/users/{user_id}/live_events/{live_event_id}/pictures/{thumbnail_id}"),
+        urlTemplate: this.#servers.default(
+          "/users/{user_id}/live_events/{live_event_id}/pictures/{thumbnail_id}",
+        ),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "thumbnail_id", value: request.thumbnailId, schema: s.number() },
-          { name: "user_id", value: request.userId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "thumbnail_id", value: request.thumbnailId, schema: s.float64() },
+          { name: "user_id", value: request.userId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
@@ -152,6 +226,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Delete an event thumbnail
+   *
+   * @remarks
+   * This method deletes a thumbnail image for the specified event.
+   *
+   * @returns The thumbnail was deleted.
+   *
+   * @throws {@link LiveEventThumbnails.DeleteLiveEventThumbnailAlt1Error} when the API answers with
+   * an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   deleteLiveEventThumbnailAlt1(
     request: LiveEventThumbnails.DeleteLiveEventThumbnailAlt1Request,
     options?: RequestOptions,
@@ -159,16 +248,18 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "DELETE",
-        url: this.#servers.default("/live_events/{live_event_id}/pictures/{thumbnail_id}"),
+        urlTemplate: this.#servers.default("/live_events/{live_event_id}/pictures/{thumbnail_id}"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "thumbnail_id", value: request.thumbnailId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "thumbnail_id", value: request.thumbnailId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
@@ -179,6 +270,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Delete an event thumbnail
+   *
+   * @remarks
+   * This method deletes a thumbnail image for the specified event.
+   *
+   * @returns The thumbnail was deleted.
+   *
+   * @throws {@link LiveEventThumbnails.DeleteLiveEventThumbnailAlt2Error} when the API answers with
+   * an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   deleteLiveEventThumbnailAlt2(
     request: LiveEventThumbnails.DeleteLiveEventThumbnailAlt2Request,
     options?: RequestOptions,
@@ -186,16 +292,18 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "DELETE",
-        url: this.#servers.default("/me/live_events/{live_event_id}/pictures/{thumbnail_id}"),
+        urlTemplate: this.#servers.default("/me/live_events/{live_event_id}/pictures/{thumbnail_id}"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "thumbnail_id", value: request.thumbnailId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "thumbnail_id", value: request.thumbnailId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
@@ -206,6 +314,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Edit an event thumbnail
+   *
+   * @remarks
+   * This method edits a thumbnail image for the specified event.
+   *
+   * @returns The thumbnail was edited.
+   *
+   * @throws {@link LiveEventThumbnails.EditLiveEventThumbnailError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   editLiveEventThumbnail(
     request: LiveEventThumbnails.EditLiveEventThumbnailRequest,
     options?: RequestOptions,
@@ -213,17 +336,21 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "PATCH",
-        url: this.#servers.default("/users/{user_id}/live_events/{live_event_id}/pictures/{thumbnail_id}"),
+        urlTemplate: this.#servers.default(
+          "/users/{user_id}/live_events/{live_event_id}/pictures/{thumbnail_id}",
+        ),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "thumbnail_id", value: request.thumbnailId, schema: s.number() },
-          { name: "user_id", value: request.userId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "thumbnail_id", value: request.thumbnailId, schema: s.float64() },
+          { name: "user_id", value: request.userId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -238,6 +365,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Edit an event thumbnail
+   *
+   * @remarks
+   * This method edits a thumbnail image for the specified event.
+   *
+   * @returns The thumbnail was edited.
+   *
+   * @throws {@link LiveEventThumbnails.EditLiveEventThumbnailAlt1Error} when the API answers with
+   * an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   editLiveEventThumbnailAlt1(
     request: LiveEventThumbnails.EditLiveEventThumbnailAlt1Request,
     options?: RequestOptions,
@@ -245,16 +387,18 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "PATCH",
-        url: this.#servers.default("/live_events/{live_event_id}/pictures/{thumbnail_id}"),
+        urlTemplate: this.#servers.default("/live_events/{live_event_id}/pictures/{thumbnail_id}"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "thumbnail_id", value: request.thumbnailId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "thumbnail_id", value: request.thumbnailId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -269,6 +413,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Edit an event thumbnail
+   *
+   * @remarks
+   * This method edits a thumbnail image for the specified event.
+   *
+   * @returns The thumbnail was edited.
+   *
+   * @throws {@link LiveEventThumbnails.EditLiveEventThumbnailAlt2Error} when the API answers with
+   * an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   editLiveEventThumbnailAlt2(
     request: LiveEventThumbnails.EditLiveEventThumbnailAlt2Request,
     options?: RequestOptions,
@@ -276,16 +435,18 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "PATCH",
-        url: this.#servers.default("/me/live_events/{live_event_id}/pictures/{thumbnail_id}"),
+        urlTemplate: this.#servers.default("/me/live_events/{live_event_id}/pictures/{thumbnail_id}"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "thumbnail_id", value: request.thumbnailId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "thumbnail_id", value: request.thumbnailId, schema: s.float64() },
         ],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -300,6 +461,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Get a specific event thumbnail
+   *
+   * @remarks
+   * This method returns a single thumbnail image of the specified event.
+   *
+   * @returns The thumbnail was returned.
+   *
+   * @throws {@link LiveEventThumbnails.GetLiveEventThumbnailError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getLiveEventThumbnail(
     request: LiveEventThumbnails.GetLiveEventThumbnailRequest,
     options?: RequestOptions,
@@ -307,17 +483,21 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/users/{user_id}/live_events/{live_event_id}/pictures/{thumbnail_id}"),
+        urlTemplate: this.#servers.default(
+          "/users/{user_id}/live_events/{live_event_id}/pictures/{thumbnail_id}",
+        ),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "thumbnail_id", value: request.thumbnailId, schema: s.number() },
-          { name: "user_id", value: request.userId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "thumbnail_id", value: request.thumbnailId, schema: s.float64() },
+          { name: "user_id", value: request.userId, schema: s.float64() },
         ],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -328,6 +508,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Get a specific event thumbnail
+   *
+   * @remarks
+   * This method returns a single thumbnail image of the specified event.
+   *
+   * @returns The thumbnail was returned.
+   *
+   * @throws {@link LiveEventThumbnails.GetLiveEventThumbnailAlt1Error} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getLiveEventThumbnailAlt1(
     request: LiveEventThumbnails.GetLiveEventThumbnailAlt1Request,
     options?: RequestOptions,
@@ -335,16 +530,18 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/live_events/{live_event_id}/pictures/{thumbnail_id}"),
+        urlTemplate: this.#servers.default("/live_events/{live_event_id}/pictures/{thumbnail_id}"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "thumbnail_id", value: request.thumbnailId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "thumbnail_id", value: request.thumbnailId, schema: s.float64() },
         ],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -355,6 +552,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Get a specific event thumbnail
+   *
+   * @remarks
+   * This method returns a single thumbnail image of the specified event.
+   *
+   * @returns The thumbnail was returned.
+   *
+   * @throws {@link LiveEventThumbnails.GetLiveEventThumbnailAlt2Error} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getLiveEventThumbnailAlt2(
     request: LiveEventThumbnails.GetLiveEventThumbnailAlt2Request,
     options?: RequestOptions,
@@ -362,16 +574,18 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/me/live_events/{live_event_id}/pictures/{thumbnail_id}"),
+        urlTemplate: this.#servers.default("/me/live_events/{live_event_id}/pictures/{thumbnail_id}"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "thumbnail_id", value: request.thumbnailId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "thumbnail_id", value: request.thumbnailId, schema: s.float64() },
         ],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -382,6 +596,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Get all the thumbnails of an event
+   *
+   * @remarks
+   * This method returns every thumbnail image of the specified event.
+   *
+   * @returns The thumbnails were returned.
+   *
+   * @throws {@link LiveEventThumbnails.GetLiveEventThumbnailsError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getLiveEventThumbnails(
     request: LiveEventThumbnails.GetLiveEventThumbnailsRequest,
     options?: RequestOptions,
@@ -389,16 +618,18 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/users/{user_id}/live_events/{live_event_id}/pictures"),
+        urlTemplate: this.#servers.default("/users/{user_id}/live_events/{live_event_id}/pictures"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
         pathParams: [
-          { name: "live_event_id", value: request.liveEventId, schema: s.number() },
-          { name: "user_id", value: request.userId, schema: s.number() },
+          { name: "live_event_id", value: request.liveEventId, schema: s.float64() },
+          { name: "user_id", value: request.userId, schema: s.float64() },
         ],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -409,6 +640,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Get all the thumbnails of an event
+   *
+   * @remarks
+   * This method returns every thumbnail image of the specified event.
+   *
+   * @returns The thumbnails were returned.
+   *
+   * @throws {@link LiveEventThumbnails.GetLiveEventThumbnailsAlt1Error} when the API answers with
+   * an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getLiveEventThumbnailsAlt1(
     request: LiveEventThumbnails.GetLiveEventThumbnailsAlt1Request,
     options?: RequestOptions,
@@ -416,13 +662,15 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/live_events/{live_event_id}/pictures"),
+        urlTemplate: this.#servers.default("/live_events/{live_event_id}/pictures"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
-        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.number() }],
+        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.float64() }],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -433,6 +681,21 @@ export class LiveEventThumbnails {
     );
   }
 
+  /**
+   * Get all the thumbnails of an event
+   *
+   * @remarks
+   * This method returns every thumbnail image of the specified event.
+   *
+   * @returns The thumbnails were returned.
+   *
+   * @throws {@link LiveEventThumbnails.GetLiveEventThumbnailsAlt2Error} when the API answers with
+   * an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link VimeoApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getLiveEventThumbnailsAlt2(
     request: LiveEventThumbnails.GetLiveEventThumbnailsAlt2Request,
     options?: RequestOptions,
@@ -440,13 +703,15 @@ export class LiveEventThumbnails {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/me/live_events/{live_event_id}/pictures"),
+        urlTemplate: this.#servers.default("/me/live_events/{live_event_id}/pictures"),
         auth: anyAuth(
           this.#auth.oauth2AuthorizationCode,
           this.#auth.oauth2ClientCredentials,
           this.#auth.bearer,
         ),
-        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.number() }],
+        pathParams: [{ name: "live_event_id", value: request.liveEventId, schema: s.float64() }],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -460,14 +725,16 @@ export class LiveEventThumbnails {
 
 export namespace LiveEventThumbnails {
   export type CreateLiveEventThumbnailRequest = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the user. */
     userId: number;
     body?: UsersLiveEventsPicturesRequest;
   };
 
-  export class CreateLiveEventThumbnailError extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class CreateLiveEventThumbnailError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<CreateLiveEventThumbnailError> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -475,13 +742,14 @@ export namespace LiveEventThumbnails {
   }
 
   export type CreateLiveEventThumbnailAlt1Request = {
+    /** The ID of the event. */
     liveEventId: number;
     body?: LiveEventsPicturesRequest;
   };
 
-  export class CreateLiveEventThumbnailAlt1Error extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class CreateLiveEventThumbnailAlt1Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<CreateLiveEventThumbnailAlt1Error> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -489,13 +757,14 @@ export namespace LiveEventThumbnails {
   }
 
   export type CreateLiveEventThumbnailAlt2Request = {
+    /** The ID of the event. */
     liveEventId: number;
     body?: MeLiveEventsPicturesRequest;
   };
 
-  export class CreateLiveEventThumbnailAlt2Error extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class CreateLiveEventThumbnailAlt2Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<CreateLiveEventThumbnailAlt2Error> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -503,14 +772,17 @@ export namespace LiveEventThumbnails {
   }
 
   export type DeleteLiveEventThumbnailRequest = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the thumbnail. */
     thumbnailId: number;
+    /** The ID of the user. */
     userId: number;
   };
 
-  export class DeleteLiveEventThumbnailError extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class DeleteLiveEventThumbnailError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<DeleteLiveEventThumbnailError> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -518,13 +790,15 @@ export namespace LiveEventThumbnails {
   }
 
   export type DeleteLiveEventThumbnailAlt1Request = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the thumbnail. */
     thumbnailId: number;
   };
 
-  export class DeleteLiveEventThumbnailAlt1Error extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class DeleteLiveEventThumbnailAlt1Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<DeleteLiveEventThumbnailAlt1Error> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -532,13 +806,15 @@ export namespace LiveEventThumbnails {
   }
 
   export type DeleteLiveEventThumbnailAlt2Request = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the thumbnail. */
     thumbnailId: number;
   };
 
-  export class DeleteLiveEventThumbnailAlt2Error extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class DeleteLiveEventThumbnailAlt2Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<DeleteLiveEventThumbnailAlt2Error> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -546,15 +822,18 @@ export namespace LiveEventThumbnails {
   }
 
   export type EditLiveEventThumbnailRequest = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the thumbnail. */
     thumbnailId: number;
+    /** The ID of the user. */
     userId: number;
     body?: UsersLiveEventsPicturesThumbnailIdRequest;
   };
 
-  export class EditLiveEventThumbnailError extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class EditLiveEventThumbnailError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<EditLiveEventThumbnailError> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -562,14 +841,16 @@ export namespace LiveEventThumbnails {
   }
 
   export type EditLiveEventThumbnailAlt1Request = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the thumbnail. */
     thumbnailId: number;
     body?: LiveEventsPicturesRequest;
   };
 
-  export class EditLiveEventThumbnailAlt1Error extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class EditLiveEventThumbnailAlt1Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<EditLiveEventThumbnailAlt1Error> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -577,14 +858,16 @@ export namespace LiveEventThumbnails {
   }
 
   export type EditLiveEventThumbnailAlt2Request = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the thumbnail. */
     thumbnailId: number;
     body?: MeLiveEventsPicturesRequest;
   };
 
-  export class EditLiveEventThumbnailAlt2Error extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class EditLiveEventThumbnailAlt2Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<EditLiveEventThumbnailAlt2Error> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -592,14 +875,17 @@ export namespace LiveEventThumbnails {
   }
 
   export type GetLiveEventThumbnailRequest = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the thumbnail. */
     thumbnailId: number;
+    /** The ID of the user. */
     userId: number;
   };
 
-  export class GetLiveEventThumbnailError extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class GetLiveEventThumbnailError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<GetLiveEventThumbnailError> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -607,13 +893,15 @@ export namespace LiveEventThumbnails {
   }
 
   export type GetLiveEventThumbnailAlt1Request = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the thumbnail. */
     thumbnailId: number;
   };
 
-  export class GetLiveEventThumbnailAlt1Error extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class GetLiveEventThumbnailAlt1Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<GetLiveEventThumbnailAlt1Error> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -621,13 +909,15 @@ export namespace LiveEventThumbnails {
   }
 
   export type GetLiveEventThumbnailAlt2Request = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the thumbnail. */
     thumbnailId: number;
   };
 
-  export class GetLiveEventThumbnailAlt2Error extends ResponseError<
-    Declared<"error", Error> | Declared<"error2", Error>
-  > {
+  export class GetLiveEventThumbnailAlt2Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error> | Declared<"error2", Error>>;
+
     static readonly errors: ErrorDecoders<GetLiveEventThumbnailAlt2Error> = [
       { on: 403, kind: "error", decode: { kind: "json", schema: errorSchema } },
       { on: 404, kind: "error2", decode: { kind: "json", schema: errorSchema } },
@@ -635,31 +925,41 @@ export namespace LiveEventThumbnails {
   }
 
   export type GetLiveEventThumbnailsRequest = {
+    /** The ID of the event. */
     liveEventId: number;
+    /** The ID of the user. */
     userId: number;
   };
 
-  export class GetLiveEventThumbnailsError extends ResponseError<Declared<"error", Error>> {
+  export class GetLiveEventThumbnailsError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error>>;
+
     static readonly errors: ErrorDecoders<GetLiveEventThumbnailsError> = [
       { on: 404, kind: "error", decode: { kind: "json", schema: errorSchema } },
     ];
   }
 
   export type GetLiveEventThumbnailsAlt1Request = {
+    /** The ID of the event. */
     liveEventId: number;
   };
 
-  export class GetLiveEventThumbnailsAlt1Error extends ResponseError<Declared<"error", Error>> {
+  export class GetLiveEventThumbnailsAlt1Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error>>;
+
     static readonly errors: ErrorDecoders<GetLiveEventThumbnailsAlt1Error> = [
       { on: 404, kind: "error", decode: { kind: "json", schema: errorSchema } },
     ];
   }
 
   export type GetLiveEventThumbnailsAlt2Request = {
+    /** The ID of the event. */
     liveEventId: number;
   };
 
-  export class GetLiveEventThumbnailsAlt2Error extends ResponseError<Declared<"error", Error>> {
+  export class GetLiveEventThumbnailsAlt2Error extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error", Error>>;
+
     static readonly errors: ErrorDecoders<GetLiveEventThumbnailsAlt2Error> = [
       { on: 404, kind: "error", decode: { kind: "json", schema: errorSchema } },
     ];

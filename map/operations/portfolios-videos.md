@@ -4,7 +4,7 @@
 
 Accessor: `client.portfoliosVideos` · Source: `src/resources/portfolios-videos.ts` · 8 operations · Request and error types: namespace `PortfoliosVideos`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoToPortfolio
 
@@ -12,8 +12,9 @@ Accessor: `client.portfoliosVideos` · Source: `src/resources/portfolios-videos.
 - **Wire**: `PUT /users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `PortfoliosVideos.AddVideoToPortfolioError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `PortfoliosVideos.AddVideoToPortfolioError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `PortfoliosVideos.AddVideoToPortfolioRequest` (3):
@@ -34,8 +35,9 @@ Accessor: `client.portfoliosVideos` · Source: `src/resources/portfolios-videos.
 - **Wire**: `PUT /me/portfolios/{portfolio_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `PortfoliosVideos.AddVideoToPortfolioAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `PortfoliosVideos.AddVideoToPortfolioAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `PortfoliosVideos.AddVideoToPortfolioAlt1Request` (2):
@@ -55,8 +57,9 @@ Accessor: `client.portfoliosVideos` · Source: `src/resources/portfolios-videos.
 - **Wire**: `DELETE /users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `PortfoliosVideos.DeleteVideoFromPortfolioError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `PortfoliosVideos.DeleteVideoFromPortfolioError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `PortfoliosVideos.DeleteVideoFromPortfolioRequest` (3):
@@ -77,8 +80,9 @@ Accessor: `client.portfoliosVideos` · Source: `src/resources/portfolios-videos.
 - **Wire**: `DELETE /me/portfolios/{portfolio_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `PortfoliosVideos.DeleteVideoFromPortfolioAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `PortfoliosVideos.DeleteVideoFromPortfolioAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `PortfoliosVideos.DeleteVideoFromPortfolioAlt1Request` (2):
@@ -94,12 +98,12 @@ Accessor: `client.portfoliosVideos` · Source: `src/resources/portfolios-videos.
 
 ### getPortfolioVideo
 
-- **Signature**: `getPortfolioVideo(request: PortfoliosVideos.GetPortfolioVideoRequest, options?: RequestOptions): ApiPromise<Video, ResponseError>`
+- **Signature**: `getPortfolioVideo(request: PortfoliosVideos.GetPortfolioVideoRequest, options?: RequestOptions): ApiPromise<Video, ApiError>`
 - **Wire**: `GET /users/{user_id}/portfolios/{portfolio_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PortfoliosVideos.GetPortfolioVideoRequest` (3):
 
@@ -115,12 +119,12 @@ Accessor: `client.portfoliosVideos` · Source: `src/resources/portfolios-videos.
 
 ### getPortfolioVideoAlt1
 
-- **Signature**: `getPortfolioVideoAlt1(request: PortfoliosVideos.GetPortfolioVideoAlt1Request, options?: RequestOptions): ApiPromise<Video, ResponseError>`
+- **Signature**: `getPortfolioVideoAlt1(request: PortfoliosVideos.GetPortfolioVideoAlt1Request, options?: RequestOptions): ApiPromise<Video, ApiError>`
 - **Wire**: `GET /me/portfolios/{portfolio_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PortfoliosVideos.GetPortfolioVideoAlt1Request` (2):
 
@@ -135,12 +139,12 @@ Accessor: `client.portfoliosVideos` · Source: `src/resources/portfolios-videos.
 
 ### getPortfolioVideos
 
-- **Signature**: `getPortfolioVideos(request: PortfoliosVideos.GetPortfolioVideosRequest, options?: RequestOptions): ApiPromise<VideoConnection, ResponseError>`
+- **Signature**: `getPortfolioVideos(request: PortfoliosVideos.GetPortfolioVideosRequest, options?: RequestOptions): ApiPromise<VideoConnection, ApiError>`
 - **Wire**: `GET /users/{user_id}/portfolios/{portfolio_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PortfoliosVideos.GetPortfolioVideosRequest` (8):
 
@@ -163,12 +167,12 @@ Accessor: `client.portfoliosVideos` · Source: `src/resources/portfolios-videos.
 
 ### getPortfolioVideosAlt1
 
-- **Signature**: `getPortfolioVideosAlt1(request: PortfoliosVideos.GetPortfolioVideosAlt1Request, options?: RequestOptions): ApiPromise<VideoConnection, ResponseError>`
+- **Signature**: `getPortfolioVideosAlt1(request: PortfoliosVideos.GetPortfolioVideosAlt1Request, options?: RequestOptions): ApiPromise<VideoConnection, ApiError>`
 - **Wire**: `GET /me/portfolios/{portfolio_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PortfoliosVideos.GetPortfolioVideosAlt1Request` (7):
 

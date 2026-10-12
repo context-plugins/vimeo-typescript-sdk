@@ -4,7 +4,7 @@
 
 Accessor: `client.onDemandPromotions` · Source: `src/resources/on-demand-promotions.ts` · 5 operations · Request and error types: namespace `OnDemandPromotions`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createVodPromotion
 
@@ -12,8 +12,9 @@ Accessor: `client.onDemandPromotions` · Source: `src/resources/on-demand-promot
 - **Wire**: `POST /ondemand/pages/{ondemand_id}/promotions`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `OnDemandPromotion`
-- **Error**: `OnDemandPromotions.CreateVodPromotionError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandPromotions.CreateVodPromotionError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"legacyError3"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandPromotions.CreateVodPromotionRequest` (2):
@@ -35,8 +36,9 @@ Accessor: `client.onDemandPromotions` · Source: `src/resources/on-demand-promot
 - **Wire**: `DELETE /ondemand/pages/{ondemand_id}/promotions/{promotion_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `OnDemandPromotions.DeleteVodPromotionError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandPromotions.DeleteVodPromotionError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandPromotions.DeleteVodPromotionRequest` (2):
@@ -57,7 +59,7 @@ Accessor: `client.onDemandPromotions` · Source: `src/resources/on-demand-promot
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandPromotion`
-- **Error**: `OnDemandPromotions.GetVodPromotionError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandPromotions.GetVodPromotionError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandPromotions.GetVodPromotionRequest` (2):
@@ -79,7 +81,7 @@ Accessor: `client.onDemandPromotions` · Source: `src/resources/on-demand-promot
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandPromotionCode`
-- **Error**: `OnDemandPromotions.GetVodPromotionCodesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandPromotions.GetVodPromotionCodesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandPromotions.GetVodPromotionCodesRequest` (4):
@@ -103,7 +105,7 @@ Accessor: `client.onDemandPromotions` · Source: `src/resources/on-demand-promot
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandPromotion`
-- **Error**: `OnDemandPromotions.GetVodPromotionsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandPromotions.GetVodPromotionsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"legacyError3"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandPromotions.GetVodPromotionsRequest` (4):

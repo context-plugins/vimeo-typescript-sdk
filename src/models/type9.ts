@@ -1,6 +1,13 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The type of the On Demand page.
+ *
+ * Option descriptions:
+ *  * `film` - The On Demand page is for a film.
+ *  * `series` - The On Demand page is for a series.
+ */
 export const Type9 = {
   Film: "film",
   Series: "series",

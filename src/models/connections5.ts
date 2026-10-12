@@ -15,17 +15,37 @@ import { teamPermissions1Schema, type TeamPermissions1 } from "./team-permission
 import { userFolderAccessGrantsSchema, type UserFolderAccessGrants } from "./user-folder-access-grants.js";
 import { videos5Schema, type Videos5 } from "./videos5.js";
 
+/** A list of resource URIs related to the folder. */
 export type Connections5 = {
+  /**
+   * Information about the folder's ancestry ordered from the direct parent to higher-level
+   * ancestors.
+   */
   ancestorPath: AncestorPath1[];
   dataRetention: DataRetention;
+  /** A standard connection object indicating how to return all the subfolders in the folder. */
   folders: Folders;
+  /** Information about the folder's group access grants. */
   groupFolderGrants: GroupFolderGrants;
+  /** A standard connection object indicating how to return all the items in the folder. */
   items: Items;
+  /** A standard connection object indicating how to return the folder's parent folder. */
   parentFolder: ParentFolder;
+  /** Information about the owner of the personal team folder. */
   personalTeamFolderOwner: PersonalTeamFolderOwner;
+  /**
+   * Information about the team user who created the folder. This data requires a bearer token with
+   * the `private` scope.
+   */
   resourceCreatorTeamUser: ResourceCreatorTeamUser1;
+  /**
+   * Information about the folder's team permissions list. This data requires a bearer token with
+   * the `private` scope.
+   */
   teamPermissions: TeamPermissions1;
+  /** Information about the folder's user folder access grants. */
   userFolderAccessGrants: UserFolderAccessGrants;
+  /** A standard connection object indicating how to return all the videos in the folder. */
   videos: Videos5;
 };
 

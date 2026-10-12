@@ -20,25 +20,63 @@ import { trailerSchema, type Trailer } from "./trailer.js";
 import { usersWithAccessSchema, type UsersWithAccess } from "./users-with-access.js";
 import { versionsSchema, type Versions } from "./versions.js";
 
+/** A list of resource URIs related to the video. */
 export type Connections4 = {
+  /**
+   * Information about the showcases that contain the video. This data requires a bearer token with
+   * the `private` scope.
+   */
   albums?: Albums1;
+  /**
+   * Information about the video's ancestry, ordered from the direct parent folder to higher-level
+   * ancestors.
+   */
   ancestorPath: AncestorPath[];
+  /**
+   * Information about the available showcases, or the showcases to which the video can be added.
+   * This data requires a bearer token with the `private` scope.
+   */
   availableAlbums?: AvailableAlbums;
+  /**
+   * Information about the channels to which the video can be added. This data requires a bearer
+   * token with the `private` scope.
+   */
   availableChannels?: AvailableChannels;
+  /** Information about the comments on the video. */
   comments: Comments1;
+  /** Information about the users credited in the video. */
   credits: Credits | null;
+  /** Information about the users who have liked the video. */
   likes: Likes1;
+  /** Information about the video's On Demand data. */
   ondemand?: Ondemand;
+  /** Information about the video's thumbnails. */
   pictures: Pictures1;
+  /** Information about the user's publish-to-social history for the video. */
   publishToSocial?: PublishToSocial;
+  /** Information about the recommendations for the video. */
   recommendations: Recommendations | null;
+  /** Information about the video's related content. */
   related: Related | null;
+  /**
+   * Information about the team user who uploaded the video. This data requires a bearer token with
+   * the `private` scope.
+   */
   resourceCreatorTeamUser: ResourceCreatorTeamUser;
+  /** Information about the video's season. */
   season?: Season;
+  /**
+   * Information about the video's team permissions list. This data requires a bearer token with the
+   * `private` scope.
+   */
   teamPermissions?: TeamPermissions;
+  /** Information about the video's text tracks. */
   texttracks: Texttracks;
+  /** Information about the video's Vimeo On Demand trailer. */
   trailer?: Trailer;
+  /** Information about the user privacy of the video, if the video privacy setting is `users`. */
   usersWithAccess?: UsersWithAccess;
+  /** Information about the video's versions. */
   versions: Versions;
 };
 

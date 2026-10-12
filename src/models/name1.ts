@@ -1,6 +1,14 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * How to handle the video title in the title bar of the embeddable player.
+ *
+ * Option descriptions:
+ *  * `hide` - Hide the video title.
+ *  * `show` - Show the video title.
+ *  * `user` - Enable the user to decide.
+ */
 export const Name1 = {
   Hide: "hide",
   Show: "show",

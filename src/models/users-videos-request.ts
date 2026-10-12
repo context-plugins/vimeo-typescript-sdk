@@ -2,6 +2,7 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type UsersVideosRequest = {
+  /** When true, deleted videos use the Recently Deleted purgatory bucket (30-day retention). */
   sendToRecentlyDeleted?: boolean;
 };
 

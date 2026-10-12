@@ -3,6 +3,7 @@ import type { Schema } from "../core/validation/schema.js";
 import { showSearchBarSchema, type ShowSearchBar } from "./show-search-bar.js";
 
 export type NavigationConfig = {
+  /** Information about showing the search bar in the featured content layout. */
   showSearchBar: ShowSearchBar;
 };
 

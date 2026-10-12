@@ -4,7 +4,7 @@
 
 Accessor: `client.usersFeeds` · Source: `src/resources/users-feeds.ts` · 2 operations · Request and error types: namespace `UsersFeeds`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### getFeed
 
@@ -13,7 +13,7 @@ Accessor: `client.usersFeeds` · Source: `src/resources/users-feeds.ts` · 2 ope
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Activity31Connection`
-- **Error**: `UsersFeeds.GetFeedError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `UsersFeeds.GetFeedError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `UsersFeeds.GetFeedRequest` (5):
@@ -24,11 +24,11 @@ Accessor: `client.usersFeeds` · Source: `src/resources/users-feeds.ts` · 2 ope
 | `offset` | `query` | — | `string` | no |
 | `page` | `query` | — | `number` | no |
 | `perPage` | `query` | `per_page` | `number` | no |
-| `type` | `query` | — | `Type29` | no |
+| `type` | `query` | — | `Type33` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
-| `Type29` | `type29Schema` | `src/models/type29.ts` |
+| `Type33` | `type33Schema` | `src/models/type33.ts` |
 | `Activity31Connection` | `activity31ConnectionSchema` | `src/models/activity31-connection.ts` |
 | `Error` | `errorSchema` | `src/models/error.ts` |
 
@@ -39,7 +39,7 @@ Accessor: `client.usersFeeds` · Source: `src/resources/users-feeds.ts` · 2 ope
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Activity31Connection`
-- **Error**: `UsersFeeds.GetFeedAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `UsersFeeds.GetFeedAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `UsersFeeds.GetFeedAlt1Request` (4):
@@ -49,11 +49,11 @@ Accessor: `client.usersFeeds` · Source: `src/resources/users-feeds.ts` · 2 ope
 | `offset` | `query` | — | `string` | no |
 | `page` | `query` | — | `number` | no |
 | `perPage` | `query` | `per_page` | `number` | no |
-| `type` | `query` | — | `Type29` | no |
+| `type` | `query` | — | `Type33` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
-| `Type29` | `type29Schema` | `src/models/type29.ts` |
+| `Type33` | `type33Schema` | `src/models/type33.ts` |
 | `Activity31Connection` | `activity31ConnectionSchema` | `src/models/activity31-connection.ts` |
 | `Error` | `errorSchema` | `src/models/error.ts` |
 

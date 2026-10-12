@@ -3,8 +3,10 @@ import type { Schema } from "../core/validation/schema.js";
 import { embed16Schema, type Embed16 } from "./embed16.js";
 
 export type UsersPresetsRequest = {
+  /** Whether to apply the preset to all of the user's videos. */
   applyToAll?: boolean;
   embed?: Embed16;
+  /** The name of the embed preset. */
   name?: string;
 };
 

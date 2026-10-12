@@ -4,7 +4,11 @@ import { childTextTracksSchema, type ChildTextTracks } from "./child-text-tracks
 import { parentTextTrackSchema, type ParentTextTrack } from "./parent-text-track.js";
 
 export type Connections25 = {
+  /**
+   * Metadata for the child text tracks. This data requires a bearer token with the `private` scope.
+   */
   childTextTracks?: ChildTextTracks;
+  /** Metadata for the parent text track. */
   parentTextTrack?: ParentTextTrack;
 };
 

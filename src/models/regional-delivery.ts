@@ -2,8 +2,11 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type RegionalDelivery = {
+  /** The translated display description of the regional delivery permission policy. */
   displayDescription: string;
+  /** The translated display name of the regional delivery permission policy. */
   displayName: string;
+  /** The name of the regional delivery permission policy. */
   name: string;
 };
 

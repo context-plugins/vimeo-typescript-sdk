@@ -1,6 +1,18 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The video's granular content rating.
+ *
+ * Option descriptions:
+ *  * `advertisement` - The video contains advertisements.
+ *  * `drugs` - The video contains drug or alcohol use.
+ *  * `language` - The video contains profanity or sexually suggestive content.
+ *  * `nudity` - The video contains nudity.
+ *  * `safe` - The video is safe for all audiences.
+ *  * `unrated` - The video hasn't been rated.
+ *  * `violence` - The video contains violence.
+ */
 export const ContentRating4 = {
   Advertisement: "advertisement",
   Drugs: "drugs",

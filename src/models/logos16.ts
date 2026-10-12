@@ -4,6 +4,7 @@ import { custom16Schema, type Custom16 } from "./custom16.js";
 
 export type Logos16 = {
   custom?: Custom16;
+  /** Whether to show the Vimeo logo on the embeddable player. */
   vimeo?: boolean;
 };
 

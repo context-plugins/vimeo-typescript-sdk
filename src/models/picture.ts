@@ -4,13 +4,31 @@ import { sizeSchema, type Size } from "./size.js";
 import { typeSchema, type Type } from "./type.js";
 
 export type Picture = {
+  /** Whether the picture is currently active. */
   active: boolean;
+  /** The base link to the image file, without any parameters. */
   baseLink: string;
+  /** Whether the picture is Vimeo's default. */
   defaultPicture: boolean;
+  /**
+   * The upload URL of the picture. This field appears upon the initial creation of a picture
+   * resource.
+   */
   link?: string;
+  /** The resource key string of the picture. */
   resourceKey: string;
+  /** An array containing reference information about all available image files. */
   sizes: Size[];
+  /**
+   * The type of picture.
+   *
+   * Option descriptions:
+   *  * `caution` - The picture isn't appropriate for all ages.
+   *  * `custom` - The picture is a custom video image.
+   *  * `default` - The picture is the default video image.
+   */
   type: Type;
+  /** The URI of the picture. */
   uri: string;
 };
 

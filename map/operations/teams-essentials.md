@@ -4,7 +4,7 @@
 
 Accessor: `client.teamsEssentials` · Source: `src/resources/teams-essentials.ts` · 5 operations · Request and error types: namespace `TeamsEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### backfillTeamCustomMetadata
 
@@ -12,8 +12,9 @@ Accessor: `client.teamsEssentials` · Source: `src/resources/teams-essentials.ts
 - **Wire**: `POST /teams/{user_id}/custom_metadata/backfill`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `TeamsEssentials.BackfillTeamCustomMetadataError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `TeamsEssentials.BackfillTeamCustomMetadataError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"legacyError"` [401] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `TeamsEssentials.BackfillTeamCustomMetadataRequest` (2):
@@ -36,7 +37,7 @@ Accessor: `client.teamsEssentials` · Source: `src/resources/teams-essentials.ts
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `TeamsEssentials.GetTeamCustomMetadataIncompleteVideosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `TeamsEssentials.GetTeamCustomMetadataIncompleteVideosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"legacyError"` [401] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `TeamsEssentials.GetTeamCustomMetadataIncompleteVideosRequest` (4):
@@ -61,7 +62,7 @@ Accessor: `client.teamsEssentials` · Source: `src/resources/teams-essentials.ts
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CustomMetadataSettingsConnection`
-- **Error**: `TeamsEssentials.GetTeamCustomMetadataSettingsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `TeamsEssentials.GetTeamCustomMetadataSettingsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [401] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `TeamsEssentials.GetTeamCustomMetadataSettingsRequest` (1):
@@ -82,8 +83,9 @@ Accessor: `client.teamsEssentials` · Source: `src/resources/teams-essentials.ts
 - **Wire**: `PATCH /teams/{user_id}/custom_metadata/options`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `CustomMetadataSettings`
-- **Error**: `TeamsEssentials.UpdateCustomMetadataFieldOptionsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `TeamsEssentials.UpdateCustomMetadataFieldOptionsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"legacyError"` [401] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `TeamsEssentials.UpdateCustomMetadataFieldOptionsRequest` (2):
@@ -105,9 +107,10 @@ Accessor: `client.teamsEssentials` · Source: `src/resources/teams-essentials.ts
 - **Signature**: `upsertCustomMetadataSettings(request: TeamsEssentials.UpsertCustomMetadataSettingsRequest, options?: RequestOptions): ApiPromise<CustomMetadataSettings[], TeamsEssentials.UpsertCustomMetadataSettingsError>`
 - **Wire**: `POST /teams/{user_id}/custom_metadata`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `CustomMetadataSettings[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `TeamsEssentials.UpsertCustomMetadataSettingsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `TeamsEssentials.UpsertCustomMetadataSettingsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"legacyError"` [401] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `TeamsEssentials.UpsertCustomMetadataSettingsRequest` (2):

@@ -4,7 +4,7 @@
 
 Accessor: `client.groupsEssentials` · Source: `src/resources/groups-essentials.ts` · 4 operations · Request and error types: namespace `GroupsEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createGroup
 
@@ -12,8 +12,9 @@ Accessor: `client.groupsEssentials` · Source: `src/resources/groups-essentials.
 - **Wire**: `POST /groups`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Group`
-- **Error**: `GroupsEssentials.CreateGroupError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsEssentials.CreateGroupError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsEssentials.CreateGroupRequest` (1):
@@ -35,8 +36,9 @@ Accessor: `client.groupsEssentials` · Source: `src/resources/groups-essentials.
 - **Wire**: `DELETE /groups/{group_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `GroupsEssentials.DeleteGroupError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsEssentials.DeleteGroupError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsEssentials.DeleteGroupRequest` (1):
@@ -57,7 +59,7 @@ Accessor: `client.groupsEssentials` · Source: `src/resources/groups-essentials.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Group`
-- **Error**: `GroupsEssentials.GetGroupError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsEssentials.GetGroupError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsEssentials.GetGroupRequest` (1):
@@ -78,7 +80,7 @@ Accessor: `client.groupsEssentials` · Source: `src/resources/groups-essentials.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `GroupConnection`
-- **Error**: `GroupsEssentials.GetGroupsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `GroupsEssentials.GetGroupsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `GroupsEssentials.GetGroupsRequest` (6):

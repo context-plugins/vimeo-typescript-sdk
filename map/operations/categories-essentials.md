@@ -4,16 +4,16 @@
 
 Accessor: `client.categoriesEssentials` · Source: `src/resources/categories-essentials.ts` · 2 operations · Request and error types: namespace `CategoriesEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### getCategories
 
-- **Signature**: `getCategories(request: CategoriesEssentials.GetCategoriesRequest, options?: RequestOptions): ApiPromise<CategoryConnection, ResponseError>`
+- **Signature**: `getCategories(request: CategoriesEssentials.GetCategoriesRequest, options?: RequestOptions): ApiPromise<CategoryConnection, ApiError>`
 - **Wire**: `GET /categories`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CategoryConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `CategoriesEssentials.GetCategoriesRequest` (4):
 
@@ -37,7 +37,7 @@ Accessor: `client.categoriesEssentials` · Source: `src/resources/categories-ess
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Category`
-- **Error**: `CategoriesEssentials.GetCategoryError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `CategoriesEssentials.GetCategoryError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `CategoriesEssentials.GetCategoryRequest` (1):

@@ -4,7 +4,7 @@
 
 Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-destinations.ts` · 12 operations · Request and error types: namespace `LiveEventDestinations`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createLiveEventDestination
 
@@ -12,8 +12,9 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Wire**: `POST /me/live_events/{live_event_id}/destinations`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `EventDestination`
-- **Error**: `LiveEventDestinations.CreateLiveEventDestinationError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.CreateLiveEventDestinationError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventDestinations.CreateLiveEventDestinationRequest` (2):
@@ -35,8 +36,9 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Wire**: `POST /users/{user_id}/live_events/{live_event_id}/destinations`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `EventDestination`
-- **Error**: `LiveEventDestinations.CreateLiveEventDestinationAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.CreateLiveEventDestinationAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventDestinations.CreateLiveEventDestinationAlt1Request` (3):
@@ -59,8 +61,9 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Wire**: `POST /users/{user_id}/live_events/{live_event_id}/ott_destinations`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `OttDestination`
-- **Error**: `LiveEventDestinations.CreateOttDestinationError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.CreateOttDestinationError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventDestinations.CreateOttDestinationRequest` (2):
@@ -81,8 +84,9 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Wire**: `DELETE /destination/{destination_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventDestinations.DeleteLiveEventDestinationError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.DeleteLiveEventDestinationError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventDestinations.DeleteLiveEventDestinationRequest` (1):
@@ -101,8 +105,9 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Wire**: `DELETE /users/{user_id}/live_events/{live_event_id}/ott_destination/{destination_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventDestinations.DeleteOttDestinationError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.DeleteOttDestinationError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventDestinations.DeleteOttDestinationRequest` (3):
@@ -124,7 +129,7 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventDestinations.GetAvailableDestinationsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.GetAvailableDestinationsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventDestinations.GetAvailableDestinationsRequest` (1):
@@ -144,7 +149,7 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventDestinations.GetAvailableDestinationsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.GetAvailableDestinationsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 | Type | Schema value | Source |
@@ -158,7 +163,7 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `EventDestination`
-- **Error**: `LiveEventDestinations.GetLiveEventDestinationError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.GetLiveEventDestinationError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventDestinations.GetLiveEventDestinationRequest` (1):
@@ -179,7 +184,7 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `EventDestinationConnection`
-- **Error**: `LiveEventDestinations.GetLiveEventDestinationsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.GetLiveEventDestinationsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventDestinations.GetLiveEventDestinationsRequest` (1):
@@ -200,7 +205,7 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `EventDestinationConnection`
-- **Error**: `LiveEventDestinations.GetLiveEventDestinationsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.GetLiveEventDestinationsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventDestinations.GetLiveEventDestinationsAlt1Request` (2):
@@ -222,7 +227,7 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OttDestinationConnection`
-- **Error**: `LiveEventDestinations.GetOttDestinationsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.GetOttDestinationsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventDestinations.GetOttDestinationsRequest` (2):
@@ -242,9 +247,10 @@ Accessor: `client.liveEventDestinations` · Source: `src/resources/live-event-de
 - **Signature**: `updateLiveEventDestination(request: LiveEventDestinations.UpdateLiveEventDestinationRequest, options?: RequestOptions): ApiPromise<EventDestination, LiveEventDestinations.UpdateLiveEventDestinationError>`
 - **Wire**: `PATCH /destination/{destination_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `EventDestination`
-- **Error**: `LiveEventDestinations.UpdateLiveEventDestinationError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventDestinations.UpdateLiveEventDestinationError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventDestinations.UpdateLiveEventDestinationRequest` (2):

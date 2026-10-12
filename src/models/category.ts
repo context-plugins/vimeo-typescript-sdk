@@ -6,17 +6,32 @@ import { pictureSchema, type Picture } from "./picture.js";
 import { subcategorySchema, type Subcategory } from "./subcategory.js";
 
 export type Category = {
+  /** The active icon for the category. */
   icon?: Picture;
+  /** Whether the category is deprecated and should not be used for new categorization. */
   isDeprecated: boolean;
+  /** The most recent time in ISO 8601 format when the video was featured. */
   lastVideoFeaturedTime: string;
+  /** The URL to access the category in a browser. */
   link: string;
+  /** Metadata about the category. */
   metadata: Metadata;
+  /** The display name that identifies the category. */
   name: string;
+  /** The container of the category's parent category, if the current category is a subcategory. */
   parent: Parent | null;
+  /** The active picture for this category. The default shows vertical color bars. */
   pictures: Picture;
+  /** The resource key of the category. */
   resourceKey: string;
+  /**
+   * All the subcategories that belong to the category, if the current category is a top-level
+   * parent.
+   */
   subcategories?: Subcategory[];
+  /** Whether the category isn't a subcategory of another category. */
   topLevel: boolean;
+  /** The unique identifier to access the category resource. */
   uri: string;
 };
 

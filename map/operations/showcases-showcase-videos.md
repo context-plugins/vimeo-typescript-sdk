@@ -4,7 +4,7 @@
 
 Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-showcase-videos.ts` · 16 operations · Request and error types: namespace `ShowcasesShowcaseVideos`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoToShowcase
 
@@ -12,8 +12,9 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Wire**: `PUT /users/{user_id}/albums/{album_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ShowcasesShowcaseVideos.AddVideoToShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.AddVideoToShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.AddVideoToShowcaseRequest` (3):
@@ -34,8 +35,9 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Wire**: `PUT /me/albums/{album_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ShowcasesShowcaseVideos.AddVideoToShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.AddVideoToShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.AddVideoToShowcaseAlt2Request` (2):
@@ -56,7 +58,7 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `ShowcasesShowcaseVideos.GetAvailableShowcaseVideosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.GetAvailableShowcaseVideosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.GetAvailableShowcaseVideosRequest` (6):
@@ -85,7 +87,7 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AlbumConnection`
-- **Error**: `ShowcasesShowcaseVideos.GetAvailableVideoShowcasesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.GetAvailableVideoShowcasesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.GetAvailableVideoShowcasesRequest` (6):
@@ -113,7 +115,7 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `ShowcasesShowcaseVideos.GetShowcaseVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.GetShowcaseVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.GetShowcaseVideoRequest` (4):
@@ -137,7 +139,7 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `ShowcasesShowcaseVideos.GetShowcaseVideoAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.GetShowcaseVideoAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.GetShowcaseVideoAlt2Request` (3):
@@ -160,7 +162,7 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `ShowcasesShowcaseVideos.GetShowcaseVideosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.GetShowcaseVideosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.GetShowcaseVideosRequest` (12):
@@ -195,7 +197,7 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `ShowcasesShowcaseVideos.GetShowcaseVideosAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.GetShowcaseVideosAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.GetShowcaseVideosAlt2Request` (11):
@@ -228,8 +230,9 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Wire**: `DELETE /users/{user_id}/albums/{album_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ShowcasesShowcaseVideos.RemoveVideoFromShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.RemoveVideoFromShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.RemoveVideoFromShowcaseRequest` (3):
@@ -250,8 +253,9 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Wire**: `DELETE /me/albums/{album_id}/videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ShowcasesShowcaseVideos.RemoveVideoFromShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.RemoveVideoFromShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.RemoveVideoFromShowcaseAlt2Request` (2):
@@ -271,8 +275,9 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Wire**: `PUT /users/{user_id}/albums/{album_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ShowcasesShowcaseVideos.ReplaceVideosInShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.ReplaceVideosInShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.ReplaceVideosInShowcaseRequest` (3):
@@ -294,8 +299,9 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Wire**: `PUT /me/albums/{album_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ShowcasesShowcaseVideos.ReplaceVideosInShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.ReplaceVideosInShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.ReplaceVideosInShowcaseAlt2Request` (2):
@@ -316,8 +322,9 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Wire**: `PATCH /users/{user_id}/albums/{album_id}/videos/{video_id}/set_featured_video`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Album`
-- **Error**: `ShowcasesShowcaseVideos.SetVideoAsShowcaseFeaturedError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.SetVideoAsShowcaseFeaturedError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.SetVideoAsShowcaseFeaturedRequest` (3):
@@ -339,8 +346,9 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Wire**: `PATCH /me/albums/{album_id}/videos/{video_id}/set_featured_video`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Album`
-- **Error**: `ShowcasesShowcaseVideos.SetVideoAsShowcaseFeaturedAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.SetVideoAsShowcaseFeaturedAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.SetVideoAsShowcaseFeaturedAlt2Request` (2):
@@ -360,9 +368,10 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Signature**: `setVideoAsShowcaseThumbnail(request: ShowcasesShowcaseVideos.SetVideoAsShowcaseThumbnailRequest, options?: RequestOptions): ApiPromise<Album, ShowcasesShowcaseVideos.SetVideoAsShowcaseThumbnailError>`
 - **Wire**: `POST /users/{user_id}/albums/{album_id}/videos/{video_id}/set_album_thumbnail`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Album`
-- **Error**: `ShowcasesShowcaseVideos.SetVideoAsShowcaseThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.SetVideoAsShowcaseThumbnailError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"error3"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.SetVideoAsShowcaseThumbnailRequest` (4):
@@ -385,9 +394,10 @@ Accessor: `client.showcasesShowcaseVideos` · Source: `src/resources/showcases-s
 - **Signature**: `setVideoAsShowcaseThumbnailAlt2(request: ShowcasesShowcaseVideos.SetVideoAsShowcaseThumbnailAlt2Request, options?: RequestOptions): ApiPromise<Album, ShowcasesShowcaseVideos.SetVideoAsShowcaseThumbnailAlt2Error>`
 - **Wire**: `POST /me/albums/{album_id}/videos/{video_id}/set_album_thumbnail`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Album`
-- **Error**: `ShowcasesShowcaseVideos.SetVideoAsShowcaseThumbnailAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesShowcaseVideos.SetVideoAsShowcaseThumbnailAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"error2"` [404] `Error` · `"error3"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesShowcaseVideos.SetVideoAsShowcaseThumbnailAlt2Request` (3):

@@ -1,6 +1,15 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The user's streaming access to the On Demand subscription.
+ *
+ * Option descriptions:
+ *  * `available` - The On Demand subscription is available for streaming.
+ *  * `purchased` - The On Demand subscription has been purchased.
+ *  * `restricted` - Streaming for the On Demand subscription is restricted.
+ *  * `unavailable` - The On Demand subscription is unavailable.
+ */
 export const Stream2 = {
   Available: "available",
   Purchased: "purchased",

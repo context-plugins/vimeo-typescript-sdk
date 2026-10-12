@@ -1,6 +1,12 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * What to do with the outro.
+ *
+ * Option descriptions:
+ *  * `nothing` - Disable the outro.
+ */
 export const Outro1 = {
   Nothing: "nothing",
 } as const;

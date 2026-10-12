@@ -1,8 +1,11 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
+/** Information about showing the profile image during playback. */
 export type ShowPlaybackProfileImage = {
+  /** Whether an upgrade is required to show the profile image during playback. */
   isUpgrade: boolean;
+  /** Whether to show the profile image during playback. */
   value: boolean;
 };
 

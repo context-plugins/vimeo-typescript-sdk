@@ -3,6 +3,7 @@ import type { Schema } from "../core/validation/schema.js";
 import { connections8Schema, type Connections8 } from "./connections8.js";
 
 export type Metadata8 = {
+  /** A collection of information connected to this resource. */
   connections: Connections8;
 };
 

@@ -1,18 +1,20 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The project item type.
+ *
+ * Option descriptions:
+ *  * `folder` - The project item is a folder.
+ *  * `live_event` - The project item is an event.
+ *  * `showcase` - The project item is a showcase.
+ *  * `video` - The project item is a video.
+ */
 export const Type21 = {
-  Beginning: "beginning",
-  Custom: "custom",
-  Email: "email",
-  Image: "image",
-  Link: "link",
-  Loop: "loop",
-  Nothing: "nothing",
-  Share: "share",
-  Text: "text",
-  Threevideos: "threevideos",
-  Videos: "videos",
+  Folder: "folder",
+  LiveEvent: "live_event",
+  Showcase: "showcase",
+  Video: "video",
 } as const;
 export type Type21 = (typeof Type21)[keyof typeof Type21] | (string & {});
 

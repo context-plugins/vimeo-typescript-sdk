@@ -5,7 +5,14 @@ import { outro1Schema, type Outro1 } from "./outro1.js";
 
 export type UsersPresetsRequest1 = {
   embed?: Embed17;
+  /** The name of the embed preset. */
   name?: string;
+  /**
+   * What to do with the outro.
+   *
+   * Option descriptions:
+   *  * `nothing` - Disable the outro.
+   */
   outro?: Outro1;
 };
 

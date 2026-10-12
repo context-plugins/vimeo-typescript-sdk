@@ -1,18 +1,14 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The type of text decoration.
+ *
+ * Option descriptions:
+ *  * `url` - The URL of the Vimeo video.
+ */
 export const Type12 = {
-  AgoraMedia: "agoraMedia",
-  AgoraScreen: "agoraScreen",
-  AgoraStream: "agoraStream",
-  BroadcasterLowerthird: "broadcasterLowerthird",
-  Fullscreen: "fullscreen",
-  GuestLowerthird: "guestLowerthird",
-  Logo: "logo",
-  Lowerthird: "lowerthird",
-  Poll: "poll",
-  Qna: "qna",
-  Slides: "slides",
+  Url: "url",
 } as const;
 export type Type12 = (typeof Type12)[keyof typeof Type12] | (string & {});
 

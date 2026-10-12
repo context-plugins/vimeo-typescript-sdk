@@ -4,7 +4,19 @@ import { addSchema, type Add } from "./add.js";
 import { removeSchema, type Remove } from "./remove.js";
 
 export type VideosAlbumsRequest = {
+  /**
+   * The array of showcases to add the video to. Specify these with a batch request; see our [Using
+   * Common Formats and
+   * Parameters](https://developer.vimeo.com/api/common-formats#working-with-batch-requests) guide
+   * for more information.
+   */
   add?: Add[];
+  /**
+   * The array of showcases to remove the video from. Specify these with a batch request; see our
+   * [Using Common Formats and
+   * Parameters](https://developer.vimeo.com/api/common-formats#working-with-batch-requests) guide
+   * for more information.
+   */
   remove?: Remove[];
 };
 

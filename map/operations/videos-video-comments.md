@@ -4,16 +4,17 @@
 
 Accessor: `client.videosVideoComments` · Source: `src/resources/videos-video-comments.ts` · 9 operations · Request and error types: namespace `VideosVideoComments`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createComment
 
 - **Signature**: `createComment(request: VideosVideoComments.CreateCommentRequest, options?: RequestOptions): ApiPromise<Comment, VideosVideoComments.CreateCommentError>`
 - **Wire**: `POST /videos/{video_id}/comments`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Comment`
-- **Error**: `VideosVideoComments.CreateCommentError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVideoComments.CreateCommentError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVideoComments.CreateCommentRequest` (2):
@@ -34,9 +35,10 @@ Accessor: `client.videosVideoComments` · Source: `src/resources/videos-video-co
 - **Signature**: `createCommentAlt1(request: VideosVideoComments.CreateCommentAlt1Request, options?: RequestOptions): ApiPromise<Comment, VideosVideoComments.CreateCommentAlt1Error>`
 - **Wire**: `POST /channels/{channel_id}/videos/{video_id}/comments`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Comment`
-- **Error**: `VideosVideoComments.CreateCommentAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVideoComments.CreateCommentAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVideoComments.CreateCommentAlt1Request` (3):
@@ -59,8 +61,9 @@ Accessor: `client.videosVideoComments` · Source: `src/resources/videos-video-co
 - **Wire**: `POST /videos/{video_id}/comments/{comment_id}/replies`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Comment`
-- **Error**: `VideosVideoComments.CreateCommentReplyError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVideoComments.CreateCommentReplyError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVideoComments.CreateCommentReplyRequest` (3):
@@ -83,8 +86,9 @@ Accessor: `client.videosVideoComments` · Source: `src/resources/videos-video-co
 - **Wire**: `DELETE /videos/{video_id}/comments/{comment_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosVideoComments.DeleteCommentError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVideoComments.DeleteCommentError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVideoComments.DeleteCommentRequest` (2):
@@ -104,9 +108,10 @@ Accessor: `client.videosVideoComments` · Source: `src/resources/videos-video-co
 - **Signature**: `editComment(request: VideosVideoComments.EditCommentRequest, options?: RequestOptions): ApiPromise<Comment, VideosVideoComments.EditCommentError>`
 - **Wire**: `PATCH /videos/{video_id}/comments/{comment_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Comment`
-- **Error**: `VideosVideoComments.EditCommentError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVideoComments.EditCommentError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVideoComments.EditCommentRequest` (3):
@@ -130,7 +135,7 @@ Accessor: `client.videosVideoComments` · Source: `src/resources/videos-video-co
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Comment`
-- **Error**: `VideosVideoComments.GetCommentError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVideoComments.GetCommentError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVideoComments.GetCommentRequest` (2):
@@ -152,7 +157,7 @@ Accessor: `client.videosVideoComments` · Source: `src/resources/videos-video-co
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CommentConnection`
-- **Error**: `VideosVideoComments.GetCommentRepliesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosVideoComments.GetCommentRepliesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosVideoComments.GetCommentRepliesRequest` (4):
@@ -171,12 +176,12 @@ Accessor: `client.videosVideoComments` · Source: `src/resources/videos-video-co
 
 ### getComments
 
-- **Signature**: `getComments(request: VideosVideoComments.GetCommentsRequest, options?: RequestOptions): ApiPromise<CommentConnection, ResponseError>`
+- **Signature**: `getComments(request: VideosVideoComments.GetCommentsRequest, options?: RequestOptions): ApiPromise<CommentConnection, ApiError>`
 - **Wire**: `GET /videos/{video_id}/comments`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CommentConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosVideoComments.GetCommentsRequest` (4):
 
@@ -194,12 +199,12 @@ Accessor: `client.videosVideoComments` · Source: `src/resources/videos-video-co
 
 ### getCommentsAlt1
 
-- **Signature**: `getCommentsAlt1(request: VideosVideoComments.GetCommentsAlt1Request, options?: RequestOptions): ApiPromise<CommentConnection, ResponseError>`
+- **Signature**: `getCommentsAlt1(request: VideosVideoComments.GetCommentsAlt1Request, options?: RequestOptions): ApiPromise<CommentConnection, ApiError>`
 - **Wire**: `GET /channels/{channel_id}/videos/{video_id}/comments`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CommentConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `VideosVideoComments.GetCommentsAlt1Request` (5):
 

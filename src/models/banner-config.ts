@@ -8,11 +8,17 @@ import { showShowcaseOwnerAvatarSchema, type ShowShowcaseOwnerAvatar } from "./s
 import { showStartWatchingButtonSchema, type ShowStartWatchingButton } from "./show-start-watching-button.js";
 
 export type BannerConfig = {
+  /** Information about showing the banner on the showcase page. */
   showBanner: ShowBanner;
+  /** Information about showing the showcase description. */
   showBannerDescription: ShowBannerDescription;
+  /** Information about showing the showcase header. */
   showBannerHeader: ShowBannerHeader;
+  /** Information about showing the showcase title. */
   showBannerTitle: ShowBannerTitle;
+  /** Information about showing the showcase owner's avatar. */
   showShowcaseOwnerAvatar: ShowShowcaseOwnerAvatar;
+  /** Information about showing the button to start watching. */
   showStartWatchingButton: ShowStartWatchingButton;
 };
 

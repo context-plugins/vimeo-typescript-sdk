@@ -1,6 +1,13 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The user's role type. This data requires a bearer token with the `private` scope.
+ *
+ * Option descriptions:
+ *  * `member` - The user is a member.
+ *  * `moderator` - The user is a moderator.
+ */
 export const Type8 = {
   Member: "member",
   Moderator: "moderator",

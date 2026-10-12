@@ -4,7 +4,7 @@
 
 Accessor: `client.categoriesChannels` · Source: `src/resources/categories-channels.ts` · 1 operation · Request and error types: namespace `CategoriesChannels`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### getCategoryChannels
 
@@ -13,7 +13,7 @@ Accessor: `client.categoriesChannels` · Source: `src/resources/categories-chann
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ChannelConnection`
-- **Error**: `CategoriesChannels.GetCategoryChannelsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `CategoriesChannels.GetCategoryChannelsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `CategoriesChannels.GetCategoryChannelsRequest` (6):

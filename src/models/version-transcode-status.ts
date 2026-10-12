@@ -2,8 +2,14 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type VersionTranscodeStatus = {
+  /** Whether the video has finished transcoding. */
   isComplete: boolean;
+  /**
+   * Whether the video is playable in all resolutions, up to either the source quality or 4K,
+   * whichever is lower, at standard definition.
+   */
   isFullyPlayable: boolean;
+  /** Whether the video is playable. */
   isPlayable: boolean;
 };
 

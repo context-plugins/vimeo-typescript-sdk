@@ -4,7 +4,7 @@
 
 Accessor: `client.channelsTags` · Source: `src/resources/channels-tags.ts` · 5 operations · Request and error types: namespace `ChannelsTags`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addChannelTag
 
@@ -12,8 +12,9 @@ Accessor: `client.channelsTags` · Source: `src/resources/channels-tags.ts` · 5
 - **Wire**: `PUT /channels/{channel_id}/tags/{word}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsTags.AddChannelTagError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsTags.AddChannelTagError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"error"` [401] `Error` · `"error2"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsTags.AddChannelTagRequest` (2):
@@ -34,8 +35,9 @@ Accessor: `client.channelsTags` · Source: `src/resources/channels-tags.ts` · 5
 - **Wire**: `PUT /channels/{channel_id}/tags`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field, a bare top-level JSON array
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Tag[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `ChannelsTags.AddTagsToChannelError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsTags.AddTagsToChannelError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"error"` [401] `Error` · `"error2"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsTags.AddTagsToChannelRequest` (2):
@@ -59,7 +61,7 @@ Accessor: `client.channelsTags` · Source: `src/resources/channels-tags.ts` · 5
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsTags.CheckIfChannelHasTagError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsTags.CheckIfChannelHasTagError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsTags.CheckIfChannelHasTagRequest` (2):
@@ -80,8 +82,9 @@ Accessor: `client.channelsTags` · Source: `src/resources/channels-tags.ts` · 5
 - **Wire**: `DELETE /channels/{channel_id}/tags/{word}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsTags.DeleteTagFromChannelError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsTags.DeleteTagFromChannelError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"error"` [401] `Error` · `"error2"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsTags.DeleteTagFromChannelRequest` (2):
@@ -103,7 +106,7 @@ Accessor: `client.channelsTags` · Source: `src/resources/channels-tags.ts` · 5
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TagConnection`
-- **Error**: `ChannelsTags.GetChannelTagsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsTags.GetChannelTagsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsTags.GetChannelTagsRequest` (1):

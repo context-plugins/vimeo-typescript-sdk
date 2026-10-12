@@ -4,16 +4,17 @@
 
 Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.ts` · 12 operations · Request and error types: namespace `LiveEventVideos`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideosToLiveEvent
 
 - **Signature**: `addVideosToLiveEvent(request: LiveEventVideos.AddVideosToLiveEventRequest, options?: RequestOptions): ApiPromise<undefined, LiveEventVideos.AddVideosToLiveEventError>`
 - **Wire**: `POST /users/{user_id}/live_events/{live_event_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventVideos.AddVideosToLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.AddVideosToLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.AddVideosToLiveEventRequest` (3):
@@ -34,9 +35,10 @@ Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.t
 - **Signature**: `addVideosToLiveEventAlt1(request: LiveEventVideos.AddVideosToLiveEventAlt1Request, options?: RequestOptions): ApiPromise<undefined, LiveEventVideos.AddVideosToLiveEventAlt1Error>`
 - **Wire**: `POST /live_events/{live_event_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventVideos.AddVideosToLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.AddVideosToLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.AddVideosToLiveEventAlt1Request` (2):
@@ -56,9 +58,10 @@ Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.t
 - **Signature**: `addVideosToLiveEventAlt2(request: LiveEventVideos.AddVideosToLiveEventAlt2Request, options?: RequestOptions): ApiPromise<undefined, LiveEventVideos.AddVideosToLiveEventAlt2Error>`
 - **Wire**: `POST /me/live_events/{live_event_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventVideos.AddVideosToLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.AddVideosToLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.AddVideosToLiveEventAlt2Request` (2):
@@ -80,7 +83,7 @@ Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.t
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `LiveEventVideos.GetLiveEventVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.GetLiveEventVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.GetLiveEventVideoRequest` (3):
@@ -103,7 +106,7 @@ Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.t
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `LiveEventVideos.GetLiveEventVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.GetLiveEventVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.GetLiveEventVideoAlt1Request` (2):
@@ -125,7 +128,7 @@ Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.t
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `LiveEventVideos.GetLiveEventVideoAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.GetLiveEventVideoAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.GetLiveEventVideoAlt2Request` (2):
@@ -147,7 +150,7 @@ Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.t
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `LiveEventVideos.GetLiveEventVideosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.GetLiveEventVideosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.GetLiveEventVideosRequest` (10):
@@ -180,7 +183,7 @@ Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.t
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `LiveEventVideos.GetLiveEventVideosAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.GetLiveEventVideosAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.GetLiveEventVideosAlt1Request` (9):
@@ -212,7 +215,7 @@ Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.t
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `LiveEventVideos.GetLiveEventVideosAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.GetLiveEventVideosAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.GetLiveEventVideosAlt2Request` (9):
@@ -242,9 +245,10 @@ Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.t
 - **Signature**: `removeVideosFromLiveEvent(request: LiveEventVideos.RemoveVideosFromLiveEventRequest, options?: RequestOptions): ApiPromise<undefined, LiveEventVideos.RemoveVideosFromLiveEventError>`
 - **Wire**: `DELETE /users/{user_id}/live_events/{live_event_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventVideos.RemoveVideosFromLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.RemoveVideosFromLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.RemoveVideosFromLiveEventRequest` (3):
@@ -265,9 +269,10 @@ Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.t
 - **Signature**: `removeVideosFromLiveEventAlt1(request: LiveEventVideos.RemoveVideosFromLiveEventAlt1Request, options?: RequestOptions): ApiPromise<undefined, LiveEventVideos.RemoveVideosFromLiveEventAlt1Error>`
 - **Wire**: `DELETE /live_events/{live_event_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventVideos.RemoveVideosFromLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.RemoveVideosFromLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.RemoveVideosFromLiveEventAlt1Request` (2):
@@ -287,9 +292,10 @@ Accessor: `client.liveEventVideos` · Source: `src/resources/live-event-videos.t
 - **Signature**: `removeVideosFromLiveEventAlt2(request: LiveEventVideos.RemoveVideosFromLiveEventAlt2Request, options?: RequestOptions): ApiPromise<undefined, LiveEventVideos.RemoveVideosFromLiveEventAlt2Error>`
 - **Wire**: `DELETE /me/live_events/{live_event_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `LiveEventVideos.RemoveVideosFromLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventVideos.RemoveVideosFromLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventVideos.RemoveVideosFromLiveEventAlt2Request` (2):

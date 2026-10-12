@@ -4,16 +4,17 @@
 
 Accessor: `client.liveEventActivation` · Source: `src/resources/live-event-activation.ts` · 3 operations · Request and error types: namespace `LiveEventActivation`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### activateLiveEvent
 
 - **Signature**: `activateLiveEvent(request: LiveEventActivation.ActivateLiveEventRequest, options?: RequestOptions): ApiPromise<Video, LiveEventActivation.ActivateLiveEventError>`
 - **Wire**: `POST /users/{user_id}/live_events/{live_event_id}/activate`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `LiveEventActivation.ActivateLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventActivation.ActivateLiveEventError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"error5"` [500] `Error` · `"error6"` [503] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventActivation.ActivateLiveEventRequest` (3):
@@ -35,9 +36,10 @@ Accessor: `client.liveEventActivation` · Source: `src/resources/live-event-acti
 - **Signature**: `activateLiveEventAlt1(request: LiveEventActivation.ActivateLiveEventAlt1Request, options?: RequestOptions): ApiPromise<Video, LiveEventActivation.ActivateLiveEventAlt1Error>`
 - **Wire**: `POST /live_events/{live_event_id}/activate`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `LiveEventActivation.ActivateLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventActivation.ActivateLiveEventAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"error5"` [500] `Error` · `"error6"` [503] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventActivation.ActivateLiveEventAlt1Request` (2):
@@ -58,9 +60,10 @@ Accessor: `client.liveEventActivation` · Source: `src/resources/live-event-acti
 - **Signature**: `activateLiveEventAlt2(request: LiveEventActivation.ActivateLiveEventAlt2Request, options?: RequestOptions): ApiPromise<Video, LiveEventActivation.ActivateLiveEventAlt2Error>`
 - **Wire**: `POST /me/live_events/{live_event_id}/activate`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `LiveEventActivation.ActivateLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `LiveEventActivation.ActivateLiveEventAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [404] `Error` · `"error5"` [500] `Error` · `"error6"` [503] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `LiveEventActivation.ActivateLiveEventAlt2Request` (2):

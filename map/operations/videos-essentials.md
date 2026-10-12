@@ -4,7 +4,7 @@
 
 Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.ts` · 15 operations · Request and error types: namespace `VideosEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### checkIfUserOwnsVideo
 
@@ -13,7 +13,7 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `VideosEssentials.CheckIfUserOwnsVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.CheckIfUserOwnsVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.CheckIfUserOwnsVideoRequest` (2):
@@ -35,7 +35,7 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `VideosEssentials.CheckIfUserOwnsVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.CheckIfUserOwnsVideoAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.CheckIfUserOwnsVideoAlt1Request` (1):
@@ -54,9 +54,10 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Signature**: `copyVideo(request: VideosEssentials.CopyVideoRequest, options?: RequestOptions): ApiPromise<Video, VideosEssentials.CopyVideoError>`
 - **Wire**: `POST /users/{user_id}/videos/{video_id}/copy`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `VideosEssentials.CopyVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.CopyVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.CopyVideoRequest` (3):
@@ -78,9 +79,10 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Signature**: `copyVideoAlt2(request: VideosEssentials.CopyVideoAlt2Request, options?: RequestOptions): ApiPromise<Video, VideosEssentials.CopyVideoAlt2Error>`
 - **Wire**: `POST /me/videos/{video_id}/copy`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `VideosEssentials.CopyVideoAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.CopyVideoAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.CopyVideoAlt2Request` (2):
@@ -101,9 +103,10 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Signature**: `deleteVideo(request: VideosEssentials.DeleteVideoRequest, options?: RequestOptions): ApiPromise<undefined, VideosEssentials.DeleteVideoError>`
 - **Wire**: `DELETE /videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosEssentials.DeleteVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.DeleteVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.DeleteVideoRequest` (2):
@@ -123,9 +126,10 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Signature**: `deleteVideos(request: VideosEssentials.DeleteVideosRequest, options?: RequestOptions): ApiPromise<undefined, VideosEssentials.DeleteVideosError>`
 - **Wire**: `DELETE /users/{user_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosEssentials.DeleteVideosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.DeleteVideosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.DeleteVideosRequest` (3):
@@ -146,9 +150,10 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Signature**: `deleteVideosAlt1(request: VideosEssentials.DeleteVideosAlt1Request, options?: RequestOptions): ApiPromise<undefined, VideosEssentials.DeleteVideosAlt1Error>`
 - **Wire**: `DELETE /me/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `VideosEssentials.DeleteVideosAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.DeleteVideosAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.DeleteVideosAlt1Request` (2):
@@ -169,8 +174,9 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Wire**: `PATCH /videos/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Video`
-- **Error**: `VideosEssentials.EditVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.EditVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.EditVideoRequest` (2):
@@ -193,7 +199,7 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `VideosEssentials.GetAppearancesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.GetAppearancesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.GetAppearancesRequest` (8):
@@ -224,7 +230,7 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `VideosEssentials.GetAppearancesAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.GetAppearancesAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.GetAppearancesAlt1Request` (7):
@@ -254,7 +260,7 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `VideosEssentials.GetVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.GetVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.GetVideoRequest` (2):
@@ -276,7 +282,7 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `VideosEssentials.GetVideosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.GetVideosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error304"` [304] no body · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.GetVideosRequest` (16):
@@ -315,7 +321,7 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `VideosEssentials.GetVideosAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.GetVideosAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error304"` [304] no body · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.GetVideosAlt1Request` (15):
@@ -353,7 +359,7 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `VideosEssentials.SearchVideosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.SearchVideosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [404] `Error` · `"legacyError"` [503] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.SearchVideosRequest` (8):
@@ -383,9 +389,10 @@ Accessor: `client.videosEssentials` · Source: `src/resources/videos-essentials.
 - **Signature**: `updateVideoCustomMetadata(request: VideosEssentials.UpdateVideoCustomMetadataRequest, options?: RequestOptions): ApiPromise<CustomMetadataValues[], VideosEssentials.UpdateVideoCustomMetadataError>`
 - **Wire**: `PUT /videos/{video_id}/custom_metadata`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `CustomMetadataValues[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `VideosEssentials.UpdateVideoCustomMetadataError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `VideosEssentials.UpdateVideoCustomMetadataError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"legacyError"` [401] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"legacyError3"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `VideosEssentials.UpdateVideoCustomMetadataRequest` (2):

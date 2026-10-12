@@ -5,8 +5,11 @@ import { repliesSchema, type Replies } from "./replies.js";
 import { user1Schema, type User1 } from "./user1.js";
 
 export type Connections13 = {
+  /** Information about the guest user who posted the comment. */
   guestUser: GuestUser;
+  /** Information about the replies to the comment. */
   replies: Replies;
+  /** Information about the user who posted the comment. */
   user: User1;
 };
 

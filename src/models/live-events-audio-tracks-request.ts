@@ -2,7 +2,9 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type LiveEventsAudioTracksRequest = {
+  /** A list of language codes for audio tracks. */
   audioTracks?: string[];
+  /** The language code for the primary audio track. */
   primaryAudioTrack?: string;
 };
 

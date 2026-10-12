@@ -3,6 +3,10 @@ import type { Schema } from "../core/validation/schema.js";
 import { price6Schema, type Price6 } from "./price6.js";
 
 export type Monthly = {
+  /**
+   * Whether a monthly subscription is active. This parameter is required when **rent.active** and
+   * **buy.active** are `false`.
+   */
   active?: boolean;
   price?: Price6;
 };

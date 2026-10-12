@@ -4,7 +4,7 @@
 
 Accessor: `client.onDemandSeasons` · Source: `src/resources/on-demand-seasons.ts` · 3 operations · Request and error types: namespace `OnDemandSeasons`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### getVodSeason
 
@@ -13,7 +13,7 @@ Accessor: `client.onDemandSeasons` · Source: `src/resources/on-demand-seasons.t
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandSeason`
-- **Error**: `OnDemandSeasons.GetVodSeasonError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandSeasons.GetVodSeasonError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandSeasons.GetVodSeasonRequest` (2):
@@ -30,12 +30,12 @@ Accessor: `client.onDemandSeasons` · Source: `src/resources/on-demand-seasons.t
 
 ### getVodSeasonVideos
 
-- **Signature**: `getVodSeasonVideos(request: OnDemandSeasons.GetVodSeasonVideosRequest, options?: RequestOptions): ApiPromise<VideoConnection, ResponseError>`
+- **Signature**: `getVodSeasonVideos(request: OnDemandSeasons.GetVodSeasonVideosRequest, options?: RequestOptions): ApiPromise<VideoConnection, ApiError>`
 - **Wire**: `GET /ondemand/pages/{ondemand_id}/seasons/{season_id}/videos`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `OnDemandSeasons.GetVodSeasonVideosRequest` (6):
 
@@ -61,7 +61,7 @@ Accessor: `client.onDemandSeasons` · Source: `src/resources/on-demand-seasons.t
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `OnDemandSeasonConnection`
-- **Error**: `OnDemandSeasons.GetVodSeasonsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandSeasons.GetVodSeasonsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandSeasons.GetVodSeasonsRequest` (6):

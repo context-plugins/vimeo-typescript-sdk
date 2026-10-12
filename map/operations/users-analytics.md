@@ -4,16 +4,16 @@
 
 Accessor: `client.usersAnalytics` · Source: `src/resources/users-analytics.ts` · 2 operations · Request types: namespace `UsersAnalytics`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### getUserAnalytics
 
-- **Signature**: `getUserAnalytics(request: UsersAnalytics.GetUserAnalyticsRequest, options?: RequestOptions): ApiPromise<AnalyticsConnection, ResponseError>`
+- **Signature**: `getUserAnalytics(request: UsersAnalytics.GetUserAnalyticsRequest, options?: RequestOptions): ApiPromise<AnalyticsConnection, ApiError>`
 - **Wire**: `GET /users/{user_id}/analytics`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AnalyticsConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersAnalytics.GetUserAnalyticsRequest` (17):
 
@@ -47,12 +47,12 @@ Accessor: `client.usersAnalytics` · Source: `src/resources/users-analytics.ts` 
 
 ### getUserAnalyticsAlt1
 
-- **Signature**: `getUserAnalyticsAlt1(request: UsersAnalytics.GetUserAnalyticsAlt1Request, options?: RequestOptions): ApiPromise<AnalyticsConnection, ResponseError>`
+- **Signature**: `getUserAnalyticsAlt1(request: UsersAnalytics.GetUserAnalyticsAlt1Request, options?: RequestOptions): ApiPromise<AnalyticsConnection, ApiError>`
 - **Wire**: `GET /me/analytics`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AnalyticsConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersAnalytics.GetUserAnalyticsAlt1Request` (16):
 

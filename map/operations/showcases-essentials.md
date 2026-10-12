@@ -4,7 +4,7 @@
 
 Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essentials.ts` · 14 operations · Request and error types: namespace `ShowcasesEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addFolderToShowcases
 
@@ -12,8 +12,9 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Wire**: `PATCH /users/{user_id}/albums/from_folder`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ShowcasesEssentials.AddFolderToShowcasesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.AddFolderToShowcasesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [403] `Error` · `"error3"` [404] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.AddFolderToShowcasesRequest` (3):
@@ -33,9 +34,10 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Signature**: `copyShowcase(request: ShowcasesEssentials.CopyShowcaseRequest, options?: RequestOptions): ApiPromise<Album, ShowcasesEssentials.CopyShowcaseError>`
 - **Wire**: `POST /users/{user_id}/albums/{album_id}/copy`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Album`
-- **Error**: `ShowcasesEssentials.CopyShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.CopyShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.CopyShowcaseRequest` (3):
@@ -57,9 +59,10 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Signature**: `copyShowcaseAlt2(request: ShowcasesEssentials.CopyShowcaseAlt2Request, options?: RequestOptions): ApiPromise<Album, ShowcasesEssentials.CopyShowcaseAlt2Error>`
 - **Wire**: `POST /me/albums/{album_id}/copy`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Album`
-- **Error**: `ShowcasesEssentials.CopyShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.CopyShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.CopyShowcaseAlt2Request` (2):
@@ -81,8 +84,9 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Wire**: `POST /users/{user_id}/albums`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Album`
-- **Error**: `ShowcasesEssentials.CreateShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.CreateShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.CreateShowcaseRequest` (2):
@@ -104,8 +108,9 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Wire**: `POST /me/albums`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Album`
-- **Error**: `ShowcasesEssentials.CreateShowcaseAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.CreateShowcaseAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.CreateShowcaseAlt1Request` (1):
@@ -126,8 +131,9 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Wire**: `DELETE /users/{user_id}/albums/{album_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ShowcasesEssentials.DeleteShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.DeleteShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.DeleteShowcaseRequest` (2):
@@ -147,8 +153,9 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Wire**: `DELETE /me/albums/{album_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ShowcasesEssentials.DeleteShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.DeleteShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.DeleteShowcaseAlt2Request` (1):
@@ -166,9 +173,10 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Signature**: `editShowcase(request: ShowcasesEssentials.EditShowcaseRequest, options?: RequestOptions): ApiPromise<Album, ShowcasesEssentials.EditShowcaseError>`
 - **Wire**: `PATCH /users/{user_id}/albums/{album_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Album`
-- **Error**: `ShowcasesEssentials.EditShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.EditShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"legacyError3"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.EditShowcaseRequest` (3):
@@ -190,9 +198,10 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Signature**: `editShowcaseAlt2(request: ShowcasesEssentials.EditShowcaseAlt2Request, options?: RequestOptions): ApiPromise<Album, ShowcasesEssentials.EditShowcaseAlt2Error>`
 - **Wire**: `PATCH /me/albums/{album_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Album`
-- **Error**: `ShowcasesEssentials.EditShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.EditShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"legacyError2"` [403] `LegacyError` · `"legacyError3"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.EditShowcaseAlt2Request` (2):
@@ -215,7 +224,7 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Album`
-- **Error**: `ShowcasesEssentials.GetShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.GetShowcaseError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.GetShowcaseRequest` (2):
@@ -237,7 +246,7 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Album`
-- **Error**: `ShowcasesEssentials.GetShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.GetShowcaseAlt2Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.GetShowcaseAlt2Request` (1):
@@ -258,7 +267,7 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AlbumConnection`
-- **Error**: `ShowcasesEssentials.GetShowcasesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.GetShowcasesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.GetShowcasesRequest` (7):
@@ -287,7 +296,7 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AlbumConnection`
-- **Error**: `ShowcasesEssentials.GetShowcasesAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ShowcasesEssentials.GetShowcasesAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [400] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ShowcasesEssentials.GetShowcasesAlt1Request` (6):
@@ -310,12 +319,13 @@ Accessor: `client.showcasesEssentials` · Source: `src/resources/showcases-essen
 
 ### updateShowcases
 
-- **Signature**: `updateShowcases(request: ShowcasesEssentials.UpdateShowcasesRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `updateShowcases(request: ShowcasesEssentials.UpdateShowcasesRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PATCH /users/{user_id}/albums`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `ShowcasesEssentials.UpdateShowcasesRequest` (3):
 

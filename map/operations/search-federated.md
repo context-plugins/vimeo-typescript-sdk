@@ -4,7 +4,7 @@
 
 Accessor: `client.searchFederated` · Source: `src/resources/search-federated.ts` · 2 operations · Request and error types: namespace `SearchFederated`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### federatedSearchUserItems
 
@@ -13,7 +13,7 @@ Accessor: `client.searchFederated` · Source: `src/resources/search-federated.ts
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `FederatedSearchItemsConnection`
-- **Error**: `SearchFederated.FederatedSearchUserItemsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `SearchFederated.FederatedSearchUserItemsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `SearchFederated.FederatedSearchUserItemsRequest` (11):
@@ -47,7 +47,7 @@ Accessor: `client.searchFederated` · Source: `src/resources/search-federated.ts
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `FederatedSearchItemsConnection`
-- **Error**: `SearchFederated.FederatedSearchUserItemsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `SearchFederated.FederatedSearchUserItemsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `SearchFederated.FederatedSearchUserItemsAlt1Request` (11):

@@ -4,7 +4,7 @@
 
 Accessor: `client.categoriesVideos` · Source: `src/resources/categories-videos.ts` · 4 operations · Request and error types: namespace `CategoriesVideos`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### checkCategoryForVideo
 
@@ -13,7 +13,7 @@ Accessor: `client.categoriesVideos` · Source: `src/resources/categories-videos.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `CategoriesVideos.CheckCategoryForVideoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `CategoriesVideos.CheckCategoryForVideoError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `CategoriesVideos.CheckCategoryForVideoRequest` (2):
@@ -35,7 +35,7 @@ Accessor: `client.categoriesVideos` · Source: `src/resources/categories-videos.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `CategoriesVideos.GetCategoryVideosError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `CategoriesVideos.GetCategoryVideosError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `CategoriesVideos.GetCategoryVideosRequest` (8):
@@ -66,7 +66,7 @@ Accessor: `client.categoriesVideos` · Source: `src/resources/categories-videos.
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CategoryConnection`
-- **Error**: `CategoriesVideos.GetVideoCategoriesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `CategoriesVideos.GetVideoCategoriesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `CategoriesVideos.GetVideoCategoriesRequest` (3):
@@ -88,8 +88,9 @@ Accessor: `client.categoriesVideos` · Source: `src/resources/categories-videos.
 - **Wire**: `PUT /videos/{video_id}/categories`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Category`
-- **Error**: `CategoriesVideos.SuggestVideoCategoryError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `CategoriesVideos.SuggestVideoCategoryError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"legacyError2"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `CategoriesVideos.SuggestVideoCategoryRequest` (2):

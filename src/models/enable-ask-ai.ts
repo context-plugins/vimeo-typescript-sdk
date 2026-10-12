@@ -1,8 +1,11 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
+/** Information about enabling the Ask AI functionality during playback. */
 export type EnableAskAi = {
+  /** Whether an upgrade is required to enable the Ask AI functionality during playback. */
   isUpgrade: boolean;
+  /** Whether to enable the Ask AI functionality during playback. */
   value: boolean;
 };
 

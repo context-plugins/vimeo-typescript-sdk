@@ -1,14 +1,18 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
+/** Information about the folder's group access grants. */
 export type GroupFolderGrants = {
+  /** An array of HTTP methods permitted on this URI. */
   options: string[];
+  /** The total number of group access grants on this connection. */
   total: number;
+  /** The API URI that resolves to the connection data. */
   uri: string;
 };
 
 export const groupFolderGrantsSchema: Schema<GroupFolderGrants> = s.object<GroupFolderGrants>({
   options: s.array(s.string()),
-  total: s.number(),
+  total: s.float64(),
   uri: s.string(),
 });

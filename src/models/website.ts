@@ -2,10 +2,15 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type Website = {
+  /** The website's description. */
   description?: string;
+  /** The URL of the website. */
   link: string;
+  /** The name of the website. */
   name?: string;
+  /** The URL type of the website. */
   type: string;
+  /** The URI of the custom website or social media page belonging to the user. */
   uri: string;
 };
 

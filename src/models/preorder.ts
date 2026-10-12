@@ -2,9 +2,13 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type Preorder = {
+  /** Whether the On Demand page is available for preorder. */
   active: boolean;
+  /** The time in ISO 8601 format when the preorder was cancelled. */
   cancelTime: string;
+  /** The time in ISO 8601 format when the preorder was released to the public. */
   publishTime: string;
+  /** The time in ISO 8601 format when the preorder started. */
   time: string;
 };
 

@@ -17,42 +17,104 @@ import { uploadQuotaSchema, type UploadQuota } from "./upload-quota.js";
 import { websiteSchema, type Website } from "./website.js";
 
 export type User = {
+  /** Account dictionary usage and entry limits. */
   accountDictionaryQuota?: AccountDictionaryQuota;
+  /**
+   * The status of the user's age verification.
+   *
+   * Option descriptions:
+   *  * `failed` - The user has failed age verification.
+   *  * `passed` - The user has passed age verification.
+   *  * `pending` - The user's age verification is pending.
+   */
   ageVerificationStatus: AgeVerificationStatus;
+  /** Information about the user's AI credits quota. */
   aiCreditsQuota?: AiCreditsQuota;
+  /** Whether the authenticated user is available for hire. */
   availableForHire: boolean;
   bandwidth?: Bandwidth;
+  /** The authenticated user's long biography text. */
   bio?: string;
+  /** Whether the authenticated user can work remotely. */
   canWorkRemotely: boolean;
+  /** The users's capabilities list. */
   capabilities?: Record<string, unknown>;
+  /** The comma-separated list of clients. */
   clients: string;
+  /**
+   * The authenticated user's content filters.
+   *
+   * Option descriptions:
+   *  * `drugs` - The content contains drug or alcohol use.
+   *  * `language` - The content contains profanity or sexually suggestive language.
+   *  * `nudity` - The content contains nudity.
+   *  * `safe` - The content is suitable for all audiences.
+   *  * `unrated` - The content hasn't been rated.
+   *  * `violence` - The content contains violence or is graphic.
+   */
   contentFilter?: ContentFilter;
+  /** The time in ISO 8601 format when the user account was created. */
   createdTime: string;
+  /** Information about the user's DRM usage quota. */
   drmLicensesQuota?: DrmLicensesQuota;
+  /** The authenticated user's gender. */
   gender?: string;
+  /** Whether the user's email is invalid. */
   hasInvalidEmail?: boolean;
+  /** Whether the creator enrolled in and successfully completed the Vimeo Experts program. */
   isExpert: boolean;
+  /** Whether the user has had a staff-picked video. */
   isStaffPicked: boolean;
+  /**
+   * The time in ISO 8601 format of the user's most recent video upload, or null if the user has no
+   * videos. Backed by a lean, indexed clip lookup cached for one hour.
+   */
   lastVideoUploadDate?: string;
+  /** The absolute URL of the authenticated users's profile page. */
   link: string;
+  /**
+   * When the user's access to the exclusive live-localization features (caption translations,
+   * multi-audio streams) comes from the launch free trial, the date (YYYY-MM-DD) the trial expires.
+   * Null for users with permanent access (staff or a granted SKU) or no trial.
+   */
   liveLocalizationTrialExpiresOn?: string;
+  /** Information about the user's learning management system learner seats quota. */
   lmsLearnerSeatsQuota?: LmsLearnerSeatsQuota;
+  /** The authenticated user's location. */
   location?: string;
+  /** The authenticated user's location details. */
   locationDetails?: Location;
+  /** The maximum number of team members the user may have. */
   maxTeamMembers: number;
+  /** Information about the authenticated user's Vimeo membership. */
   membership: Membership;
+  /** The authenticated user's metadata. */
   metadata: Metadata3;
+  /** The authenticated user's display name. */
   name: string;
+  /** The active portrait of the authenticated user. */
   pictures: Picture;
   preferences: Preferences;
+  /** Whether the user has enabled profile discovery from their profile settings. */
   profileDiscovery: boolean;
+  /** Whether the user is required to verify their age. */
   requiresAgeVerification: boolean;
+  /** The authenticated user's resource key string. */
   resourceKey: string;
+  /** The authenticated user's short biography text. */
   shortBio?: string;
+  /** A list of the authenticated user's skills. */
   skills?: Skill[];
+  /** The maximum number of transcript phrases permitted for the user. */
   transcriptPhrasesLimit?: number;
+  /**
+   * The upload quota. This information appears only when the authenticated user has upload access
+   * and is looking at their own user record.
+   */
   uploadQuota: UploadQuota;
+  /** The authenticated user's canonical relative URI. */
   uri: string;
+  /** The authenticated user's websites. */
   websites: Website[];
 };
 
@@ -79,7 +141,7 @@ export const userSchema: Schema<User> = s.object<User>({
   lmsLearnerSeatsQuota: s.optional(s.lazy(() => lmsLearnerSeatsQuotaSchema)),
   location: s.optional(s.string()),
   locationDetails: s.optional(s.lazy(() => locationSchema)),
-  maxTeamMembers: s.number(),
+  maxTeamMembers: s.float64(),
   membership: membershipSchema,
   metadata: metadata3Schema,
   name: s.string(),
@@ -90,7 +152,7 @@ export const userSchema: Schema<User> = s.object<User>({
   resourceKey: s.string(),
   shortBio: s.optional(s.string()),
   skills: s.optional(s.array(s.lazy(() => skillSchema))),
-  transcriptPhrasesLimit: s.optional(s.number()),
+  transcriptPhrasesLimit: s.optional(s.float64()),
   uploadQuota: uploadQuotaSchema,
   uri: s.string(),
   websites: s.array(s.lazy(() => websiteSchema)),

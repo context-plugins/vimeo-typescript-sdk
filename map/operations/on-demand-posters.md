@@ -4,7 +4,7 @@
 
 Accessor: `client.onDemandPosters` · Source: `src/resources/on-demand-posters.ts` · 4 operations · Request and error types: namespace `OnDemandPosters`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVodPoster
 
@@ -12,8 +12,9 @@ Accessor: `client.onDemandPosters` · Source: `src/resources/on-demand-posters.t
 - **Wire**: `POST /ondemand/pages/{ondemand_id}/pictures`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `OnDemandPosters.AddVodPosterError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandPosters.AddVodPosterError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandPosters.AddVodPosterRequest` (1):
@@ -29,12 +30,13 @@ Accessor: `client.onDemandPosters` · Source: `src/resources/on-demand-posters.t
 
 ### editVodPoster
 
-- **Signature**: `editVodPoster(request: OnDemandPosters.EditVodPosterRequest, options?: RequestOptions): ApiPromise<Picture, ResponseError>`
+- **Signature**: `editVodPoster(request: OnDemandPosters.EditVodPosterRequest, options?: RequestOptions): ApiPromise<Picture, ApiError>`
 - **Wire**: `PATCH /ondemand/pages/{ondemand_id}/pictures/{poster_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `OnDemandPosters.EditVodPosterRequest` (3):
 
@@ -51,12 +53,12 @@ Accessor: `client.onDemandPosters` · Source: `src/resources/on-demand-posters.t
 
 ### getVodPoster
 
-- **Signature**: `getVodPoster(request: OnDemandPosters.GetVodPosterRequest, options?: RequestOptions): ApiPromise<Picture, ResponseError>`
+- **Signature**: `getVodPoster(request: OnDemandPosters.GetVodPosterRequest, options?: RequestOptions): ApiPromise<Picture, ApiError>`
 - **Wire**: `GET /ondemand/pages/{ondemand_id}/pictures/{poster_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `OnDemandPosters.GetVodPosterRequest` (2):
 
@@ -76,7 +78,7 @@ Accessor: `client.onDemandPosters` · Source: `src/resources/on-demand-posters.t
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PictureConnection`
-- **Error**: `OnDemandPosters.GetVodPostersError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `OnDemandPosters.GetVodPostersError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `OnDemandPosters.GetVodPostersRequest` (3):

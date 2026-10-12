@@ -4,16 +4,17 @@
 
 Accessor: `client.usersPictures` · Source: `src/resources/users-pictures.ts` · 10 operations · Request types: namespace `UsersPictures`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createPicture
 
-- **Signature**: `createPicture(request: UsersPictures.CreatePictureRequest, options?: RequestOptions): ApiPromise<Picture, ResponseError>`
+- **Signature**: `createPicture(request: UsersPictures.CreatePictureRequest, options?: RequestOptions): ApiPromise<Picture, ApiError>`
 - **Wire**: `POST /users/{user_id}/pictures`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersPictures.CreatePictureRequest` (1):
 
@@ -27,12 +28,13 @@ Accessor: `client.usersPictures` · Source: `src/resources/users-pictures.ts` ·
 
 ### createPictureAlt1
 
-- **Signature**: `createPictureAlt1(options?: RequestOptions): ApiPromise<Picture, ResponseError>`
+- **Signature**: `createPictureAlt1(options?: RequestOptions): ApiPromise<Picture, ApiError>`
 - **Wire**: `POST /me/pictures`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 | Type | Schema value | Source |
 | --- | --- | --- |
@@ -40,12 +42,13 @@ Accessor: `client.usersPictures` · Source: `src/resources/users-pictures.ts` ·
 
 ### deletePicture
 
-- **Signature**: `deletePicture(request: UsersPictures.DeletePictureRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `deletePicture(request: UsersPictures.DeletePictureRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /users/{user_id}/pictures/{portraitset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersPictures.DeletePictureRequest` (2):
 
@@ -56,12 +59,13 @@ Accessor: `client.usersPictures` · Source: `src/resources/users-pictures.ts` ·
 
 ### deletePictureAlt1
 
-- **Signature**: `deletePictureAlt1(request: UsersPictures.DeletePictureAlt1Request, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `deletePictureAlt1(request: UsersPictures.DeletePictureAlt1Request, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /me/pictures/{portraitset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersPictures.DeletePictureAlt1Request` (1):
 
@@ -71,12 +75,13 @@ Accessor: `client.usersPictures` · Source: `src/resources/users-pictures.ts` ·
 
 ### editPicture
 
-- **Signature**: `editPicture(request: UsersPictures.EditPictureRequest, options?: RequestOptions): ApiPromise<Picture, ResponseError>`
+- **Signature**: `editPicture(request: UsersPictures.EditPictureRequest, options?: RequestOptions): ApiPromise<Picture, ApiError>`
 - **Wire**: `PATCH /users/{user_id}/pictures/{portraitset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersPictures.EditPictureRequest` (3):
 
@@ -93,12 +98,13 @@ Accessor: `client.usersPictures` · Source: `src/resources/users-pictures.ts` ·
 
 ### editPictureAlt1
 
-- **Signature**: `editPictureAlt1(request: UsersPictures.EditPictureAlt1Request, options?: RequestOptions): ApiPromise<Picture, ResponseError>`
+- **Signature**: `editPictureAlt1(request: UsersPictures.EditPictureAlt1Request, options?: RequestOptions): ApiPromise<Picture, ApiError>`
 - **Wire**: `PATCH /me/pictures/{portraitset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Picture`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersPictures.EditPictureAlt1Request` (2):
 
@@ -114,12 +120,12 @@ Accessor: `client.usersPictures` · Source: `src/resources/users-pictures.ts` ·
 
 ### getPicture
 
-- **Signature**: `getPicture(request: UsersPictures.GetPictureRequest, options?: RequestOptions): ApiPromise<Picture, ResponseError>`
+- **Signature**: `getPicture(request: UsersPictures.GetPictureRequest, options?: RequestOptions): ApiPromise<Picture, ApiError>`
 - **Wire**: `GET /users/{user_id}/pictures/{portraitset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersPictures.GetPictureRequest` (2):
 
@@ -134,12 +140,12 @@ Accessor: `client.usersPictures` · Source: `src/resources/users-pictures.ts` ·
 
 ### getPictureAlt1
 
-- **Signature**: `getPictureAlt1(request: UsersPictures.GetPictureAlt1Request, options?: RequestOptions): ApiPromise<Picture, ResponseError>`
+- **Signature**: `getPictureAlt1(request: UsersPictures.GetPictureAlt1Request, options?: RequestOptions): ApiPromise<Picture, ApiError>`
 - **Wire**: `GET /me/pictures/{portraitset_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Picture`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersPictures.GetPictureAlt1Request` (1):
 
@@ -153,12 +159,12 @@ Accessor: `client.usersPictures` · Source: `src/resources/users-pictures.ts` ·
 
 ### getPictures
 
-- **Signature**: `getPictures(request: UsersPictures.GetPicturesRequest, options?: RequestOptions): ApiPromise<PictureConnection, ResponseError>`
+- **Signature**: `getPictures(request: UsersPictures.GetPicturesRequest, options?: RequestOptions): ApiPromise<PictureConnection, ApiError>`
 - **Wire**: `GET /users/{user_id}/pictures`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PictureConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersPictures.GetPicturesRequest` (3):
 
@@ -174,12 +180,12 @@ Accessor: `client.usersPictures` · Source: `src/resources/users-pictures.ts` ·
 
 ### getPicturesAlt1
 
-- **Signature**: `getPicturesAlt1(request: UsersPictures.GetPicturesAlt1Request, options?: RequestOptions): ApiPromise<PictureConnection, ResponseError>`
+- **Signature**: `getPicturesAlt1(request: UsersPictures.GetPicturesAlt1Request, options?: RequestOptions): ApiPromise<PictureConnection, ApiError>`
 - **Wire**: `GET /me/pictures`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PictureConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersPictures.GetPicturesAlt1Request` (2):
 

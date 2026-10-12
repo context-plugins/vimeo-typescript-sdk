@@ -4,7 +4,7 @@
 
 Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` · 12 operations · Request and error types: namespace `UsersFollowers`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### checkIfUserIsFollowing
 
@@ -13,7 +13,7 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `UsersFollowers.CheckIfUserIsFollowingError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `UsersFollowers.CheckIfUserIsFollowingError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `UsersFollowers.CheckIfUserIsFollowingRequest` (2):
@@ -34,7 +34,7 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `UsersFollowers.CheckIfUserIsFollowingAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `UsersFollowers.CheckIfUserIsFollowingAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `UsersFollowers.CheckIfUserIsFollowingAlt1Request` (1):
@@ -53,8 +53,9 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 - **Wire**: `PUT /users/{user_id}/following/{follow_user_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `UsersFollowers.FollowUserError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `UsersFollowers.FollowUserError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `UsersFollowers.FollowUserRequest` (2):
@@ -74,8 +75,9 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 - **Wire**: `PUT /me/following/{follow_user_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `UsersFollowers.FollowUserAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `UsersFollowers.FollowUserAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [403] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `UsersFollowers.FollowUserAlt1Request` (1):
@@ -94,8 +96,9 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 - **Wire**: `POST /users/{user_id}/following`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `UsersFollowers.FollowUsersError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `UsersFollowers.FollowUsersError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [429] `Error` · `"error5"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `UsersFollowers.FollowUsersRequest` (2):
@@ -116,8 +119,9 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 - **Wire**: `POST /me/following`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `UsersFollowers.FollowUsersAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `UsersFollowers.FollowUsersAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"error4"` [429] `Error` · `"error5"` [500] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `UsersFollowers.FollowUsersAlt1Request` (1):
@@ -133,12 +137,12 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 
 ### getFollowers
 
-- **Signature**: `getFollowers(request: UsersFollowers.GetFollowersRequest, options?: RequestOptions): ApiPromise<UserConnection, ResponseError>`
+- **Signature**: `getFollowers(request: UsersFollowers.GetFollowersRequest, options?: RequestOptions): ApiPromise<UserConnection, ApiError>`
 - **Wire**: `GET /users/{user_id}/followers`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersFollowers.GetFollowersRequest` (6):
 
@@ -159,12 +163,12 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 
 ### getFollowersAlt1
 
-- **Signature**: `getFollowersAlt1(request: UsersFollowers.GetFollowersAlt1Request, options?: RequestOptions): ApiPromise<UserConnection, ResponseError>`
+- **Signature**: `getFollowersAlt1(request: UsersFollowers.GetFollowersAlt1Request, options?: RequestOptions): ApiPromise<UserConnection, ApiError>`
 - **Wire**: `GET /me/followers`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersFollowers.GetFollowersAlt1Request` (5):
 
@@ -184,12 +188,12 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 
 ### getUserFollowing
 
-- **Signature**: `getUserFollowing(request: UsersFollowers.GetUserFollowingRequest, options?: RequestOptions): ApiPromise<UserConnection, ResponseError>`
+- **Signature**: `getUserFollowing(request: UsersFollowers.GetUserFollowingRequest, options?: RequestOptions): ApiPromise<UserConnection, ApiError>`
 - **Wire**: `GET /users/{user_id}/following`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersFollowers.GetUserFollowingRequest` (7):
 
@@ -212,12 +216,12 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 
 ### getUserFollowingAlt1
 
-- **Signature**: `getUserFollowingAlt1(request: UsersFollowers.GetUserFollowingAlt1Request, options?: RequestOptions): ApiPromise<UserConnection, ResponseError>`
+- **Signature**: `getUserFollowingAlt1(request: UsersFollowers.GetUserFollowingAlt1Request, options?: RequestOptions): ApiPromise<UserConnection, ApiError>`
 - **Wire**: `GET /me/following`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserConnection`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersFollowers.GetUserFollowingAlt1Request` (6):
 
@@ -239,12 +243,13 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 
 ### unfollowUser
 
-- **Signature**: `unfollowUser(request: UsersFollowers.UnfollowUserRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `unfollowUser(request: UsersFollowers.UnfollowUserRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /users/{user_id}/following/{follow_user_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersFollowers.UnfollowUserRequest` (2):
 
@@ -255,12 +260,13 @@ Accessor: `client.usersFollowers` · Source: `src/resources/users-followers.ts` 
 
 ### unfollowUserAlt1
 
-- **Signature**: `unfollowUserAlt1(request: UsersFollowers.UnfollowUserAlt1Request, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `unfollowUserAlt1(request: UsersFollowers.UnfollowUserAlt1Request, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /me/following/{follow_user_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `UsersFollowers.UnfollowUserAlt1Request` (1):
 

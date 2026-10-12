@@ -6,16 +6,27 @@ import { privacy4Schema, type Privacy4 } from "./privacy4.js";
 import { userSchema, type User } from "./user.js";
 
 export type Group = {
+  /** The time in ISO 8601 format when the group was created. */
   createdTime: string;
+  /** The group's description. */
   description: string | null;
+  /** The link to the group. */
   link: string;
+  /** Metadata about the group. */
   metadata: Metadata6;
+  /** The time in ISO 8601 format when the group was last modified. */
   modifiedTime: string;
+  /** The group's display name. */
   name: string;
+  /** The active picture for the group. */
   pictures: Picture;
+  /** The group's privacy settings. */
   privacy: Privacy4;
+  /** The resource key of the group. */
   resourceKey: string;
+  /** The canonical relative URI of the group. */
   uri: string;
+  /** The owner of the group. */
   user?: User | null;
 };
 

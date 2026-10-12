@@ -10,18 +10,31 @@ import { moveVideoSchema, type MoveVideo } from "./move-video.js";
 import { uploadVideoSchema, type UploadVideo } from "./upload-video.js";
 import { view2Schema, type View2 } from "./view2.js";
 
+/** A list of permitted interactions related to the folder. */
 export type Interactions4 = {
+  /** Information about adding a subfolder to the current folder. */
   addSubfolder: AddSubfolder;
+  /** Whether the folder can have multiple review links. */
   allowMultipleReviewLinks?: boolean;
+  /** Whether the user can comment on the videos of the current folder. */
   canComment?: boolean;
+  /** The user's delete permissions information for this project. */
   delete: Delete1;
+  /** The user's delete permissions information for this project. */
   deleteVideo: DeleteVideo;
+  /** The user's edit permissions information for this project. */
   edit: Edit1;
+  /** The user's edit settings permissions information for this project. */
   editSettings: EditSettings;
+  /** The user's invite permissions information for this project. */
   invite: Invite1;
+  /** The user's move permissions information for this project. */
   moveVideo: MoveVideo;
+  /** The default review redirect link for the current folder. */
   reviewRedirectLink?: string;
+  /** The user's upload permissions information for this project. */
   uploadVideo: UploadVideo;
+  /** The user's view permissions information for this project. */
   view: View2;
 };
 

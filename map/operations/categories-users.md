@@ -4,16 +4,16 @@
 
 Accessor: `client.categoriesUsers` · Source: `src/resources/categories-users.ts` · 8 operations · Request and error types: namespace `CategoriesUsers`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### checkIfUserSubscribedToCategory
 
-- **Signature**: `checkIfUserSubscribedToCategory(request: CategoriesUsers.CheckIfUserSubscribedToCategoryRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `checkIfUserSubscribedToCategory(request: CategoriesUsers.CheckIfUserSubscribedToCategoryRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `GET /users/{user_id}/categories/{category}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `CategoriesUsers.CheckIfUserSubscribedToCategoryRequest` (2):
 
@@ -24,12 +24,12 @@ Accessor: `client.categoriesUsers` · Source: `src/resources/categories-users.ts
 
 ### checkIfUserSubscribedToCategoryAlt1
 
-- **Signature**: `checkIfUserSubscribedToCategoryAlt1(request: CategoriesUsers.CheckIfUserSubscribedToCategoryAlt1Request, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `checkIfUserSubscribedToCategoryAlt1(request: CategoriesUsers.CheckIfUserSubscribedToCategoryAlt1Request, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `GET /me/categories/{category}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `CategoriesUsers.CheckIfUserSubscribedToCategoryAlt1Request` (1):
 
@@ -44,7 +44,7 @@ Accessor: `client.categoriesUsers` · Source: `src/resources/categories-users.ts
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CategoryConnection`
-- **Error**: `CategoriesUsers.GetCategorySubscriptionsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `CategoriesUsers.GetCategorySubscriptionsError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `CategoriesUsers.GetCategorySubscriptionsRequest` (5):
@@ -71,7 +71,7 @@ Accessor: `client.categoriesUsers` · Source: `src/resources/categories-users.ts
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CategoryConnection`
-- **Error**: `CategoriesUsers.GetCategorySubscriptionsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `CategoriesUsers.GetCategorySubscriptionsAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [403] `Error` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `CategoriesUsers.GetCategorySubscriptionsAlt1Request` (4):
@@ -92,12 +92,13 @@ Accessor: `client.categoriesUsers` · Source: `src/resources/categories-users.ts
 
 ### subscribeToCategory
 
-- **Signature**: `subscribeToCategory(request: CategoriesUsers.SubscribeToCategoryRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `subscribeToCategory(request: CategoriesUsers.SubscribeToCategoryRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PUT /users/{user_id}/categories/{category}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `CategoriesUsers.SubscribeToCategoryRequest` (2):
 
@@ -108,12 +109,13 @@ Accessor: `client.categoriesUsers` · Source: `src/resources/categories-users.ts
 
 ### subscribeToCategoryAlt1
 
-- **Signature**: `subscribeToCategoryAlt1(request: CategoriesUsers.SubscribeToCategoryAlt1Request, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `subscribeToCategoryAlt1(request: CategoriesUsers.SubscribeToCategoryAlt1Request, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PUT /me/categories/{category}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `CategoriesUsers.SubscribeToCategoryAlt1Request` (1):
 
@@ -123,12 +125,13 @@ Accessor: `client.categoriesUsers` · Source: `src/resources/categories-users.ts
 
 ### unsubscribeFromCategory
 
-- **Signature**: `unsubscribeFromCategory(request: CategoriesUsers.UnsubscribeFromCategoryRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `unsubscribeFromCategory(request: CategoriesUsers.UnsubscribeFromCategoryRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /users/{user_id}/categories/{category}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `CategoriesUsers.UnsubscribeFromCategoryRequest` (2):
 
@@ -139,12 +142,13 @@ Accessor: `client.categoriesUsers` · Source: `src/resources/categories-users.ts
 
 ### unsubscribeFromCategoryAlt1
 
-- **Signature**: `unsubscribeFromCategoryAlt1(request: CategoriesUsers.UnsubscribeFromCategoryAlt1Request, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `unsubscribeFromCategoryAlt1(request: CategoriesUsers.UnsubscribeFromCategoryAlt1Request, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /me/categories/{category}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `CategoriesUsers.UnsubscribeFromCategoryAlt1Request` (1):
 

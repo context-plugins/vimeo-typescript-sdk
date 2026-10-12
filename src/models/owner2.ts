@@ -1,6 +1,14 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * How to handle the owner information in the title bar of the embeddable player.
+ *
+ * Option descriptions:
+ *  * `hide` - Hide the owner info.
+ *  * `show` - Show the owner info.
+ *  * `user` - Enable the user to decide.
+ */
 export const Owner2 = {
   Hide: "hide",
   Show: "show",

@@ -1,6 +1,13 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * Who can add videos to the group.
+ *
+ * Option descriptions:
+ *  * `all` - Anyone can add videos to the group.
+ *  * `members` - Only group members can add videos to the group.
+ */
 export const Videos7 = {
   All: "all",
   Members: "members",

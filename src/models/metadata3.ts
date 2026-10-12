@@ -4,9 +4,12 @@ import { connections3Schema, type Connections3 } from "./connections3.js";
 import { interactions2Schema, type Interactions2 } from "./interactions2.js";
 import { publicVideosSchema, type PublicVideos } from "./public-videos.js";
 
+/** The authenticated user's metadata. */
 export type Metadata3 = {
+  /** The list of resource URIs related to the authenticated user. */
   connections: Connections3;
   interactions: Interactions2;
+  /** Information about the Microsoft Teams encrypted team ID. */
   msTeamsEncryptedTeamId: string | null;
   publicVideos: PublicVideos;
 };

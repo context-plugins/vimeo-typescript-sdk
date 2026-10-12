@@ -4,16 +4,17 @@
 
 Accessor: `client.watchLaterQueueEssentials` · Source: `src/resources/watch-later-queue-essentials.ts` · 8 operations · Request and error types: namespace `WatchLaterQueueEssentials`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addVideoToWatchLater
 
-- **Signature**: `addVideoToWatchLater(request: WatchLaterQueueEssentials.AddVideoToWatchLaterRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `addVideoToWatchLater(request: WatchLaterQueueEssentials.AddVideoToWatchLaterRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PUT /users/{user_id}/watchlater/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `WatchLaterQueueEssentials.AddVideoToWatchLaterRequest` (2):
 
@@ -24,12 +25,13 @@ Accessor: `client.watchLaterQueueEssentials` · Source: `src/resources/watch-lat
 
 ### addVideoToWatchLaterAlt1
 
-- **Signature**: `addVideoToWatchLaterAlt1(request: WatchLaterQueueEssentials.AddVideoToWatchLaterAlt1Request, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `addVideoToWatchLaterAlt1(request: WatchLaterQueueEssentials.AddVideoToWatchLaterAlt1Request, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PUT /me/watchlater/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `WatchLaterQueueEssentials.AddVideoToWatchLaterAlt1Request` (1):
 
@@ -44,7 +46,7 @@ Accessor: `client.watchLaterQueueEssentials` · Source: `src/resources/watch-lat
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `WatchLaterQueueEssentials.CheckWatchLaterQueueError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `WatchLaterQueueEssentials.CheckWatchLaterQueueError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `WatchLaterQueueEssentials.CheckWatchLaterQueueRequest` (2):
@@ -66,7 +68,7 @@ Accessor: `client.watchLaterQueueEssentials` · Source: `src/resources/watch-lat
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Video`
-- **Error**: `WatchLaterQueueEssentials.CheckWatchLaterQueueAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `WatchLaterQueueEssentials.CheckWatchLaterQueueAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `WatchLaterQueueEssentials.CheckWatchLaterQueueAlt1Request` (1):
@@ -82,12 +84,13 @@ Accessor: `client.watchLaterQueueEssentials` · Source: `src/resources/watch-lat
 
 ### deleteVideoFromWatchLater
 
-- **Signature**: `deleteVideoFromWatchLater(request: WatchLaterQueueEssentials.DeleteVideoFromWatchLaterRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `deleteVideoFromWatchLater(request: WatchLaterQueueEssentials.DeleteVideoFromWatchLaterRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /users/{user_id}/watchlater/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `WatchLaterQueueEssentials.DeleteVideoFromWatchLaterRequest` (2):
 
@@ -98,12 +101,13 @@ Accessor: `client.watchLaterQueueEssentials` · Source: `src/resources/watch-lat
 
 ### deleteVideoFromWatchLaterAlt1
 
-- **Signature**: `deleteVideoFromWatchLaterAlt1(request: WatchLaterQueueEssentials.DeleteVideoFromWatchLaterAlt1Request, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `deleteVideoFromWatchLaterAlt1(request: WatchLaterQueueEssentials.DeleteVideoFromWatchLaterAlt1Request, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /me/watchlater/{video_id}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `VimeoApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `WatchLaterQueueEssentials.DeleteVideoFromWatchLaterAlt1Request` (1):
 
@@ -118,7 +122,7 @@ Accessor: `client.watchLaterQueueEssentials` · Source: `src/resources/watch-lat
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `WatchLaterQueueEssentials.GetWatchLaterQueueError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `WatchLaterQueueEssentials.GetWatchLaterQueueError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error304"` [304] no body · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `WatchLaterQueueEssentials.GetWatchLaterQueueRequest` (8):
@@ -148,7 +152,7 @@ Accessor: `client.watchLaterQueueEssentials` · Source: `src/resources/watch-lat
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `VideoConnection`
-- **Error**: `WatchLaterQueueEssentials.GetWatchLaterQueueAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `WatchLaterQueueEssentials.GetWatchLaterQueueAlt1Error` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error304"` [304] no body · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `WatchLaterQueueEssentials.GetWatchLaterQueueAlt1Request` (7):

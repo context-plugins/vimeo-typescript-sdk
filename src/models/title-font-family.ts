@@ -1,6 +1,7 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/** The selected video title font family. */
 export const TitleFontFamily = {
   Anton: "anton",
   ArchivoBlack: "archivo_black",

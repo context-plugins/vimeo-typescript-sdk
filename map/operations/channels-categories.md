@@ -4,7 +4,7 @@
 
 Accessor: `client.channelsCategories` · Source: `src/resources/channels-categories.ts` · 4 operations · Request and error types: namespace `ChannelsCategories`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `vimeo-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### addChannelCategories
 
@@ -12,8 +12,9 @@ Accessor: `client.channelsCategories` · Source: `src/resources/channels-categor
 - **Wire**: `PUT /channels/{channel_id}/categories`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsCategories.AddChannelCategoriesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsCategories.AddChannelCategoriesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsCategories.AddChannelCategoriesRequest` (2):
@@ -35,8 +36,9 @@ Accessor: `client.channelsCategories` · Source: `src/resources/channels-categor
 - **Wire**: `PUT /channels/{channel_id}/categories/{category}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsCategories.CategorizeChannelError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsCategories.CategorizeChannelError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [400] `Error` · `"error2"` [401] `Error` · `"error3"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsCategories.CategorizeChannelRequest` (2):
@@ -57,8 +59,9 @@ Accessor: `client.channelsCategories` · Source: `src/resources/channels-categor
 - **Wire**: `DELETE /channels/{channel_id}/categories/{category}`
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ChannelsCategories.DeleteChannelCategoryError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsCategories.DeleteChannelCategoryError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error"` [401] `Error` · `"error2"` [403] `Error` · `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsCategories.DeleteChannelCategoryRequest` (2):
@@ -80,7 +83,7 @@ Accessor: `client.channelsCategories` · Source: `src/resources/channels-categor
 - **Auth**: any of `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `bearer` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CategoryConnection`
-- **Error**: `ChannelsCategories.GetChannelCategoriesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `VimeoApiError` with `kind: "api"`, an instance of `ChannelsCategories.GetChannelCategoriesError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"legacyError"` [404] `LegacyError` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `ChannelsCategories.GetChannelCategoriesRequest` (1):

@@ -1,6 +1,14 @@
 import * as s from "../core/validation/index.js";
 import type { EnumSchema } from "../core/validation/schema.js";
 
+/**
+ * The stream mode of the event.
+ *
+ * Option descriptions:
+ *  * `live` - The stream is live playback.
+ *  * `record` - The stream is in record mode.
+ *  * `simulive` - The stream is scheduled media playback.
+ */
 export const StreamMode = {
   Live: "live",
   Record: "record",

@@ -1,9 +1,13 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
+/** Information about the video's Vimeo On Demand trailer. */
 export type Trailer = {
+  /** An array of HTTP methods permitted on this URI. */
   options?: string[];
+  /** The trailer connection resource key. */
   resourceKey?: string;
+  /** The API URI that resolves to the connection data. */
   uri?: string;
 };
 
